@@ -164,6 +164,7 @@ $monthNames = array(
 //        echo "<pre>";
 //        print_r($finOperationFull);
         $sum_amount_1 = $sum_amount_2 = 0;
+
         $sum_amounts = $sum_amounts2 = array();
         if(isset($projectsFull) && !empty($projectsFull)):?>
             <div class="title"><?= __('Expenses projected/actual') ?></div>
@@ -244,7 +245,7 @@ $monthNames = array(
                                         <?php $plan = (isset($crmTaskFull[$v3['Task']['id']]['CrmTask']['money']) ? $crmTaskFull[$v3['Task']['id']]['CrmTask']['money'] : 0);?>
                                         <span class="plan"><?=number_format($plan);?></span>
                                         <span class="slash">/</span>
-                                        <span><?= isset( $sum_amounts[$v3['Task']['id']]) ?  $sum_amounts[$v3['Task']['id']] : 0 ?></span>
+                                        <span><?= isset( $v3['Task']['fullExpense_m1']) ?  $v3['Task']['fullExpense_m1'] : 0 ?></span>
                                         <div class="negative">
 
 <!--                                            --><?// if (($delta = $plan - $sum_amount_1) < 0) { ?>
@@ -256,7 +257,7 @@ $monthNames = array(
                                         <?php $plan = (isset($crmTaskFull[$v3['Task']['id']]['CrmTask']['money']) ? $crmTaskFull[$v3['Task']['id']]['CrmTask']['money'] : 0);?>
                                         <span class="plan"><?=number_format($plan);?></span>
                                         <span class="slash">/</span>
-                                        <span><?= isset( $sum_amount2[$v3['Task']['id']]) ?  $sum_amount2[$v3['Task']['id']] : 0 ?></span>
+                                        <span><?= isset(  $v3['Task']['fullExpense_m2']) ?  $v3['Task']['fullExpense_m2'] : 0 ?></span>
                                         <div class="negative">
 <!--                                            --><?// if (($delta = $plan - $sum_amount_1) < 0) { ?>
 <!--                                                --><?//= $delta ?>
@@ -307,6 +308,7 @@ $monthNames = array(
                                         <?php foreach($v5['Operations'] as $k6=>$v6):?>
                                             <?php  if($v6['type'] == 0 && date('n', strtotime($month1)) == date('n', strtotime($v6['created']))):?>
                                                 <?php
+                                                $amount = $v6['amount'];
                                                 $am = isset($sum_amounts[$v3['Task']['id']]) ?  $sum_amounts[$v3['Task']['id']] : 0;
                                                 $sum_amounts[$v3['Task']['id']]=$amount+$am;
                                                 $sum_amount_1+=  $amount;?>
@@ -330,7 +332,7 @@ $monthNames = array(
                                             <?php $plan = (isset($crmTaskFull[$v3['Task']['id']]['CrmTask']['money']) ? $crmTaskFull[$v3['Task']['id']]['CrmTask']['money'] : 0);?>
                                             <span class="plan"><?=number_format($plan);?></span>
                                             <span class="slash">/</span>
-                                            <span><?= isset( $sum_amounts[$v3['Task']['id']]) ?  $sum_amounts[$v3['Task']['id']] : 0 ?></span>
+                                            <span><?= isset( $v3['Task']['fullIncome_m1']) ?  $v3['Task']['fullIncome_m1'] : 0 ?></span>
                                             <div class="negative">
 <!--                                                --><?// if (($delta = $plan - $sum_amount_1) < 0) { ?>
 <!--                                                    --><?//= //$delta ?>
@@ -341,7 +343,7 @@ $monthNames = array(
                                             <?php $plan = (isset($crmTaskFull[$v3['Task']['id']]['CrmTask']['money']) ? $crmTaskFull[$v3['Task']['id']]['CrmTask']['money'] : 0);?>
                                             <span class="plan"><?=number_format($plan);?></span>
                                             <span class="slash">/</span>
-                                            <span><?= isset( $sum_amounts2[$v3['Task']['id']]) ?  $sum_amounts2[$v3['Task']['id']] : 0 ?></span>
+                                            <span><?= isset( $v3['Task']['fullIncome_m2']) ?  $v3['Task']['fullIncome_m2'] : 0 ?></span>
                                             <div class="negative">
 <!--                                                --><?// if (($delta = $plan - $sum_amount_1) < 0) { ?>
 <!--                                                    --><?//= $delta ?>

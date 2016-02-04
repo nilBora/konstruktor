@@ -201,7 +201,7 @@ class FinanceAccount extends AppModel {
 			'FinanceOperation.type' => FinanceOperation::TYPE_EXPENSE,
 		);
 		if ($from) {
-			$conditions[] = "FinanceOperation.created >= '$from'";
+			$conditions[] = "UNIX_TIMESTAMP(FinanceOperation.created) >= '$from'";
 		}
 		if ($to) {
 			$conditions[] = "FinanceOperation.created <= DATE_ADD('$to', INTERVAL 24 HOUR)";
