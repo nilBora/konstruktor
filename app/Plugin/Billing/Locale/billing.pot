@@ -1,0 +1,522 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2015-10-04 14:21+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: Config/bootstrap.php:10
+msgid "Bytes"
+msgstr ""
+
+#: Config/bootstrap.php:17
+msgid "Members"
+msgstr ""
+
+#: Controller/BillingCallbackController.php:36
+msgid "%s Braintree webhook for subscription %s: %s"
+msgstr ""
+
+#: Controller/BillingGroupsController.php:33;54
+msgid "The billing group has been saved."
+msgstr ""
+
+#: Controller/BillingGroupsController.php:36;57
+msgid "The billing group could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/BillingGroupsController.php:50;75
+#: Controller/BillingSubscriptionsController.php:85;119;203
+#: Controller/BillingUserController.php:108
+msgid "Invalid billing group"
+msgstr ""
+
+#: Controller/BillingGroupsController.php:79
+msgid "The billing group has been deleted."
+msgstr ""
+
+#: Controller/BillingGroupsController.php:81
+msgid "The billing group could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/BillingPlansController.php:38;61
+msgid "The billing plan has been saved."
+msgstr ""
+
+#: Controller/BillingPlansController.php:41;64
+msgid "The billing plan could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/BillingPlansController.php:57;84
+#: Controller/BillingSubscriptionsController.php:59;159;268
+msgid "Invalid billing plan"
+msgstr ""
+
+#: Controller/BillingPlansController.php:88
+msgid "The billing plan has been deleted."
+msgstr ""
+
+#: Controller/BillingPlansController.php:90
+msgid "The billing plan could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/BillingSubscriptionsController.php:43
+msgid "Invalid billing subscription"
+msgstr ""
+
+#: Controller/BillingSubscriptionsController.php:74
+msgid "The subscription has been canceled."
+msgstr ""
+
+#: Controller/BillingSubscriptionsController.php:76
+msgid "The subscription could not be canceled. Please, try again."
+msgstr ""
+
+#: Controller/BillingSubscriptionsController.php:112;222
+#: Controller/BillingUserController.php:122
+msgid "Incorrect request type"
+msgstr ""
+
+#: Controller/BillingSubscriptionsController.php:138;176
+msgid "You can not subscribe to same plan twice while it is active"
+msgstr ""
+
+#: Controller/BillingSubscriptionsController.php:246
+#: Controller/BillingUserController.php:147
+msgid "Payment method not found"
+msgstr ""
+
+#: Controller/BillingSubscriptionsController.php:249;263;284
+#: Controller/BillingUserController.php:150
+msgid "Unable to create subscription"
+msgstr ""
+
+#: Controller/BillingSubscriptionsController.php:345;367
+msgid "Unable to subscribe on chosen plan. Please contact with resorce administration"
+msgstr ""
+
+#: Controller/BillingSubscriptionsController.php:375
+msgid "Subscription can not be found"
+msgstr ""
+
+#: View/BillingGroups/admin_add.ctp:3
+msgid "Add new Billing Group"
+msgstr ""
+
+#: View/BillingGroups/admin_add.ctp:35
+#: View/BillingGroups/admin_edit.ctp:36
+#: View/BillingSubscriptions/admin_index.ctp:50
+msgid "List Billing Groups"
+msgstr ""
+
+#: View/BillingGroups/admin_edit.ctp:3
+msgid "Edit Billing Group"
+msgstr ""
+
+#: View/BillingGroups/admin_edit.ctp:37
+#: View/BillingGroups/admin_index.ctp:21
+#: View/BillingPlans/admin_edit.ctp:51
+#: View/BillingPlans/admin_index.ctp:33
+msgid "Delete"
+msgstr ""
+
+#: View/BillingGroups/admin_edit.ctp:37
+#: View/BillingGroups/admin_index.ctp:21
+#: View/BillingPlans/admin_edit.ctp:51
+#: View/BillingPlans/admin_index.ctp:33
+msgid "Are you sure you want to delete # %s?"
+msgstr ""
+
+#: View/BillingGroups/admin_index.ctp:3
+msgid "Billing Groups"
+msgstr ""
+
+#: View/BillingGroups/admin_index.ctp:11
+#: View/BillingPlans/admin_index.ctp:12
+#: View/BillingSubscriptions/admin_index.ctp:16
+msgid "Actions"
+msgstr ""
+
+#: View/BillingGroups/admin_index.ctp:18
+#: View/BillingSubscriptions/admin_index.ctp:32
+msgid "Yes"
+msgstr ""
+
+#: View/BillingGroups/admin_index.ctp:18
+#: View/BillingSubscriptions/admin_index.ctp:32
+msgid "No"
+msgstr ""
+
+#: View/BillingGroups/admin_index.ctp:20
+#: View/BillingPlans/admin_index.ctp:32
+msgid "Edit"
+msgstr ""
+
+#: View/BillingGroups/admin_index.ctp:30
+msgid "New Billing Group"
+msgstr ""
+
+#: View/BillingPlans/admin_add.ctp:3
+msgid "Add new Billing Plan"
+msgstr ""
+
+#: View/BillingPlans/admin_add.ctp:25
+#: View/BillingPlans/admin_edit.ctp:35
+msgid "Basic free plan"
+msgstr ""
+
+#: View/BillingPlans/admin_add.ctp:40
+#: View/BillingPlans/admin_edit.ctp:50
+#: View/BillingSubscriptions/admin_index.ctp:51
+msgid "List Billing Plans"
+msgstr ""
+
+#: View/BillingPlans/admin_edit.ctp:3
+#: View/BillingPlans/admin_index.ctp:3
+msgid "Billing Plans"
+msgstr ""
+
+#: View/BillingPlans/admin_edit.ctp:28
+msgid "Limit plan to"
+msgstr ""
+
+#: View/BillingPlans/admin_edit.ctp:29
+msgid "2"
+msgstr ""
+
+#: View/BillingPlans/admin_index.ctp:10
+msgid "Remote Plans"
+msgstr ""
+
+#: View/BillingPlans/admin_index.ctp:11
+msgid "Is free"
+msgstr ""
+
+#: View/BillingPlans/admin_index.ctp:30
+#: View/BillingSubscriptions/plans.ctp:39;58
+#: View/Elements/subscriptions/free.ctp:3
+msgid "Free"
+msgstr ""
+
+#: View/BillingPlans/admin_index.ctp:30
+msgid "Paid"
+msgstr ""
+
+#: View/BillingPlans/admin_index.ctp:42
+msgid "New Billing Plan"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_index.ctp:3
+#: View/BillingUser/subscriptions.ctp:9
+msgid "Subscriptions"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_index.ctp:9
+msgid "Remote ID"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_index.ctp:10
+#: View/BillingSubscriptions/admin_view.ctp:13
+msgid "User"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_index.ctp:11
+msgid "Group > Plan (Remote plan)"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_index.ctp:37
+msgid "View"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_index.ctp:39
+msgid "Cancel"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_index.ctp:39
+#: View/BillingSubscriptions/admin_view.ctp:163
+msgid "Are you sure you want to cancel # %s?"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_index.ctp:49
+msgid "List Users"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_view.ctp:3
+#: View/BillingUser/subscriptions.ctp:62
+msgid "Subscription"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_view.ctp:9
+msgid "General Info"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_view.ctp:18
+msgid "Billing Group"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_view.ctp:25
+msgid "Active"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_view.ctp:30
+msgid "Expiration"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_view.ctp:35
+msgid "Created"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_view.ctp:40
+msgid "Modified"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_view.ctp:52
+msgid "Braintree Subscription"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_view.ctp:56;86
+msgid "Subscription ID"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_view.ctp:60
+msgid "Current billing cycle"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_view.ctp:64
+msgid "Start date"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_view.ctp:68
+msgid "End date"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_view.ctp:72
+msgid "Next bill amount"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_view.ctp:83
+msgid "Braintree Plan"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_view.ctp:90
+msgid "Name"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_view.ctp:102
+msgid "Braintree Transactions"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_view.ctp:108
+msgid "Transactiond ID"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_view.ctp:109
+msgid "Payment"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_view.ctp:110;141
+#: View/BillingUser/subscriptions.ctp:64
+msgid "Date & Time"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_view.ctp:111
+#: View/BillingUser/subscriptions.ctp:65
+msgid "Amount"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_view.ctp:134
+msgid "Braintree Status History"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_view.ctp:140
+#: View/BillingUser/subscriptions.ctp:63
+msgid "Source"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_view.ctp:142
+#: View/BillingUser/subscriptions.ctp:66
+msgid "Status"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_view.ctp:162
+msgid "List Subscriptions"
+msgstr ""
+
+#: View/BillingSubscriptions/admin_view.ctp:163
+msgid "Cancel Subscription"
+msgstr ""
+
+#: View/BillingSubscriptions/payment.ctp:4
+#: View/BillingSubscriptions/payment_deprecated.ctp:44;106;114
+#: View/BillingSubscriptions/plans.ctp:76
+#: View/BillingSubscriptions/plans_members.ctp:57
+msgid "Subscribe"
+msgstr ""
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:52
+#: View/Elements/payments_form.ctp:56
+msgid "Card number"
+msgstr ""
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:56
+#: View/Elements/payments_form.ctp:60
+msgid "CVV"
+msgstr ""
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:60
+msgid "Expiration Date"
+msgstr ""
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:65
+msgid "January"
+msgstr ""
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:66
+msgid "February"
+msgstr ""
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:67
+msgid "March"
+msgstr ""
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:68
+msgid "April"
+msgstr ""
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:69
+msgid "May"
+msgstr ""
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:70
+msgid "June"
+msgstr ""
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:71
+msgid "July"
+msgstr ""
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:72
+msgid "August"
+msgstr ""
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:73
+msgid "September"
+msgstr ""
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:74
+msgid "October"
+msgstr ""
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:75
+msgid "November"
+msgstr ""
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:76
+msgid "December"
+msgstr ""
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:102
+msgid "Cardholder Name"
+msgstr ""
+
+#: View/BillingSubscriptions/plans.ctp:20;56
+msgid "current"
+msgstr ""
+
+#: View/BillingSubscriptions/plans.ctp:29
+msgid "year"
+msgstr ""
+
+#: View/BillingSubscriptions/plans.ctp:31
+msgid "month"
+msgstr ""
+
+#: View/BillingSubscriptions/plans_members.ctp:9
+msgid "Expand available members"
+msgstr ""
+
+#: View/BillingSubscriptions/plans_members.ctp:10
+msgid "1 user - 4$ per month"
+msgstr ""
+
+#: View/BillingSubscriptions/plans_members.ctp:12
+msgid "You are already subscribed to %d members"
+msgstr ""
+
+#: View/BillingSubscriptions/plans_members.ctp:21
+msgid "Members quantity"
+msgstr ""
+
+#: View/BillingSubscriptions/plans_members.ctp:42
+msgid "Period"
+msgstr ""
+
+#: View/BillingSubscriptions/plans_members.ctp:54
+msgid "Total"
+msgstr ""
+
+#: View/BillingSubscriptions/success.ctp:2
+msgid "You are not successfully subscribed."
+msgstr ""
+
+#: View/BillingSubscriptions/success.ctp:4
+msgid "You are successfully subscribed."
+msgstr ""
+
+#: View/BillingUser/payment.ctp:4
+msgid "Add funds"
+msgstr ""
+
+#: View/BillingUser/subscriptions.ctp:12
+msgid "Transactions"
+msgstr ""
+
+#: View/BillingUser/subscriptions.ctp:42
+msgid "Change"
+msgstr ""
+
+#: View/BillingUser/subscriptions.ctp:53
+msgid "You are not subscribed to any subscription yet."
+msgstr ""
+
+#: View/BillingUser/subscriptions.ctp:108
+msgid "There was no any transactions yet."
+msgstr ""
+
+#: View/Elements/payments_form.ctp:12
+msgid "Saved payments"
+msgstr ""
+
+#: View/Elements/payments_form.ctp:16
+msgid "Add card"
+msgstr ""
+
+#: View/Elements/payments_form.ctp:19
+msgid "Add Paypal"
+msgstr ""
+
+#: View/Elements/payments_form.ctp:64
+msgid "Card expiration date"
+msgstr ""
+
+#: View/Elements/subscriptions/free.ctp:23
+msgid "Lifetime"
+msgstr ""
+
+#: View/Elements/subscriptions/paid.ctp:4
+msgid "yearly"
+msgstr ""
+
+#: View/Elements/subscriptions/paid.ctp:4
+msgid "monthly"
+msgstr ""
+

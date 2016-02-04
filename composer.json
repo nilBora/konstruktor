@@ -1,0 +1,44 @@
+{
+  "name": "konstruktor/app",
+  "description": "Konstruktor main application",
+  "type": "project",
+  "keywords" : [],
+  "homepage" : "https://konstruktor.com",
+  "license" : "Commercial License",
+  "require" : {
+    "php" : ">=5.4",
+    "composer/installers" : "~1.0",
+    "cakephp/cakephp" : "2.5.8",
+    "slywalker/boost_cake": "1.0.*",
+    "josegonzalez/dotenv": "0.3.*",
+    "ad7six/dsn": "0.3.*",
+    "willdurand/geocoder": "^3.1@dev",
+    "geoip2/geoip2": "~2.0",
+    "friendsofcake/authenticate": "1.0.1",
+    "dereuromark/cakephp-tools": "0.9.*",
+    "braintree/braintree_php": "3.2.0",
+    "mindforce/attempt": "*",
+    "firebase/php-jwt": "3.0.*",
+
+    "markstory/asset_compress": "0.20",
+    "natxet/CssMin": "3.0.4",
+    "linkorb/jsmin-php": "1.0.0",
+    "tedivm/jshrink": "1.1.0",
+    "php-ffmpeg/php-ffmpeg": "~0.5",
+    "ptlis/conneg": "~4.0.0"
+  },
+  "require-dev": {
+    "cakephp/debug_kit" : "2.2.*"
+  },
+  "minimum-stability": "dev",
+  "config": {
+    "preferred-install": "dist"
+  },
+  "extra": {
+    "heroku": {
+      "framework": "cakephp2",
+      "document-root": "webroot",
+      "index-document": "index.php"
+    }
+  }
+}

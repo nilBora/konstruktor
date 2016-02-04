@@ -1,0 +1,13 @@
+.idea
+^app/Config/.env
+^Plugin/*
+^tmp/*
+^vendor/*
+!empty
+phpmyadmin/.*
+webroot/phpmyadmin/.*
+(?i)\.log
+(?i)\.tmp
+webroot/files/*
+webroot/img/temp/*
+composer.lock

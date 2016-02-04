@@ -1,0 +1,50 @@
+<IfModule mod_rewrite.c>
+	RewriteEngine on
+
+    #удалить слеш в конце строки
+    RewriteCond %{HTTP_HOST} (.*)
+    RewriteCond %{REQUEST_URI} /$ [NC]
+    RewriteRule ^(.*)(/)$ $1 [L,R=301]
+    
+	#Исключение доступа по реффереру (добавить в начало документа после RewriteEngine On):
+	RewriteCond %{HTTP_REFERER} cenoval\.ru [NC,OR]
+	RewriteCond %{HTTP_REFERER} cenokos\.ru [NC,OR]
+	RewriteCond %{HTTP_REFERER} iskalko\.ru [NC,OR]
+	RewriteCond %{HTTP_REFERER} ilovevitaly\.com [NC,OR]
+	RewriteCond %{HTTP_REFERER} o-o-8-o-o\.ru [NC,OR]
+	RewriteCond %{HTTP_REFERER} o-o-6-o-o\.ru [NC,OR]
+	RewriteCond %{HTTP_REFERER} buttons-for-website\.com [NC,OR]
+	RewriteCond %{HTTP_REFERER} priceg\.com [NC,OR]
+	RewriteCond %{HTTP_REFERER} semalt\.com[NC,OR]
+	RewriteCond %{HTTP_REFERER} crawler\.semalt\.com [NC,OR]
+	RewriteCond %{HTTP_REFERER} semalt\.semalt\.com [NC,OR]
+	RewriteCond %{HTTP_REFERER} ilovevitaly\.ru [NC,OR]
+	RewriteCond %{HTTP_REFERER} vodkoved\.ru [NC,OR]
+	RewriteCond %{HTTP_REFERER} iedit\.ilovevitaly\.ru [NC,OR]
+	RewriteCond %{HTTP_REFERER} ftns\.ru [NC,OR]
+	RewriteCond %{HTTP_REFERER} ^.*\.?darodar\.com [NC,OR]
+	RewriteCond %{HTTP_REFERER} forum\.advokateg\.ru [NC,OR]
+	RewriteCond %{HTTP_REFERER} ilovevitaly\.co [NC,OR]
+	RewriteCond %{HTTP_REFERER} iedit\.ilovevitaly\.ru [NC,OR]
+	RewriteCond %{HTTP_REFERER} b-motor\.ru [NC,OR]
+	RewriteCond %{HTTP_REFERER} b-motor\.info [NC,OR]
+	RewriteCond %{HTTP_REFERER} ru\.ilovevitaly\.com [NC,OR]
+	RewriteCond %{HTTP_REFERER} simple-share-buttons\.com [NC,OR]
+	RewriteCond %{HTTP_REFERER} forum\.topic59173948\.darodar\.com [NC,OR]
+	RewriteRule ^.*$ – [F]
+
+	#Запрет доступа по IP:
+	#Order allow,deny
+	#Allow from all
+	#Deny from 78.110.60.230
+	#Deny from 217.23.
+
+	RewriteRule    (phpmyadmin)/(.*) - [L]
+	RewriteRule    (tickets)/(.*) - [L]
+	RewriteRule    (html)/(.*) - [L]
+	RewriteRule    (codebase)/(.*) - [L]
+	RewriteRule    (skins)/(.*) - [L]
+
+	RewriteRule    ^$    webroot/    [L]
+	RewriteRule    (.*) webroot/$1    [L]
+</IfModule>

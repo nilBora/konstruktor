@@ -1,0 +1,1 @@
+<?=$this->element('device_list')?>

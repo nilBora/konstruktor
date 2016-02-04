@@ -1,0 +1,1 @@
+<span class="sum"><?=$PU_.number_format($sum, 2, '.', ' ').$_PU?></span>

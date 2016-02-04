@@ -1,0 +1,1 @@
+<span class="ajax-loader" style="display: none"><img src="/img/ajax_loader.gif" alt="" style="width: 16px; height: 16px;"/> <?=__('Loading...')?></span>

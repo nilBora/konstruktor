@@ -1,0 +1,15 @@
+# User specific & automatically generated files #
+#################################################
+.idea
+.DS_Store
+/app/Config/.env
+/Plugin
+phpmyadmin/*
+/tmp
+/vendor
+/webroot/assets/*
+!/webroot/assets/empty
+/webroot/img/temp/*
+/webroot/files/*
+webroot/phpmyadmin/*
+composer.lock

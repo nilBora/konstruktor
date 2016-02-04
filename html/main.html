@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Main Page</title>
+		<link href="../app/webroot/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../app/webroot/css/index-page-new.css" rel="stylesheet">
+		
+		<link href="css/fonts.css" rel="stylesheet">
+		
+		
+		<script src="../app/webroot/js/vendor/jquery/jquery-1.10.2.min.js"></script>		
+		<script src="../app/webroot/js/vendor/bootstrap.min.js"></script>
+		<script src="../app/webroot/js/vendor/jquery.nicescroll.min.js"></script>
+		
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<script type="text/javascript">document.addEventListener("touchstart", function() {},false);</script>
+	</head>
+	<body>
+<script type="text/javascript">
+    switchIndexForms = function () {
+        $("#login_form_block").toggle(100);
+        $("#register_form_block").toggle(100);
+    };
+</script>
+		<div class="container">
+			<a class="logo-company" href="/">
+				<img alt="" src="../app/webroot/img/logo.png" class="logo-image">
+				<div class="logo-text">Креативная среда</div>
+			</a>
+			<div class="rightContent clearfix" id="login_form_block">
+				<a href="javascript: void(0)" onclick="switchIndexForms();" class="dottedLine authRegistration">Зарегистрироваться</a>
+				<form class="formFields">
+					<div class="form-group">
+						<input type="text" value="" placeholder="Электронная почта" class="form-control">
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<input type="text" placeholder="Пароль" value="" class="form-control">
+							<div class="input-group-addon glyphicons eye_close right"></div>
+						</div>
+					</div>
+					<div class="clearfix">
+						<button class="btn btn-default disabled" type="submit"><span class="halflings log_in"></span> Войти</button>
+						<a class="dottedLine addInfo pull-right" href="#">Забыли пароль?</a>
+					</div>
+				</form>
+			</div>
+			<div class="rightContent clearfix" id="register_form_block" style="display: none">
+				<a href="javascript: void(0)" onclick="switchIndexForms();" class="dottedLine authRegistration">Войти на сайт</a>
+				<form class="formFields">
+					<div class="form-group">
+						<input type="text" value="" placeholder="Введите ваше имя" class="form-control">
+					</div>
+					<div class="form-group">
+						<input type="text" value="" placeholder="Введите вашу фамилию" class="form-control">
+					</div>
+					<div class="form-group">
+						<input type="text" value="" placeholder="Кратко ваши навыки" class="form-control">
+					</div>
+					<div class="form-group">
+						<input type="text" value="" placeholder="Введите ваш адрес эл. почты" class="form-control">
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<input type="text" placeholder="Введите пароль" value="" class="form-control">
+							<div class="input-group-addon glyphicons eye_close right"></div>
+						</div>
+					</div>
+					<a href="javascript: void(0)" class="btn btn-default" id="signUp">Зарегистрироваться</a>
+				</form>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="container">
+				<div class="copyright">
+					&copy; KONSTRUKTOR US lab LLC
+					<div class="copyright-year">2002-2015</div>
+				</div>
+				<div class="rightLinks">
+					<a href="#" target="_blank" class="dottedLine">Terms of Use</a>
+					<a href="#" target="_blank" class="dottedLine">Privacy Policy</a>
+				</div>
+			</div>
+		</div>
+		
+<div class="modal fade" id="terms" tabindex="-1" role="dialog"  aria-hidden="true">
+	<div class="outer-modal-dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<span class="glyphicons circle_remove" data-dismiss="modal"></span>
+				<h4>WEBSITE TERMS AND CONDITIONS</h4>
+				<div class="terms">
+					<div class="title"><strong>Acceptance</strong></div>
+					These terms and conditions govern your view or use of this website; by viewing or using this website, you accept these terms and conditions in full. If you disagree with these terms and conditions or any part of these terms and conditions, you must not view or use this website.
+You are unable to accept these Terms provided:<br />
+— you are not entitled to use our website or services related thereto under any applicable
+laws in the country of your location or residence, or<br />
+— you are under of legal age to enter into a legally binding agreement with Konstructor.
+					<div class="title"><strong>Privacy policy</strong></div>
+					The Company respects the privacy of users. Please refer to the Company’s Private Policy URL http:/konstruktor.com /terms.pdf which explains how we collect, use, and disclose information that pertains to your privacy. When you access or use the website and/or application you signify your agreement to this Private Policy.
+					<div class="title"><strong>About the service</strong></div>
+					Our web-based Service allows users who register for an account (each an "Account Holder") to create and update an online creative environment. Once registered, each Account Holder receives his or her own account and may post "Content" (defined below). Any new features on the Service, including the release of new Konstruktor tools and resources, shall be subject to these Terms. To use the Service, you must have access to the Internet, either directly or through devices that access web- based content, and you must pay any fees associated with Internet access. In addition, you must provide all equipment necessary to make such connection to the Internet, including a web-enabled computer. The Service may include certain communications from us, such as service announcements, administrative messages. These communications are considered part of a membership. You may not access the Service by any means other than through the Service interfaces we provide you.
+					<div class="title"><strong>Registration</strong></div>
+					To register as an Account Holder, you must provide us with a valid email address and other information ("Registration Data"). You will choose a password and account designation for your account during the registration process. You are responsible for maintaining the confidentiality of the password and account, and for all activities that occur under your account. In consideration of use of the Service, you agree to maintain and update true, accurate, current and complete Registration Data. If you provide any information that is untrue, inaccurate, not current or incomplete, or if Konstruktor has reasonable grounds to suspect that such information is untrue, inaccurate, not current or incomplete, we may suspend or terminate your account and refuse any and all current or future use of the Service or any portion thereof.
+					<div class="title"><strong>Website account and security</strong></div>
+					You are responsible for maintaining the security of your account and web site, for all activities that occur or actions taken under the account or in connection with the web site. You agree to immediately notify us in writing of any unauthorized uses of the account or any other breaches of security. We will not be liable for any loss or damage from your failure to comply with this security
+obligation. You acknowledge and agree that under no circumstances will we be liable, in any way, for any or your acts or omissions or those of any third party, including damages of any kind incurred as a result of such acts or omissions.
+					<div class="title"><strong>User Content</strong></div>
+					Konstruktor does not claim ownership of your Content, but you give us your permission to host your Content on the Service. This permission exists only for as long as you continue to use the Service or remain an Account Holder.<br />
+					We reserve the right (but shall have no obligation) to decide whether any content that you use complies with these Terms and we may remove such content, suspend and/or terminate this Agreement at our sole discretion if you use any content that is in breach of these Terms or to comply with applicable law or the order or requirement of a court, administrative agency or other governmental body.<br />
+					Constructor reserves the right to remove and permanently delete any User Content from site or services related to the site with or without a written notice.
+					<div class="title"><strong>License to use website and/or application</strong></div>
+					Your license to use this content, website is a non-exclusive, non-transferrable license to use the content and website for private use only. You must not use content commercially, broadcast it, lease, rent, sublicense, publish, modify, adapt, or translate any portion of it without express permission from us and, if the publisher is another company or person, additionally from the publisher.<br />
+					You must not use any means to bypass or disable any encryption, security, or authentication mechanism to gain unauthorized access or to interfere with any account, service, software or network connected to website and/or application.<br />
+					Your permission to use the website and/or application site is conditioned upon the following Use Restrictions: You agree that you will not under any circumstances:
+- Post any information that is abusive, threatening, obscene, defamatory, libelous, sexually, religiously, or otherwise objectionable and offensive;<br />
+- Use the service for any unlawful purpose or for the promotion of illegal activities;<br />
+- Attempt to, or harass, abuse or harm another person or group;<br />
+- Use another account without permission;<br />
+- Provide false or inaccurate information when registering an account;<br />
+- Interfere or attempt to interfere with the proper functioning of the website and/or application.
+					<div class="title"><strong>Code of Conduct</strong></div>
+					You are solely responsible for providing and maintaining all hardware and software required for accessing and using our site and services related thereto. All information, data, text, software, music, sound, photographs, graphics, video, messages, goods, products, services or other materials you post on a web site via the Service ("Content") are the sole responsibility of the person from which such Content originated. You are responsible for all Content that you upload, post, transmit or otherwise make available via the Service. We do not control the Content you post via the Service. By using the Service, you may be exposed to content that is offensive, indecent or objectionable. Under no circumstances will we be liable for your Content or the content of any third party, including, but not limited to, for any errors or omissions in your Content, or for any loss or damage of any kind incurred as a result of the use of any Content posted, transmitted or otherwise made available via the Service. You acknowledge that we do not pre-screen Content, but that we shall have the right (but not the obligation) to refuse, move or delete any Content that is available via the Service. We shall also have the right to remove any Content that violates these Terms or is otherwise objectionable in our sole discretion. You must evaluate, and bear all risks associated with, the use of any Content. You may not rely on any Content created by us. You acknowledge and agree that we may preserve Content and may also disclose Content if required to do so by law or in the good faith belief that such preservation or disclosure is reasonably necessary to: (a) comply with legal process; (b) enforce these Terms; (c) respond to claims that any Content violates the rights of third-parties; or (d) protect our rights, property, or personal safety and those of our users and the public.<br />
+					The technical processing and transmission of the Service, including Content, may involve (a) transmissions over various networks; and (b) changes to conform and adapt to technical requirements of connecting networks or devices.
+					<div class="title"><strong>You agree that you will not:</strong></div>
+- upload, post, transmit or otherwise make available any Content that is unlawful, harmful, threatening, abusive, harassing, tortuous, defamatory, vulgar, obscene, libelous, invasive of another's privacy (up to, but not excluding any address, email, phone number, or any other contact information without the written consent of the owner of such information), hateful, or racially, ethnically or otherwise objectionable;<br />
+- harm minors in any way;<br />
+- impersonate any person or entity, including, but not limited to, a Weebly official, forum leader, guide or host, or falsely state or otherwise misrepresent your affiliation with a person or entity;<br />
+- forge headers or otherwise manipulate identifiers in order to disguise the origin of any Content transmitted through the Service;<br />
+- upload, post or otherwise transmit any Content that you do not have a right to transmit under any law or under contractual or fiduciary relationships (such as inside information, proprietary and confidential information learned or disclosed as part of employment relationships or under nondisclosure agreements);<br />
+- upload, post or otherwise transmit any Content that infringes any patent, trademark, trade secret, copyright, rights of privacy or publicity, or other proprietary rights of any party;<br />
+- upload, post, or transmit unsolicited commercial email or "spam". This includes unethical marketing, advertising, or any other practice that is in any way connected with "spam", such as (i) sending mass email to recipients who haven't requested email from you or with a fake return address, (ii) promoting a site with inappropriate links, titles, descriptions, or (iii) promoting your site by posting multiple submissions in public forums that are identical;<br />
+- upload, post or otherwise transmit any material that contains software viruses or any other computer code, files or programs designed to interrupt, destroy or limit the functionality of any computer software or hardware or telecommunications equipment;<br />
+- interfere with or disrupt the Service or servers or networks connected to the Service, or disobey any requirements, procedures, policies or regulations of networks connected to the Service;<br />
+- intentionally or unintentionally violate any applicable local, state, national or international law, including, but not limited to, regulations promulgated by the U.S. Securities and Exchange Commission, any rules of any national or other securities exchange, including without limitation, the New York Stock Exchange, the American Stock Exchange or the NASDAQ, and any regulations having the force of law;<br />
+- "stalk" or otherwise harass another;<br />
+- promote or provide instructional information about illegal activities, promote physical harm or injury against any group or individual, or promote any act of cruelty to animals. This may include, without limitation, providing instructions on how to assemble bombs, grenades and other weapons or incendiary devices;<br />
+- offer for sale or sell any item, good or service that (i) violates any applicable federal, state, or local law or regulation, (ii) you do not have full power and authority under all relevant laws and regulations to offer and sell, including all necessary licenses and authorizations, or (iii) we determine, in our sole discretion, is inappropriate for sale through the Service;<br />
+- use the Service as a forwarding service to another web site;<br />
+- solicit a third party’s passwords or personal identifying information for unlawful or phishing purposes;<br />
+- exceed the scope of the Service that you have signed up for; for example, by accessing and using the tools that you do not have a right to use, or deleting, adding to, or otherwise changing other peoples comments or content; (q) upload, post or otherwise transmit any Content that is intended to take advantage of a user. Such content may include, but is not limited to, "get rich quick", "get paid to surf", pyramid/MLM, or other dubious schemes.<br />
+- include more than three ad units per page, or any advertising that greatly reduces the usability of the site.<br />
+- upload files for the sole purpose of having them hosted by us and for use outside of a web site created using the Service.<br />
+- create a web site that provides an injurious user experience with custom programming. Examples include, but are not limited to, extreme flashing banners and excessive animated movement.<br />
+- upload, post or otherwise transmit any Content that is adult in nature, such as any nudity in a sexual context, any Content revealing exposed genitalia, or any Content with adult themes.<br /><br />
+					We retain the right to terminate any account or user who has violated any of the above prohibitions.
+					<div class="title"><strong>Fees/payment</strong></div>
+					Some of the features on the Service require payment of fees. If you elect to sign up for these features, you shall pay all applicable fees, as described on the Service in connection with such features selected by you. We reserve the right to change our prices and at any time. You authorize us to make any reasonably necessary inquiries to validate your account and financial information.<br /><br />
+					All fees are exclusive of all taxes, levies, or duties imposed by taxing authorities, and you shall be responsible for payment thereof. You agree to pay for any taxes that might be applicable to your use of the Service and payments you make to us.
+					<div class="title"><strong>Variation, cancellation and termination</strong></div>
+					Konstruktor may revise these terms and conditions from time-to-time. Revised terms and conditions will apply to the use of this website and/or application from the date of the publication of the revised terms and conditions on this website and/or application. Please check this page regularly to ensure you are familiar with the current version. If you continue using applications, site and services related thereto after making these alterations, amendments and revisions you are taken to have agreed thereto.<br /><br />
+					In case you violate the provisions of the Terms, we reserve the right to issue you a notice in regards of your violation or immediately terminate or suspend or limit functionality of any or all applications, site and services related thereto.<br />
+					We reserve the right to suspend or deny, at our sole discretion, your access to all or any portion of website and services related thereto without sending a written notice (including your violation of the present Terms). Konstruktor bears no responsibility and liability for suspending or denying your access to our website or other services related thereto without a written notice. You are entitled to terminate the Agreement and suspend any relationships with Konstruktor any time through finishing using the Service.<br />
+					If you cancel the Service, your cancellation will take effect immediately. After cancellation, you will no longer have access to your web site and we may delete all information on your web site. We accept no liability for such deleted information or content.<br /><br />
+					For as long as we continue to offer the Services, we will provide and seek to update, improve and expand the Service. As a result, we allow you to access the Service as it may exist and be available on any given day and have no other obligations, except as expressly stated in this Agreement. We may modify, replace, refuse access to, suspend or discontinue the Service, partially or entirely, or change and modify prices for all or part of the Services for you or for all our users in our sole discretion. All of these changes shall be effective upon their posting on our site or by direct communication to you unless otherwise noted. We further reserve the right to withhold, remove and or discard any Content available as part of your account, with or without notice if deemed by us to be contrary to this Agreement. For avoidance of doubt, we have no obligation to store, maintain or provide you a copy of any content that you or others provide when using the Service.<br /><br />
+					Not limited to other means of legal protection Konstruktor is entitled to suspend or terminate the Agreement and remove or suspend your access to any applications, site and services thereto in case you are in breach of any clause of the Terms.
+					<div class="title"><strong>Intellectual property</strong></div>
+					You acknowledge and agree that we and our licensor retain ownership for all intellectual property rights of any kind related to the website and/or application, including applicable copyrights, trademarks and other proprietary rights. Other product and company names that are mentioned on the Service may be trademarks of their respective owners. We reserve all rights that are not expressly granted to you under this agreement.
+					<div class="title"><strong>Copyright complains and copyright agent</strong></div>
+(a) Termination or Repeat Infringer Accounts. The Company respects the intellectual property rights of others and requests that users do the same. Pursuant to 17 U.S.C. 512 (i) of the United State Copyright Act, the Company has adopted and implemented a policy that provides for the termination in appropriate circumstances of users of the Service who are repeat infringers. The Company may terminate access for participation or users who are found repeatedly to provide or post protected third party content without necessary right and permission.<br />
+(b) DMCA take Down notice. If you are a copyright owner or an agent thereof and believe, in good faith, that any materials provided on the Service infringe upon your copyrights, you may submit a notification pursuant to the Digital Millennium Copyright Act ( see 17 U.S.C 512) (“DMCA”) by sending the following information in writing to the Company’s designated copyright agent at 303 Twin Dolphin Drive 6th Floor, Redwood City, CA 94065 address.<br />
+- A physical or electronic signature of a person authorized to act on behalf of the • The sate of your notification;
+DAMAGES FOR LOSS OF PROFITS, GOODWILL, USE, DATA OR OTHER INTANGIBLE owner of an exclusive right that is allegedly infringed;<br />
+- A description of the copyrighted work claimed to have multiple copyrighted works at a single online site notification, a reprehensive list of such work on the site;<br />
+- a description of the material that is claimed to be infringing or to be the subject of infringing activity and information sufficient to enable us to locate such work;<br />
+- Information reasonable sufficient to permit the service provider to contact you, such as an address; telephone, and/or email address;<br />
+- A statement that you have good faith belief that use of the material in the manner complained of is not authorized by the copyright owner, its agent, or the law;<br />
+- A statement that information in notification is accurate, and under penalty or perjury, that you are authorized to act on behalf of the owner of an exclusive right that is allegedly infringed.<br />
+(c) Counter-Notice. If you believe that your User Content that has been removed from the Site is not infringing, or that you have the authorization from the copyright owner, the copyright owner’s agent, or pursuant to the law, to post and use the content in your User Content, you may send a counter-notice.
+					<div class="title"><strong>Disclaimer of warranties</strong></div>
+					YOU EXPRESSLY UNDERSTAND AND AGREE THAT:<br />
+					- YOUR USE OF THE SERVICE IS AT YOUR SOLE RISK. THE SERVICE IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS. WE EXPRESSLY DISCLAIM ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.<br />
+					- WE NOT RESPONSIBLE FOR ANY DAMAGE, LOSS OF DATA, CUSTOMER INFORMATION OR VENDOR DATA, REVENUE, OR OTHER HARM TO BUSINESS ARISING OUT OF DELAYS, MISDELIVERY OR NONDELIVERY OF INFORMATION, RESTRICTION OR LOSS OF ACCESS, BUGS OR OTHER ERRORS, UNAUTHORIZED USE DUE TO YOUR SHARING OF ACCESS TO THE SERVICE, OR OTHER INTERACTION WITH THE SERVICE. YOU ARE RESPONSIBLE FOR MAINTAINING AND BACKING-UP YOUR DATA AND INFORMATION THAT MAY RESIDE ON THE SERVICE. WEEBLY DOES NOT WARRANT THAT (i) THE SERVICE WILL MEET YOUR SPECIFIC REQUIREMENTS, (ii) THE SERVICE WILL BE UNINTERRUPTED, TIMELY, SECURE, OR ERROR-FREE, (iii) THE RESULTS THAT MAY BE OBTAINED FROM THE USE OF THE SERVICE WILL BE ACCURATE OR RELIABLE, (iv) THE QUALITY OF ANY PRODUCTS, SERVICES, INFORMATION, OR OTHER MATERIAL PURCHASED OR OBTAINED BY YOU THROUGH THE SERVICE WILL MEET YOUR EXPECTATIONS, AND (V) ANY ERRORS IN THE SERVICE WILL BE CORRECTED.<br />
+					- ANY MATERIAL DOWNLOADED OR OTHERWISE OBTAINED THROUGH THE USE OF THE SERVICE IS DONE AT YOUR OWN DISCRETION AND RISK AND THAT YOU WILL BE SOLELY RESPONSIBLE FOR ANY DAMAGE TO YOUR COMPUTER SYSTEM OR LOSS OF DATA THAT RESULTS FROM THE DOWNLOAD OF ANY SUCH MATERIAL.
+					<div class="title"><strong>Limitation of liability</strong></div>
+					WE WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL OR EXEMPLARY DAMAGES, INCLUDING BUT NOT LIMITED TO, DAMAGES FOR LOSS OF PROFITS, GOODWILL, USE, DATA OR OTHER INTANGIBLE LOSSES (EVEN IF WEEBLY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES), RESULTING FROM: (i) THE USE OR THE INABILITY TO USE THE SERVICE; (ii) THE COST OF PROCUREMENT OF SUBSTITUTE GOODS AND SERVICES RESULTING FROM ANY GOODS, DATA, INFORMATION OR SERVICES PURCHASED OR OBTAINED OR MESSAGES RECEIVED OR TRANSACTIONS ENTERED INTO THROUGH OR FROM THE SERVICE; (iii) UNAUTHORIZED ACCESS TO OR ALTERATION OF YOUR TRANSMISSIONS OR DATA; (iv) STATEMENTS OR CONDUCT OF ANY THIRD PARTY ON THE SERVICE; OR (v) ANY OTHER MATTER RELATING TO THE SERVICE. OUR AGGREGATE LIABILITY FOR ALL CLAIMS RELATING TO THE SERVICE SHALL NOT EXCEED THE AMOUNTS PAID BY YOU TO FOR THE PAST THREE MONTHS OF THE SERVICE IN QUESTION.
+					<div class="title"><strong>Exclusions and limitations</strong></div>
+					SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF CERTAIN WARRANTIES OR THE LIMITATION OR EXCLUSION OF LIABILITY FOR INCIDENTAL OR CONSEQUENTIAL DAMAGES. ACCORDINGLY, SOME OF THE ABOVE TWO SECTIONS MAY NOT APPLY TO YOU. NOTHING IN THIS WEBSITE AND/ OR APPLICATION DISCLAMER WILL EXCLUDE OR LIMIT ANY WARRANTY IMPLIED BY LAW THAT IT WOULD BE UNLAWFUL TO EXLUDE OR LIMIT.
+					<div class="title"><strong>Reasonableness</strong></div>
+					By using this website, you agree that the exclusions and limitations of liability set out in this website disclaimer are reasonable. If you do not think they are reasonable, you must not use this website.
+					<div class="title"><strong>Assignment</strong></div>
+					Konstruktor may transfer, sub-contract or otherwise deal with Konstruktor’s rights and/or obligations under these terms and conditions without notifying you or obtaining your consent. You may not transfer, sub-contract or otherwise deal with your rights and/or obligations under these terms and conditions.
+					<div class="title"><strong>Severability</strong></div>
+					If a provision of these terms and conditions is determined by any court or other competent authority to be unlawful and/or unenforceable, the other provisions will continue in effect. If any unlawful and/or unenforceable provision would be lawful or enforceable if part of it were deleted, that part will be deemed to be deleted, and the rest of the provision will continue in effect.
+					<div class="title"><strong>Integration</strong></div>
+					These terms and conditions constitute the entire agreement between you and Konstruktor in relation to your use of this website, and supersede all previous agreements in respect of your use of this website.
+					<div class="title"><strong>Law and jurisdiction</strong></div>
+					These terms and conditions will be governed by and construed in accordance with law of State of California, USA, without regard to its conflict of laws rules. Any disputes relating to these terms and conditions will be subject to the exclusive jurisdiction of the courts of The State of California.
+					<div class="title"><strong>User Support</strong></div>
+					By subscribing to our social networking outlets, such as our Twitter feed or Facebook fan pages or site email notifications, you agree to receive periodic information by e-mail or other medium regarding current and future applications or changes to the site.<br />Our applications can send push notifications to you. You can disable push notifications m Settings panel of your device.<br />In case you have questions you can contact us by forwarding an email at support@ konstruktor. com<br /><br />
+					<a href="javascript: void(0)" class="btn btn-primary" data-dismiss="modal" id="agree">Я согласен с правилами сайта</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+		
+<div class="modal fade" id="letterSent" tabindex="-1" role="dialog"  aria-hidden="true">
+	<div class="outer-modal-dialog">
+		<div class="modal-dialog">
+			<div class="modal-content small-size">
+				На вашу почту отправлено письмо для подтверждения вашего адреса эл. почты.<br /><br />
+				<a href="javascript: void(0)" class="btn btn-primary" data-dismiss="modal">Спасибо</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		
+		$('#agree').click ( function() {
+			$('#letterSent').modal();
+		});
+		
+		if ( $(window).height() < 470 ) {
+			$('.terms').height($(window).height()-80);
+		}
+		
+		$(window).resize(function() {
+			if ( $(window).height() < 470 ) {
+				$('.terms').height($(window).height()-80);
+			}
+			else {
+				$('.terms').height(400);
+			}
+		});
+		
+		
+		$('#signUp').click ( function() {
+			$('#terms').modal();
+		});
+		
+		$('#terms').on('shown.bs.modal', function (e) {
+			$('.terms').niceScroll({cursorwidth:"7px",cursorcolor:"#23b5ae", cursorborder:"none", autohidemode:"false", background: "#f1f1f1"})
+			$('.terms').getNiceScroll().show();
+		})
+		
+		$('#terms').on('hide.bs.modal', function (e) {
+  			$('.terms').getNiceScroll().hide();
+		});		
+		
+	})
+</script>	
+	</body>
+</html>

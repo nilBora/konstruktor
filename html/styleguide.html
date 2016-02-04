@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1.0, initial-scale=1.0, minimum-scale=1.0">
+		<title>SFM</title>
+		<link href="../webroot/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../webroot/css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
+		<link href="../webroot/css/style.css" rel="stylesheet">
+		
+		<link href="../webroot/css/main-panel-new.css" rel="stylesheet">
+		<link href="css/fonts.css" rel="stylesheet">
+		
+		
+		
+		<script src="../webroot/js/vendor/jquery/jquery-1.10.2.min.js"></script>
+		<script src="../webroot/js/vendor/bootstrap.min.js"></script>
+		<script src="../webroot/js/vendor/bootstrap-datetimepicker.min.js"></script>
+		<script src="../webroot/js/vendor/jquery/jquery.formstyler.min.js"></script>
+		
+		<!--
+		<script src="../webroot/js/vendor/jquery/jquery-ui.min.js"></script>
+		<script src="../webroot/js/vendor/jquery/jquery.form.min.js"></script>
+		<script src="../webroot/js/vendor/jquery/jquery.ui.widget.js"></script>
+		<script src="../webroot/js/vendor/jquery/jquery.easing.1.3.js"></script>
+		
+		<script src="../webroot/js/vendor/moment.js"></script>
+		<script src="../webroot/js/vendor/autosize.min.js"></script>
+		<script src="../webroot/js/vendor/tmpl.min.js"></script>
+		-->
+		
+		<script src="../webroot/js/main-panel.js"></script>
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<script type="text/javascript">document.addEventListener("touchstart", function() {},false);</script>
+	</head>
+	<body>
+		<div class="main-panel-before"></div>
+		<div class="main-panel">
+			<div class="main-panel-dropdown">
+				<div class="dropdown-panel dropdown-searchPanel">
+					<div class="dropdown-panel-wrapper">
+						<div class="searchBlock clearfix">
+							<form action="#">
+								<input type="text" placeholder="Найти пользователя" class="searchInput">
+								<button type="button" class="searchButton"><span class="glyphicons search"></span></button>
+							</form>
+						</div>                
+						<div class="dropdown-panel-scroll">
+							<ul class="search-list-user">
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/smallava2.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Лия Иванова</div>
+												<div class="user-list-item-spec">Ruby, Java, Oracle, MySQ</div>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/3.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Варфаламей Конс</div>
+												<div class="user-list-item-spec">JSP, Ruby, C#, Python</div>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/1.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Вадим Медянск</div>
+												<div class="user-list-item-spec">C++, C#, MsSQL, .NET</div>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/2.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Антон Кулаев</div>
+												<div class="user-list-item-spec">PHP, JS, CSS</div>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/4.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Оля Серова</div>
+												<div class="user-list-item-spec">ASM</div>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/3.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Степан Петрух</div>
+												<div class="user-list-item-spec">PHP, JSP, Ruby</div>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/1.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Николай Кошк</div>
+												<div class="user-list-item-spec">Oracle, MySQL, Postgre</div>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/2.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Зухра Низамие</div>
+												<div class="user-list-item-spec">C++, C#, ASP, .NET</div>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/4.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Рамиль Мухам</div>
+												<div class="user-list-item-spec">JSP, Ruby, C#, Python</div>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/2.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Евгений Никол</div>
+												<div class="user-list-item-spec">PHP, JSP, Ruby</div>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/4.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Даниил Авваку</div>
+												<div class="user-list-item-spec">Ruby, MySQL</div>
+											</div>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+            		</div>
+				</div>
+				<div class="dropdown-panel dropdown-chatPanel">
+					<div class="dropdown-panel-wrapper">
+						<div class="searchBlock clearfix">
+							<form action="#">
+								<input type="text" placeholder="Найти пользователя" class="searchInput">
+								<button type="button" class="searchButton"><span class="glyphicons search"></span></button>
+							</form>
+						</div>
+						<div class="dropdown-panel-scroll">
+							<div class="messages-list">
+								<ul>
+									<li class="messages-new clearfix">
+										<figure class="messages-user rate-10"><img alt="" src="img/temp/4.jpg" class="ava"></figure>
+										<div class="text">
+											<div class="name">Лия Иванова</div>
+											<div class="message clearfix">
+												<p>Ребята подсказали</p>
+											</div>
+										</div>
+										<div class="aside-block">
+											<div class="time">21:19</div>
+											<div class="count-b">
+												<span class="count">3</span>
+											</div>
+										</div>
+									</li>
+									<li class="messages-new clearfix">
+										<figure class="messages-user rate-10"><img alt="" src="img/temp/3.jpg" class="ava"></figure>
+										<div class="text">
+											<div class="name">Айдар Давлеев</div>
+											<div class="message clearfix">
+												<p>
+													<span class="inner-user"><img alt="" src="http://placehold.it/25"></span>
+													ааа) теперь понял
+												</p>
+											</div>
+										</div>
+										<div class="aside-block">
+											<div class="time">13:14</div>
+											<div class="count-b"></div>
+										</div>
+									</li>
+									<li class="messages-new clearfix">
+										<figure class="messages-user rate-10"><img alt="" src="img/temp/2.jpg" class="ava"></figure>
+										<div class="text">
+											<div class="name">Вадим Медянск</div>
+											<div class="message clearfix">
+												<p>а ну ладно тогда)</p>
+											</div>
+										</div>
+										<div class="aside-block">
+											<div class="time">9:11</div>
+											<div class="count-b">
+												<span class="count">4</span>
+											</div>
+										</div>
+									</li>
+									<li class="clearfix">
+										<figure class="messages-user rate-10"><img alt="" src="img/temp/1.jpg" class="ava"></figure>
+										<div class="text">
+											<div class="name">Антон Кулаев</div>
+											<div class="message clearfix">
+												<p>ну)</p>
+											</div>
+										</div>
+										<div class="aside-block">
+											<div class="time">13 авг</div>
+											<div class="count-b">
+												<span class="count">6</span>
+											</div>
+										</div>
+									</li>
+									<li class="clearfix">
+										<figure class="messages-user rate-10"><img alt="" src="img/temp/4.jpg" class="ava"></figure>
+										<div class="text">
+											<div class="name">Оля Серова</div>
+											<div class="message clearfix">
+												<p>ok</p>
+											</div>
+										</div>
+										<div class="aside-block">
+											<div class="time">13 авг</div>
+											<div class="count-b"></div>
+										</div>
+									</li>
+									<li class="clearfix">
+										<figure class="messages-user rate-10"><img alt="" src="img/temp/3.jpg" class="ava"></figure>
+										<div class="text">
+											<div class="name">Степан Петрух</div>
+											<div class="message clearfix">
+												<p>Макет подвижный</p>
+											</div>
+										</div>
+										<div class="aside-block">
+											<div class="time">12 авг</div>
+											<div class="count-b"></div>
+										</div>
+									</li>
+									<li class="clearfix">
+										<figure class="messages-user rate-10"><img alt="" src="img/temp/2.jpg" class="ava"></figure>
+										<div class="text">
+											<div class="name">Николай Кошк</div>
+											<div class="message clearfix">
+												<p>Пидарасы!</p>
+											</div>
+										</div>
+										<div class="aside-block">
+											<div class="time">12 авг</div>
+											<div class="count-b"></div>
+										</div>
+									</li>
+									<li class="clearfix">
+										<figure class="messages-user rate-10"><img alt="" src="img/temp/1.jpg" class="ava"></figure>
+										<div class="text">
+											<div class="name">Зухра Низамие</div>
+											<div class="message clearfix">
+												<p>Ну, это уж лучше, чем</p>
+											</div>
+										</div>
+										<div class="aside-block">
+											<div class="time">11 авг</div>
+											<div class="count-b"></div>
+										</div>
+									</li>
+									<li class="clearfix">
+										<figure class="messages-user rate-10"><img alt="" src="img/temp/4.jpg" class="ava"></figure>
+										<div class="text">
+											<div class="name">Рамиль Мухам</div>
+											<div class="message clearfix">
+												<p>Макет подвижный...</p>
+											</div>
+										</div>
+										<div class="aside-block">
+											<div class="time">11 авг</div>
+											<div class="count-b"></div>
+										</div>
+									</li>
+									<li class="clearfix">
+										<figure class="messages-user rate-10"><img alt="" src="img/temp/3.jpg" class="ava"></figure>
+										<div class="text">
+											<div class="name">Евгений Никол</div>
+											<div class="message clearfix">
+												<p>Макет подвижный...</p>
+											</div>
+										</div>
+										<div class="aside-block">
+											<div class="time">11 авг</div>
+											<div class="count-b"></div>
+										</div>
+									</li>
+									<li class="clearfix">
+										<figure class="messages-user rate-10"><img alt="" src="img/temp/2.jpg" class="ava"></figure>
+										<div class="text">
+											<div class="name">Даниил Авваку</div>
+											<div class="message clearfix">
+												<p>Макет подвижный...</p>
+											</div>
+										</div>
+										<div class="aside-block">
+											<div class="time">9 авг</div>
+											<div class="count-b"></div>
+										</div>
+									</li>
+									<li class="clearfix">
+										<figure class="messages-user rate-10"><img alt="" src="img/temp/1.jpg" class="ava"></figure>
+										<div class="text">
+											<div class="name">Марина Супер</div>
+											<div class="message clearfix">
+												<p>Макет подвижный...</p>
+											</div>
+										</div>
+										<div class="aside-block">
+											<div class="time">7 авг</div>
+											<div class="count-b"></div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="dropdown-panel dropdown-groupPanel">
+					<div class="dropdown-panel-wrapper">
+						<div class="searchBlock clearfix">
+							<form action="#">
+								<input type="text" placeholder="Найти пользователя" class="searchInput">
+								<button type="button" class="searchButton"><span class="glyphicons search"></span></button>
+							</form>
+						</div>
+						<div class="create-group">
+							<div class="page-menu">
+								<a class="btn btn-default" href="#">Создать</a>
+							</div>
+						</div>
+						<div class="dropdown-panel-scroll">
+							<ul class="group-list">
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/group.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Meduza Project</div>
+												<div class="user-list-item-spec">12 488 участников</div>
+											</div>
+										</div>
+									</a>
+									<div class="group-enter-btn clearfix">
+										<button class="btn btn-default">Принять</button>
+										<button class="btn btn-default">Отклонить</button>
+									</div>
+								</li>
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/group.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Red Keds</div>
+												<div class="user-list-item-spec">215 участников</div>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/group.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Сборная Мурманска</div>
+												<div class="user-list-item-spec">5 621 участник</div>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/group.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Шедевры рекламы</div>
+												<div class="user-list-item-spec">2 251 834 участника</div>
+											</div>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="dropdown-panel dropdown-notesPanel">
+					<div class="dropdown-panel-wrapper">dropdown-notesPanel</div>
+				</div>
+				<div class="dropdown-panel dropdown-briefcasePanel">
+					<div class="dropdown-panel-wrapper">dropdown-briefcasePanel</div>
+				</div>
+				<div class="dropdown-panel dropdown-credit_cardPanel">
+					<div class="dropdown-panel-wrapper">dropdown-credit_cardPanel</div>
+				</div>
+				<div class="dropdown-panel dropdown-cloudPanel">
+					<div class="dropdown-panel-wrapper">dropdown-cloudPanel</div>
+				</div>
+				<div class="dropdown-panel dropdown-filePanel">
+					<div class="dropdown-panel-wrapper">
+						<div class="searchBlock clearfix">
+							<form action="#">
+								<input type="text" placeholder="Найти статью" class="searchInput">
+								<button type="button" class="searchButton"><span class="glyphicons search"></span></button>
+							</form>
+						</div>
+						<div class="create-group">
+							<div class="page-menu">
+								<a class="btn btn-default" href="#">Создать</a>
+							</div>
+						</div>
+						<div class="dropdown-panel-scroll">
+							<ul class="group-list">
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-body noImage">
+												<div class="user-list-item-name">ALCATEL ONETOUCH IDOL 2 MINI S</div>
+												<div class="user-list-item-spec">description description description description</div>
+											</div>
+										</div>
+									</a>
+									<div class="buttonsBottom clearfix">
+										<a href="javascript:void(0)" class="btn btn-default pull-left">Изменить</a>
+										<a href="javascript:void(0)" class="btn btn-default smallBtn pull-left">
+                    						<span class="glyphicons link"></span>
+                						</a>
+										<a href="javascript:void(0)" class="btn btn-default smallBtn pull-right">
+                    						<span class="glyphicons bin"></span>
+                						</a>
+									</div>
+								</li>
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-body noImage">
+												<div class="user-list-item-name">How can I ipsum dolor sit amet?</div>
+												<div class="user-list-item-spec">description description description description</div>
+											</div>
+										</div>
+									</a>
+									<div class="buttonsBottom clearfix">
+										<a href="javascript:void(0)" class="btn btn-default pull-left">Изменить</a>
+										<a href="javascript:void(0)" class="btn btn-default smallBtn pull-left">
+                    						<span class="glyphicons link"></span>
+                						</a>
+										<a href="javascript:void(0)" class="btn btn-default smallBtn pull-right">
+                    						<span class="glyphicons bin"></span>
+                						</a>
+									</div>
+								</li>
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-body noImage">
+												<div class="user-list-item-name">Can I ipsum dolor sit amet nascetur ridiculus?</div>
+												<div class="user-list-item-spec">description description description description</div>
+											</div>
+										</div>
+									</a>
+									<div class="buttonsBottom clearfix">
+										<a href="javascript:void(0)" class="btn btn-default pull-left">Изменить</a>
+										<a href="javascript:void(0)" class="btn btn-default smallBtn pull-left">
+                    						<span class="glyphicons link"></span>
+                						</a>
+										<a href="javascript:void(0)" class="btn btn-default smallBtn pull-right">
+                    						<span class="glyphicons bin"></span>
+                						</a>
+									</div>
+								</li>
+								
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="dropdown-panel dropdown-ipadPanel">
+					<div class="dropdown-panel-wrapper">
+						<div class="dropdown-panel-scroll">
+							<ul class="drop-device-list">
+								<li class="drop-device-list-cell clearfix">
+									<figure class="drop-device-icon"><span class="icon glyphicons ipad"></span></figure>
+									<div class="drop-device-info">
+										<div class="title">Мобильная точка</div>
+										<div class="text-descript">
+											<p>iPad 16 ГБ, доступ к платным сервисам, помощь 24/7.</p>
+											<div class="month-amount">$50/месяц</div>
+											<div class="select-option clearfix">
+												<div class="box-input">
+													<label for="drop-device-info-input-1"></label>
+													<input type="text" value="10" id="drop-device-info-input-1">
+												</div>
+												<div class="box-select">
+													<label for="drop-device-info-select-1"></label>
+													<div style="display: inline-block; position: relative; z-index:100" class="jq-selectbox jqselect formstyler changed" id="drop-device-info-select-1-styler"><select id="drop-device-info-select-1" name="" class="formstyler" style="margin: 0px; padding: 0px; position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; opacity: 0;">
+														<option value="0">2 года</option>
+														<option value="1">3 года</option>
+														<option value="2">4 года</option>
+														<option value="3">5 лет</option>
+														<option value="4" selected="selected">6 лет</option>
+													</select><div style="position: relative" class="jq-selectbox__select"><div class="jq-selectbox__select-text">6 лет</div><div class="jq-selectbox__trigger"><div class="jq-selectbox__trigger-arrow"></div></div></div><div style="position: absolute; display: none;" class="jq-selectbox__dropdown"><ul style="position: relative; list-style: none; overflow: auto; overflow-x: hidden"><li class="" style="display: block; white-space: nowrap;">2 года</li><li class="" style="display: block; white-space: nowrap;">3 года</li><li class="" style="display: block; white-space: nowrap;">4 года</li><li class="" style="display: block; white-space: nowrap;">5 лет</li><li class="selected sel" style="display: block; white-space: nowrap;">6 лет</li></ul></div></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</li>
+								<li class="drop-device-list-cell clearfix">
+									<figure class="drop-device-icon"><span class="icon glyphicons imac"></span></figure>
+									<div class="drop-device-info">
+										<div class="title">Стационарная точка</div>
+										<div class="text-descript">
+											<p>Монитор, компьютер, доступ к платным сервисам, помощь 24/7.</p>
+											<div class="month-amount">$75/месяц</div>
+											<div class="select-option clearfix">
+												<div class="box-input">
+													<label for="drop-device-info-input-2"></label>
+													<input type="text" value="4" id="drop-device-info-input-2">
+												</div>
+												<div class="box-select">
+													<div class="box-select">
+														<label for="drop-device-info-select-2"></label>
+														<div style="display: inline-block; position: relative; z-index:100" class="jq-selectbox jqselect formstyler" id="drop-device-info-select-2-styler"><select id="drop-device-info-select-2" name="" class="formstyler" style="margin: 0px; padding: 0px; position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; opacity: 0;">
+															<option value="0">2 года</option>
+															<option value="1">3 года</option>
+															<option value="2">4 года</option>
+															<option value="3">5 лет</option>
+															<option value="4">6 лет</option>
+														</select><div style="position: relative" class="jq-selectbox__select"><div class="jq-selectbox__select-text">2 года</div><div class="jq-selectbox__trigger"><div class="jq-selectbox__trigger-arrow"></div></div></div><div style="position: absolute; display: none;" class="jq-selectbox__dropdown"><ul style="position: relative; list-style: none; overflow: auto; overflow-x: hidden"><li class="selected sel" style="display: block; white-space: nowrap;">2 года</li><li class="" style="display: block; white-space: nowrap;">3 года</li><li class="" style="display: block; white-space: nowrap;">4 года</li><li class="" style="display: block; white-space: nowrap;">5 лет</li><li class="" style="display: block; white-space: nowrap;">6 лет</li></ul></div></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</li>
+								<li class="drop-device-list-cell clearfix">
+									<figure class="drop-device-icon">
+										<span class="icon glyphicons print"></span>
+									</figure>
+									<div class="drop-device-info">
+										<div class="title">Копия печать</div>
+										<div class="text-descript">
+											<p>Ч/б принтер, помощь 24/7, доступ к платным сервисам.</p>
+											<div class="month-amount">$0.2/страница</div>
+											<div class="select-option clearfix">
+												<div class="box-input">
+													<label for="drop-device-info-input-3"></label>
+													<input type="text" value="4" id="drop-device-info-input-3">
+												</div>
+												<div class="box-select">
+													<div class="box-select">
+														<label for="drop-device-info-select-3"></label>
+														<div style="display: inline-block; position: relative; z-index:100" class="jq-selectbox jqselect formstyler" id="drop-device-info-select-3-styler"><select id="drop-device-info-select-3" name="" class="formstyler" style="margin: 0px; padding: 0px; position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; opacity: 0;">
+															<option value="0">2 года</option>
+															<option value="1">3 года</option>
+															<option value="2">4 года</option>
+															<option value="3">5 лет</option>
+															<option value="4">6 лет</option>
+														</select><div style="position: relative" class="jq-selectbox__select"><div class="jq-selectbox__select-text">2 года</div><div class="jq-selectbox__trigger"><div class="jq-selectbox__trigger-arrow"></div></div></div><div style="position: absolute; display: none;" class="jq-selectbox__dropdown"><ul style="position: relative; list-style: none; overflow: auto; overflow-x: hidden"><li class="selected sel" style="display: block; white-space: nowrap;">2 года</li><li class="" style="display: block; white-space: nowrap;">3 года</li><li class="" style="display: block; white-space: nowrap;">4 года</li><li class="" style="display: block; white-space: nowrap;">5 лет</li><li class="" style="display: block; white-space: nowrap;">6 лет</li></ul></div></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div class="b-order-bottom-device clearfix">
+							<a class="my-orders" href="#">Мои заказы</a>
+							<a class="order-device" href="#">Заказать</a>
+						</div>
+					</div>
+				</div>
+				<div class="dropdown-panel dropdown-calendarPanel">
+					<div class="dropdown-panel-wrapper">dropdown-calendarPanel</div>
+				</div>
+			</div>
+			<div class="main-panel-block">
+				<div class="main-panel-wrapper">
+					<div class="user-image">
+						<a href="javascript: void(0)"><img alt="" src="img/temp/avatar.jpg"></a>
+					</div>
+					<div class="main-panel-list">
+						<ul>
+							<li><a href="javascript:void(0)"><span class="glyphicons search searchPanel"></span></a></li>
+							<li><a href="javascript:void(0)"><span class="glyphicons chat chatPanel"></span><div class="count">13</div></a></li>
+							<li><a href="javascript:void(0)"><span class="glyphicons group groupPanel"></span></a></li>
+							<li><a href="javascript:void(0)"><span class="glyphicons notes notesPanel"></span></a></li>
+							<li><a href="javascript:void(0)"><span class="glyphicons briefcase briefcasePanel"></span></a></li>
+							<li><a href="javascript:void(0)"><span class="glyphicons credit_card credit_cardPanel"></span><div class="count">13</div></a></li>
+							<li><a href="javascript:void(0)"><span class="glyphicons cloud cloudPanel"></span></a></li>
+							<li><a href="javascript:void(0)"><span class="glyphicons file filePanel"></span></a></li>
+							<li><a href="javascript:void(0)"><span class="glyphicons ipad ipadPanel"></span></a></li>
+							<li><a href="javascript:void(0)"><span class="glyphicons calendar calendarPanel"></span></a></li>
+						</ul>
+					</div>
+					<div class="service-menu">
+						<ul>
+							<li><a href="javascript:void(0)"><span class="glyphicons settings"></span></a></li>
+							<li><a href="javascript:void(0)"><span class="glyphicons exit"></span></a></li>
+							<li class="logo-li"><a href="javascript:void(0)"><span class="logo-icon"></span></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="wrapper-container">
+			<div class="container-fluid">
+				<h1>Настройка профиля</h1>
+				<form action="#">
+					<div class="row">
+						<div class="col-sm-3 leftFormBlock">
+							<img src="img/temp/200x.jpg" alt="" class="img-responsive" />
+							<input type="file" class="filestyle" />
+							<div class="progress">
+								<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">60%</div>
+							</div>
+							<div class="editUserLink">
+								<span class="glyphicons life_preserver"></span>
+								<a href="#" class="underlink">Техподдержка</a>
+							</div>
+							<br />
+							<div class="editUserLink">
+								<span class="glyphicons message_full"></span>
+								<a href="#" class="underlink">Изменить эл. почту</a>
+							</div>
+							<div class="editUserLink">
+								<span class="glyphicons unlock"></span>
+								<a href="#" class="underlink">Изменить пароль</a>
+							</div>
+						</div>
+						<div class="col-sm-9 rightFormBlock">
+							<div class="form-group">
+								<label>Видеоролики со мной</label>
+								<div class="input-group">
+									<div class="input-group-addon glyphicons facetime_video"></div>
+									<input type="text" class="form-control" placeholder="Ссылка на ваше видео" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label>Имя и фамилия</label>
+								<input type="text" class="form-control" placeholder="Ваше имя и фамилия" value="Варфаламей Константинопольский" />
+							</div>
+							<div class="form-group">
+								<label>Навыки</label>
+								<input type="text" class="form-control" placeholder="Ваши навыки" value="Ruby, JS, JSP, HTML5, CSS3"  />
+							</div>
+							<div class="form-group">
+								<label>День рождения</label>
+								<div class="input-group">
+									<div class="input-group-addon glyphicons calendar" ></div>
+									<input type="text" class="form-control" placeholder="Дата вашего рождения"   readonly="readonly" id="datebirthday"  />
+									<input type="hidden" id="datebirthday_mirror" value="" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label>Я проживаю</label>
+								<div class="input-group">
+									<div class="input-group-addon glyphicons direction"></div>
+									<input type="text" class="form-control" placeholder="Место вашего проживания" value="Папуа-Новогвинея, Барбандурас" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label>Я проживаю</label>
+								<div class="input-group">
+									<div class="input-group-addon glyphicons direction"></div>
+									<select name="data[User][live_country]" class="formstyler" id="UserLiveCountry" >
+<option value="AF">Афганистан</option>
+<option value="AX">Åland</option>
+<option value="AL">Албания</option>
+<option value="DZ">Алжир</option>
+<option value="AS">Американское Самоа</option>
+<option value="AD">Андорра</option>
+<option value="AO">Ангола</option>
+<option value="AI">Ангилья</option>
+<option value="AQ">Антарктида</option>
+<option value="AG">Антигуа и Барбуда</option>
+<option value="AR">Аргентина</option>
+<option value="AM">Армения</option>
+<option value="AW">Аруба</option>
+<option value="AU">Австралия</option>
+<option value="AT">Австрия</option>
+<option value="AZ">Азербайджан</option>
+<option value="BS">Багамские острова</option>
+<option value="BH">Бахрейн</option>
+<option value="BD">Бангладеш</option>
+<option value="BB">Барбадос</option>
+<option value="BY">Беларусь</option>
+<option value="BE">Бельгия</option>
+<option value="BZ">Белиз</option>
+<option value="BJ">Бенин</option>
+<option value="BM" selected="selected">Бермудские острова</option>
+<option value="BT">Бутан</option>
+<option value="BO">Боливия</option>
+<option value="BQ">Бонайре</option>
+<option value="BA">Босния и Герцеговина</option>
+<option value="BW">Ботсвана</option>
+<option value="BV">Остров Буве</option>
+<option value="BR">Бразилия</option>
+<option value="IO">Британская территория Индийского океана</option>
+<option value="VG">Британские Виргинские острова</option>
+<option value="BN">Бруней</option>
+<option value="BG">Болгария</option>
+<option value="BF">Буркина-Фасо</option>
+<option value="BI">Бурунди</option>
+<option value="KH">Камбоджа</option>
+<option value="CM">Камерун</option>
+<option value="CA">Канада</option>
+<option value="CV">Кабо-Верде</option>
+<option value="KY">Каймановы острова</option>
+<option value="CF">Центрально-Африканская Республика</option>
+<option value="TD">Чад</option>
+<option value="CL">Чили</option>
+<option value="CN">Китай</option>
+<option value="CX">Остров Рождества</option>
+<option value="CC">Кокосовые [Килинг] острова</option>
+<option value="CO">Колумбия</option>
+<option value="KM">Коморские острова</option>
+<option value="CK">Острова Кука</option>
+<option value="CR">Коста-Рика</option>
+<option value="HR">Хорватия</option>
+<option value="CU">Куба</option>
+<option value="CW">Кюрасао</option>
+<option value="CY">Кипр</option>
+<option value="CZ">Чешская Республика</option>
+<option value="CD">Демократическая Республика Конго</option>
+<option value="DK">Дания</option>
+<option value="DJ">Джибути</option>
+<option value="DM">Доминика</option>
+<option value="DO">Доминиканская Республика</option>
+<option value="TL">Восточный Тимор</option>
+<option value="EC">Эквадор</option>
+<option value="EG">Египет</option>
+<option value="SV">Сальвадор</option>
+<option value="GQ">Экваториальная Гвинея</option>
+<option value="ER">Эритрея</option>
+<option value="EE">Эстония</option>
+<option value="ET">Эфиопия</option>
+<option value="FK">Фолклендские острова</option>
+<option value="FO">Фарерские острова</option>
+<option value="FJ">Фиджи</option>
+<option value="FI">Финляндия</option>
+<option value="FR">Франция</option>
+<option value="GF">Французская Гвиана</option>
+<option value="PF">Французская Полинезия</option>
+<option value="TF">Французские Южные Территории</option>
+<option value="GA">Габон</option>
+<option value="GM">Гамбия</option>
+<option value="GE">Грузия</option>
+<option value="DE">Германия</option>
+<option value="GH">Гана</option>
+<option value="GI">Гибралтар</option>
+<option value="GR">Греция</option>
+<option value="GL">Гренландия</option>
+<option value="GD">Гренада</option>
+<option value="GP">Гваделупа</option>
+<option value="GU">Гуам</option>
+<option value="GT">Гватемала</option>
+<option value="GG">Гернси</option>
+<option value="GN">Гвинея</option>
+<option value="GW">Гвинея-Бисау</option>
+<option value="GY">Гайана</option>
+<option value="HT">Гаити</option>
+<option value="HM">Остров Херд и острова Макдональд</option>
+<option value="HN">Гондурас</option>
+<option value="HK">Гонконг</option>
+<option value="HU">Венгрия</option>
+<option value="IS">Исландия</option>
+<option value="IN">Индия</option>
+<option value="ID">Индонезия</option>
+<option value="IR">Иран</option>
+<option value="IQ">Ирак</option>
+<option value="IE">Ирландия</option>
+<option value="IM">Остров Мэн</option>
+<option value="IL">Израиль</option>
+<option value="IT">Италия</option>
+<option value="CI">Берег Слоновой Кости</option>
+<option value="JM">Ямайка</option>
+<option value="JP">Япония</option>
+<option value="JE">Джерси</option>
+<option value="JO">Иордания</option>
+<option value="KZ">Казахстан</option>
+<option value="KE">Кения</option>
+<option value="KI">Кирибати</option>
+<option value="XK">Косово</option>
+<option value="KW">Кувейт</option>
+<option value="KG">Киргизия</option>
+<option value="LA">Лаос</option>
+<option value="LV">Латвия</option>
+<option value="LB">Ливан</option>
+<option value="LS">Лесото</option>
+<option value="LR">Либерия</option>
+<option value="LY">Ливия</option>
+<option value="LI">Лихтенштейн</option>
+<option value="LT">Литва</option>
+<option value="LU">Люксембург</option>
+<option value="MO">Макао</option>
+<option value="MK">Македония</option>
+<option value="MG">Мадагаскар</option>
+<option value="MW">Малави</option>
+<option value="MY">Малайзия</option>
+<option value="MV">Мальдивы</option>
+<option value="ML">Мали</option>
+<option value="MT">Мальта</option>
+<option value="MH">Маршалловы острова</option>
+<option value="MQ">Мартиника</option>
+<option value="MR">Мавритания</option>
+<option value="MU">Маврикий</option>
+<option value="YT">Майотта</option>
+<option value="MX">Мексика</option>
+<option value="FM">Микронезия</option>
+<option value="MD">Молдова</option>
+<option value="MC">Монако</option>
+<option value="MN">Монголия</option>
+<option value="ME">Черногория</option>
+<option value="MS">Монтсеррат</option>
+<option value="MA">Марокко</option>
+<option value="MZ">Мозамбик</option>
+<option value="MM">Мьянма [Бирма]</option>
+<option value="NA">Намибия</option>
+<option value="NR">Науру</option>
+<option value="NP">Непал</option>
+<option value="NL">Нидерланды</option>
+<option value="NC">Новая Каледония</option>
+<option value="NZ">Новая Зеландия</option>
+<option value="NI">Никарагуа</option>
+<option value="NE">Нигер</option>
+<option value="NG">Нигерия</option>
+<option value="NU">Ниуэ</option>
+<option value="NF">Остров Норфолк</option>
+<option value="KP">Северная Корея</option>
+<option value="MP">Северные Марианские острова</option>
+<option value="NO">Норвегия</option>
+<option value="OM">Оман</option>
+<option value="PK">Пакистан</option>
+<option value="PW">Палау</option>
+<option value="PS">Палестина</option>
+<option value="PA">Панама</option>
+<option value="PG">Папуа-Новая Гвинея</option>
+<option value="PY">Парагвай</option>
+<option value="PE">Перу</option>
+<option value="PH">Филиппины</option>
+<option value="PN">Питкэрн острова</option>
+<option value="PL">Польша</option>
+<option value="PT">Португалия</option>
+<option value="PR">Пуэрто-Рико</option>
+<option value="QA">Катар</option>
+<option value="CG">Республика Конго</option>
+<option value="RE">Реюньон</option>
+<option value="RO">Румыния</option>
+<option value="RU">Россия</option>
+<option value="RW">Руанда</option>
+<option value="BL">Сен-Бартелеми</option>
+<option value="SH">Остров Святой Елены</option>
+<option value="KN">Сент-Китс и Невис</option>
+<option value="LC">Сент-Люсия</option>
+<option value="MF">Сен-Мартен</option>
+<option value="PM">Сен-Пьер и Микелон</option>
+<option value="VC">Сент-Винсент и Гренадины</option>
+<option value="WS">Самоа</option>
+<option value="SM">Сан - Марино</option>
+<option value="ST">Сан-Томе и Принсипи</option>
+<option value="SA">Саудовская Аравия</option>
+<option value="SN">Сенегал</option>
+<option value="RS">Сербия</option>
+<option value="SC">Сейшельские острова</option>
+<option value="SL">Сьерра-Леоне</option>
+<option value="SG">Сингапур</option>
+<option value="SX">Синт-Маартен</option>
+<option value="SK">Словакия</option>
+<option value="SI">Словения</option>
+<option value="SB">Соломоновы острова</option>
+<option value="SO">Сомали</option>
+<option value="ZA">ЮАР</option>
+<option value="GS">Южная Георгия и Южные Сандвичевы острова</option>
+<option value="KR">Южная Корея</option>
+<option value="SS">Южный Судан</option>
+<option value="ES">Испания</option>
+<option value="LK">Шри Ланка</option>
+<option value="SD">Судан</option>
+<option value="SR">Суринам</option>
+<option value="SJ">Шпицберген и Ян-Майен</option>
+<option value="SZ">Свазиленд</option>
+<option value="SE">Швеция</option>
+<option value="CH">Швейцария</option>
+<option value="SY">Сирия</option>
+<option value="TW">Тайвань</option>
+<option value="TJ">Таджикистан</option>
+<option value="TZ">Танзания</option>
+<option value="TH">Таиланд</option>
+<option value="TG">Того</option>
+<option value="TK">Токелау</option>
+<option value="TO">Тонга</option>
+<option value="TT">Тринидад и Тобаго</option>
+<option value="TN">Тунис</option>
+<option value="TR">Турция</option>
+<option value="TM">Туркменистан</option>
+<option value="TC">Теркс и Кайкос острова</option>
+<option value="TV">Тувалу</option>
+<option value="UM">Внешние малые острова США</option>
+<option value="VI">Американские Виргинские острова</option>
+<option value="UG">Уганда</option>
+<option value="UA">Украина</option>
+<option value="AE">Объединенные Арабские Эмираты</option>
+<option value="GB">Великобритания</option>
+<option value="US">США</option>
+<option value="UY">Уругвай</option>
+<option value="UZ">Узбекистан</option>
+<option value="VU">Вануату</option>
+<option value="VA">Ватикан</option>
+<option value="VE">Венесуэла</option>
+<option value="VN">Вьетнам</option>
+<option value="WF">Уоллис и Футуна</option>
+<option value="EH">Западная Сахара</option>
+<option value="YE">Йемен</option>
+<option value="ZM">Замбия</option>
+<option value="ZW">Зимбабве</option>
+</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label>Описание</label>
+								<textarea class="form-control">Наша цель — это творческое созидание и служение гуманистическим идеалам человечества. Наше агентство существует с 2005 года. Мы разрабатываем рекламу, дизайн, любые интерактивные коммуникации. За несколько лет мы успели поработать с самыми крупными компаниями: Sony, Honda, Infiniti, Coca-Cola, Hochland,Heineken, Panasonic, Ikea, Converse, Nokia.</textarea>
+							</div>
+							<div class="form-group noBorder">
+								<label>Фотографии или видеоролики галереи</label>
+								<ul class="photoCollection clearfix">
+									<li>
+										<a class="remove" href="javascript: void(0)"><span class="glyphicons circle_remove"></span></a>
+										<img src="img/temp/photo.jpg" alt="" />
+									</li>
+									<li>
+										<a class="remove" href="javascript: void(0)"><span class="glyphicons circle_remove"></span></a>
+										<span class="glyphicons play"></span>
+										<img src="img/temp/photo.jpg" alt="" />
+									</li>
+									<li>
+										<a class="remove" href="javascript: void(0)"><span class="glyphicons circle_remove"></span></a>
+										<img src="img/temp/photo.jpg" alt="" />
+									</li>
+									<li>
+										<a class="remove" href="javascript: void(0)"><span class="glyphicons circle_remove"></span></a>
+										<img src="img/temp/photo.jpg" alt="" />
+									</li>
+								</ul>
+								<div class="photoButtons">
+									<input type="file" class="filestyle" />
+									<div class="progress">
+										<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">60%</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group noBorder">
+								<label>Фото университета</label>
+								<img src="img/temp/200x.jpg" />
+								<div class="photoButtons">
+									<input type="file" class="filestyle" />
+									<div class="progress">
+										<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">60%</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group noBorder">
+								<label>Язык интерфейса</label>
+								<select>
+									<option>English</option>
+									<option>Russian(Русский)</option>
+								</select>
+							</div>
+							<div class="form-group noBorder bigCheckBox">
+								<label>Если вы ищете работу, работодатель сможет вас найти в базе данных</label>
+								<input type="checkbox" class="checkboxStyle glyphicons ok_2" />
+								<span class="checkboxText">Я в поисках работы</span>
+							</div>
+							<div class="form-group noBorder clearfix">
+								<button class="btn btn-primary" type="button">Сохранить</button>
+								<div class="addLink"><a href="#" class="underlink"><span class="glyphicons glass"></span> Как видят страницу другие пользователи</a></div>
+							</div>
+							<div class="form-group noBorder btnTextDescription">
+								<div>
+									<button class="btn btn-default" type="button">Удалить</button>
+								</div>
+								<div class="deleteDescription">Вы можете без особого труда удалить свой профиль с сайта, просто нажмите кнопку и вся информация будет безвозвратно удалена.</div>
+							</div>
+                            <div class="form-group noBorder">
+								
+				                    <input type="file" class="filestyle uploadPhoto" id="invest-project-gallery-uploadImage"
+					                   data-object_type="InvestProjectGallery"
+					                   data-object_id=""
+					                   accept="image/*"/>
+				                    <button class="btn btn-default" type="button" style="width: 200px;" data-toggle="modal" data-target="#invest-project-addVideo-modal">Загрузить видео</button>
+			                    
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3 leftFormBlock addNewField">
+							<a href="javascript:void(0)" class="addNewInfo">
+								<span class="glyphicons circle_plus"></span>
+								<span class="title">Добавить еще адрес</span>
+							</a>	
+						</div>
+						<div class="col-sm-9 rightFormBlock">
+							<div class="form-group">
+								<label>Головной офис</label>
+								<div class="input-group">
+									<div class="input-group-addon forTextarea glyphicons direction"></div>
+									<textarea class="form-control">194223, Санкт-Петербург, ул. Курчатова, 10</textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label>Номер телефона</label>
+								<div class="input-group">
+									<div class="input-group-addon glyphicons earphone"></div>
+									<input type="text" class="form-control" placeholder="" value="+7 (812) 256-56-36" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label>Адрес сайта и эл. почта</label>
+								<div class="input-group">
+									<div class="input-group-addon glyphicons globe_af"></div>
+									<input type="text" class="form-control" placeholder="" value="www.redkeds.com" />
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="input-group">
+									<div class="input-group-addon glyphicons message_empty"></div>
+									<input type="text" class="form-control" placeholder="" value="mailbox@redkeds.com" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3 leftFormBlock addNewField">
+							<a href="javascript:void(0)" class="addNewInfo">
+								<span class="glyphicons circle_plus"></span>
+								<span class="title">Добавить еще достижение</span>
+							</a>	
+						</div>
+						<div class="col-sm-9 rightFormBlock">
+							<div class="form-group">
+								<label>Достижение</label>
+								<textarea class="form-control">Лауреат Нобелевской премии по физике
+2014 года</textarea>
+							</div>
+							<div class="form-group">
+								<label>Ссылка, подтверждающая достижение</label>
+								<textarea class="form-control">http://ria.ru/spravka/20141007/1027284472.html</textarea>
+							</div>
+							<div class="form-group noBorder bigCheckBox">
+								<label>Вы можете скрыть группу и вас не смогут найти</label>
+								<input type="checkbox" class="checkboxStyle glyphicons ok_2" />
+								<span class="checkboxText">Скрыть группу</span>
+							</div>
+							<div class="form-group noBorder">
+								<button class="btn btn-primary" type="button">Сохранить</button>
+							</div>
+						</div>
+					</div>
+				</form>
+				<br /><br /><br /><br />
+				<h1>Изменить пароль</h1>
+				<form action="#" class="oneFormBlock">
+					<div class="form-group">
+						<label>Введите старый пароль</label>
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="" />
+							<div class="input-group-addon glyphicons eye_close right"></div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Введите новый пароль</label>
+						<textarea class="form-control">194223, Санкт-Петербург, ул. Курчатова, 10</textarea>
+					</div>
+					<div class="form-group">
+						<label>Введите новый пароль ещё раз</label>
+						<input type="text" class="form-control" placeholder="" />
+					</div>
+					<button class="btn btn-default" type="button">Сохранить</button>
+				</form>
+				<br /><br /><br />
+				<button class="btn btn-default" type="button" data-toggle="modal" data-target="#we">Popup</button>
+				<button class="btn btn-default" type="button" data-toggle="modal" data-target="#qw">Popup1</button>
+				
+				
+<div class="modal fade" id="we" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="outer-modal-dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<span class="glyphicons circle_remove" data-dismiss="modal"></span>
+				<h4>Добавление новой задачи</h4>
+				<form>
+					<div class="form-group">
+						<label>Название задачи</label>
+						<input type="text" placeholder="Введите название задачи" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Описание задачи</label>
+						<textarea class="form-control" placeholder="Введите описание задачи"></textarea>
+					</div>
+					<div class="form-group">
+						<label>Дата и время дедлайна</label>
+						<div class="input-group">
+							<div class="input-group-addon glyphicons calendar"></div>
+							<input type="text" placeholder="Введите дату дедлайна" class="form-control" id="deadline" readonly="readonly">
+							<input type="hidden" value="" id="deadline_mirror" />	
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Исполнители</label>
+						<select>
+							<option>Роман Васильев</option>
+							<option>Фархад Ягфаров</option>
+							<option>Анастасия Шаронова</option>
+							<option>Юрий Копытов</option>
+							<option>Глеб Стифоров</option>
+							<option>Павел Тепикин</option>
+						</select>
+					</div>
+					<div class="clearfix">
+						<button type="button" class="btn btn-primary">Добавить</button>
+						<button type="button" class="btn btn-default pull-right" data-dismiss="modal">Закрыть</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>	
+				
+<div class="modal fade" id="qw" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="outer-modal-dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<span class="glyphicons circle_remove" data-dismiss="modal"></span>
+				<h4>Добавление новой задачи</h4>
+				<form>
+					<div class="form-group">
+						<label>Название задачи</label>
+						<input type="text" placeholder="Введите название задачи" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Описание задачи</label>
+						<textarea class="form-control" placeholder="Введите описание задачи"></textarea>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+				
+			</div>
+		</div>
+		
+
+	
+<!--
+<style>
+	.modal .outer-modal-dialog { display: block;}
+	.modal .modal-dialog { display: block; margin: 30px auto !important;  width: auto;  max-width: 380px;}
+	.modal .modal-content {  max-width: none;} 
+	.modal .outer-modal-dialog { height: auto}
+</style>	
+-->
+<script type="text/javascript">
+	$(document).ready(function () {
+		
+			 $('select, input.filestyle, input.checkboxStyle').styler({fileBrowse: 'Загрузить фото'});
+			 $('#datebirthday').datetimepicker({
+				 format:"dd.mm.yyyy",
+				 language:  'ru',
+				 weekStart: 1,
+				 autoclose: 1,
+				 todayHighlight: 1,
+				 startView: 4,
+				 startDate: "1899-02-14",
+				 endDate: "2016-02-14",
+				 minView: 2,
+				 linkField: "datebirthday_mirror",
+				 linkFormat: "dd.mm.yyyy hh:ii:ss"
+				 //container: ".wrapper-container"
+			 });
+			$('#deadline').datetimepicker({
+				format: "mm/dd/yyyy HH:ii P",
+				language:  'en',
+				weekStart: 1,
+				autoclose: 1,
+				todayHighlight: 1,
+				startView: 2,
+				forceParse: 0,
+				showMeridian: 1,
+				minuteStep: 10,
+				linkField: "deadline_mirror",
+				linkFormat: "mm/dd/yyyy hh:ii:ss"
+    		});
+		
+			/*
+			$('#we').on('shown.bs.modal', function (e) {
+				$(document).on('touchmove', 'body', function(event) {
+					event.preventDefault();
+				});
+		
+			})
+		
+			$('#we').on('hide.bs.modal', function (e) {
+				$(document).off('touchmove');
+			});
+			*/
+	});
+</script>
+		
+	</body>
+</html>

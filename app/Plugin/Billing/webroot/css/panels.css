@@ -1,0 +1,230 @@
+.col-plan .panel-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-style: solid;
+    border-width: 30px 31px 33px;
+    -webkit-border-image: url(/img/billing-plan-border.png) 30 31 33 repeat;
+       -moz-border-image: url(/img/billing-plan-border.png) 30 31 33 repeat;
+         -o-border-image: url(/img/billing-plan-border.png) 30 31 33 repeat;
+            border-image: url(/img/billing-plan-border.png) 30 31 33 fill repeat;
+    z-index: -1;
+}
+
+.col-plan.active-subsctiption {
+    padding: 0 2.5%;
+}
+
+.col-plan .panel-primary {
+    position: relative;
+    box-shadow: none;
+    margin-bottom: 12px;
+    min-height: 135px;
+}
+
+.col-plan .panel-primary>.panel-heading,
+.col-plan .panel-primary>.panel-footer,
+.col-plan .panel-primary {
+    background: transparent;
+    border-width: 0;
+}
+
+.col-plan .billing-submit {
+    /*
+    border-width: 0 21px;
+    border-style: solid;
+    border-color: transparent;
+    */
+}
+
+.col-plan .panel .panel-heading .panel-title {
+    font-size: 18px;
+}
+
+.col-plan .billing-submit .btn-default {
+    width: 100%;
+    text-align: center;
+    background: #22b5ae;
+    border-color: #22b5ae;
+    color: white;
+    transition: 50ms all linear;
+}
+
+.col-plan .billing-submit .btn-default:hover {
+    border-color: #80dfda;
+    background: #80dfda;
+}
+
+.col-plan .billing-submit .btn-default {
+    width: 100%;
+    text-align: center;
+}
+
+.col-plan .form-group {
+    position: relative;
+    border-width: 0;
+    margin-bottom: 10px;
+    padding-bottom: 0;
+    height: 20px;
+}
+
+.col-plan .form-group label {
+    position: absolute;
+    display: inline-block;
+    color: white;
+    font-size: 16px;
+    font-family: 'Open Sans';
+    font-weight: 100;
+}
+
+.col-plan .jq-radio {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 10px;
+    margin-top: 2px;
+    border: 1px solid #a6a6a6;
+    border-radius: 50%;
+    background: white;
+}
+
+.col-plan .jq-radio .jq-radio__div {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    margin: 2px 0 0 2px;
+    border: 1px solid #a6a6a6;
+    border-radius: 50%;
+    background: white;
+    transition: 100ms all linear;
+    transform: scale(.8);
+}
+
+.col-plan .jq-radio:hover .jq-radio__div {
+    border-width: 0;
+    background: #80dfda;
+    transform: scale(.6);
+}
+
+.col-plan .jq-radio.checked .jq-radio__div {
+    border-width: 0;
+    background: #22b5ae;
+    transform: scale(1);
+}
+
+/* SUBSCRIPTIONS PANEL */
+
+.col-plan .the-price h2 {
+    margin-top: 0;
+    font-size: 28px;
+    padding-left: 10px;
+    color: white;
+}
+
+.col-plan table {
+    color: white;
+}
+
+.col-plan .table-striped>tbody>tr:nth-child(odd) {
+    /*background-color: rgba(255, 255, 255, .2);*/
+    background: transparent;
+}
+
+.col-plan .table>tbody>tr>td {
+    border-top: 1px solid rgba(255, 255, 255, .5);
+}
+
+.col-plan .table>tbody>tr:first-child>td {
+    border-top: 0px solid transparent;
+}
+
+/* MEMBERS PANEL */
+
+.col-plan.members .panel {
+    position: relative;
+    padding-top: 5px;
+    border-width: 0;
+    box-shadow: none;
+}
+
+.col-plan.members .panel .panel-heading {
+    text-align: center;
+    color: white;
+    font-size: 13px;
+    color: #cdeae8;
+}
+
+.col-plan.members .panel .panel-heading h3 {
+    font-size: 20px;
+    color: white;
+}
+
+.col-plan.members .panel .panel-body {
+    padding: 0 25px 20px;
+}
+
+.col-plan.members .panel .form-group {
+    border-color: #a6a6a6;
+    height: auto;
+    margin-bottom: 16px;
+}
+
+.col-plan.members .panel .form-group label {
+    display: block;
+    position: relative;
+    color: white;
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+.col-plan.members .panel .form-group input {
+    font-family: 'Open Sans';
+    font-size: 14px;
+    font-weight: 600;
+    width: 100%;
+    height: 31px;
+    padding: 4px 12px 5px;
+    border-radius: 3px;
+    border: 1px solid #b8b8b8;
+    box-sizing: border-box;
+}
+
+.col-plan.members .panel .form-group .jq-selectbox {
+    width: 100%;
+}
+
+.col-plan.members .panel .form-group.button {
+    margin-top: 22px;
+    margin-bottom: 0;
+}
+
+.col-plan.members .panel .form-group.button label {
+    display: inline-block;
+    border-width: 0;
+    padding: 5px 10px 6px 0;
+
+    font-family: 'Open Sans';
+    font-size: 14px;
+    height: 31px;
+}
+
+.col-plan.members .panel .form-group.button input {
+    display: inline-block;
+    border-width: 0;
+    padding: 5px 0 6px;
+
+    font-family: 'Open Sans';
+    font-size: 14px;
+    font-weight: 100;
+    height: 31px;
+    width: 45%;
+    background: #00B6AF;
+    color: white;
+}
+
+.col-plan.members .panel .form-group.button .btn-primary {
+    float: right;
+}

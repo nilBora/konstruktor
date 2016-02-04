@@ -1,0 +1,529 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.2.27\n"
+"POT-Creation-Date: 2015-10-04 14:21+0000\n"
+"PO-Revision-Date: 2015-10-04 17:22+0300\n"
+"Last-Translator: Denys Kyselov <denys.kyselov@gmail.com>\n"
+"Language-Team: Russian <denys.kyselov@luxsite.cz>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#: Config/bootstrap.php:10
+msgid "Bytes"
+msgstr "Байт"
+
+#: Config/bootstrap.php:17
+msgid "Members"
+msgstr "Количество пользователей"
+
+#: Controller/BillingCallbackController.php:36
+msgid "%s Braintree webhook for subscription %s: %s"
+msgstr ""
+
+#: Controller/BillingGroupsController.php:33;54
+msgid "The billing group has been saved."
+msgstr ""
+
+#: Controller/BillingGroupsController.php:36;57
+msgid "The billing group could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/BillingGroupsController.php:50;75
+#: Controller/BillingSubscriptionsController.php:85;119;203
+#: Controller/BillingUserController.php:108
+msgid "Invalid billing group"
+msgstr "Неправильная группа подписки"
+
+#: Controller/BillingGroupsController.php:79
+msgid "The billing group has been deleted."
+msgstr ""
+
+#: Controller/BillingGroupsController.php:81
+msgid "The billing group could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/BillingPlansController.php:38;61
+msgid "The billing plan has been saved."
+msgstr ""
+
+#: Controller/BillingPlansController.php:41;64
+msgid "The billing plan could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/BillingPlansController.php:57;84
+#: Controller/BillingSubscriptionsController.php:59;159;268
+msgid "Invalid billing plan"
+msgstr "Неправильный план"
+
+#: Controller/BillingPlansController.php:88
+msgid "The billing plan has been deleted."
+msgstr ""
+
+#: Controller/BillingPlansController.php:90
+msgid "The billing plan could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/BillingSubscriptionsController.php:43
+msgid "Invalid billing subscription"
+msgstr "Неправильная подписка"
+
+#: Controller/BillingSubscriptionsController.php:74
+msgid "The subscription has been canceled."
+msgstr "Подписка была отменена"
+
+#: Controller/BillingSubscriptionsController.php:76
+msgid "The subscription could not be canceled. Please, try again."
+msgstr "Подписку невозможно отменить. Попробуйте еще раз"
+
+#: Controller/BillingSubscriptionsController.php:112;222
+#: Controller/BillingUserController.php:122
+msgid "Incorrect request type"
+msgstr "Неправильный тип запроса"
+
+#: Controller/BillingSubscriptionsController.php:138;176
+msgid "You can not subscribe to same plan twice while it is active"
+msgstr "Вы не можете подписаться на текущий план дважды пока подписка активна"
+
+#: Controller/BillingSubscriptionsController.php:246
+#: Controller/BillingUserController.php:147
+msgid "Payment method not found"
+msgstr "Способ оплаты не найден"
+
+#: Controller/BillingSubscriptionsController.php:249;263;284
+#: Controller/BillingUserController.php:150
+msgid "Unable to create subscription"
+msgstr "Невозможно создать подписку"
+
+#: Controller/BillingSubscriptionsController.php:345;367
+msgid ""
+"Unable to subscribe on chosen plan. Please contact with resorce "
+"administration"
+msgstr ""
+"Невозможно оформить подписку на выбранный план. Свяжитесь с администрацией "
+"ресурса."
+
+#: Controller/BillingSubscriptionsController.php:375
+msgid "Subscription can not be found"
+msgstr "Невозможно найти подписку"
+
+#: View/BillingGroups/admin_add.ctp:3
+msgid "Add new Billing Group"
+msgstr "Добавить новую группу"
+
+#: View/BillingGroups/admin_add.ctp:35 View/BillingGroups/admin_edit.ctp:36
+#: View/BillingSubscriptions/admin_index.ctp:50
+msgid "List Billing Groups"
+msgstr "Список групп"
+
+#: View/BillingGroups/admin_edit.ctp:3
+msgid "Edit Billing Group"
+msgstr "Изменить группу"
+
+#: View/BillingGroups/admin_edit.ctp:37 View/BillingGroups/admin_index.ctp:21
+#: View/BillingPlans/admin_edit.ctp:51 View/BillingPlans/admin_index.ctp:33
+msgid "Delete"
+msgstr "удалить"
+
+#: View/BillingGroups/admin_edit.ctp:37 View/BillingGroups/admin_index.ctp:21
+#: View/BillingPlans/admin_edit.ctp:51 View/BillingPlans/admin_index.ctp:33
+msgid "Are you sure you want to delete # %s?"
+msgstr "Вы уверены, что хотите удалить # %s?"
+
+#: View/BillingGroups/admin_index.ctp:3
+msgid "Billing Groups"
+msgstr "Группы биллинга"
+
+#: View/BillingGroups/admin_index.ctp:11 View/BillingPlans/admin_index.ctp:12
+#: View/BillingSubscriptions/admin_index.ctp:16
+msgid "Actions"
+msgstr "Действия"
+
+#: View/BillingGroups/admin_index.ctp:18
+#: View/BillingSubscriptions/admin_index.ctp:32
+msgid "Yes"
+msgstr "Да"
+
+#: View/BillingGroups/admin_index.ctp:18
+#: View/BillingSubscriptions/admin_index.ctp:32
+msgid "No"
+msgstr "Нет"
+
+#: View/BillingGroups/admin_index.ctp:20 View/BillingPlans/admin_index.ctp:32
+msgid "Edit"
+msgstr "Редактировать"
+
+#: View/BillingGroups/admin_index.ctp:30
+msgid "New Billing Group"
+msgstr "Новая биллинговая группа"
+
+#: View/BillingPlans/admin_add.ctp:3
+msgid "Add new Billing Plan"
+msgstr "Добавить новый план"
+
+#: View/BillingPlans/admin_add.ctp:25 View/BillingPlans/admin_edit.ctp:35
+msgid "Basic free plan"
+msgstr "Бесплатный план"
+
+#: View/BillingPlans/admin_add.ctp:40 View/BillingPlans/admin_edit.ctp:50
+#: View/BillingSubscriptions/admin_index.ctp:51
+msgid "List Billing Plans"
+msgstr "Список тарифных планов"
+
+#: View/BillingPlans/admin_edit.ctp:3 View/BillingPlans/admin_index.ctp:3
+msgid "Billing Plans"
+msgstr "Тарифные планы"
+
+#: View/BillingPlans/admin_edit.ctp:28
+msgid "Limit plan to"
+msgstr "Ограничить план"
+
+#: View/BillingPlans/admin_edit.ctp:29
+msgid "2"
+msgstr "2"
+
+#: View/BillingPlans/admin_index.ctp:10
+msgid "Remote Plans"
+msgstr "Удаленные планы"
+
+#: View/BillingPlans/admin_index.ctp:11
+msgid "Is free"
+msgstr "Бесплатный"
+
+#: View/BillingPlans/admin_index.ctp:30
+#: View/BillingSubscriptions/plans.ctp:39;58
+#: View/Elements/subscriptions/free.ctp:3
+msgid "Free"
+msgstr "Бесплатно"
+
+#: View/BillingPlans/admin_index.ctp:30
+msgid "Paid"
+msgstr "Платный"
+
+#: View/BillingPlans/admin_index.ctp:42
+msgid "New Billing Plan"
+msgstr "Новый план"
+
+#: View/BillingSubscriptions/admin_index.ctp:3
+#: View/BillingUser/subscriptions.ctp:9
+msgid "Subscriptions"
+msgstr "Подписки"
+
+#: View/BillingSubscriptions/admin_index.ctp:9
+msgid "Remote ID"
+msgstr "Удаленный ID"
+
+#: View/BillingSubscriptions/admin_index.ctp:10
+#: View/BillingSubscriptions/admin_view.ctp:13
+msgid "User"
+msgstr "Пользователь"
+
+#: View/BillingSubscriptions/admin_index.ctp:11
+msgid "Group > Plan (Remote plan)"
+msgstr "Группа > План (Удаленный план)"
+
+#: View/BillingSubscriptions/admin_index.ctp:37
+msgid "View"
+msgstr "Просмотр"
+
+#: View/BillingSubscriptions/admin_index.ctp:39
+msgid "Cancel"
+msgstr "Отменить"
+
+#: View/BillingSubscriptions/admin_index.ctp:39
+#: View/BillingSubscriptions/admin_view.ctp:163
+msgid "Are you sure you want to cancel # %s?"
+msgstr "Вы уверены, что хотите отменить # %s?"
+
+#: View/BillingSubscriptions/admin_index.ctp:49
+msgid "List Users"
+msgstr "Пользователи"
+
+#: View/BillingSubscriptions/admin_view.ctp:3
+#: View/BillingUser/subscriptions.ctp:62
+msgid "Subscription"
+msgstr "Подписка"
+
+#: View/BillingSubscriptions/admin_view.ctp:9
+msgid "General Info"
+msgstr "Основная информация"
+
+#: View/BillingSubscriptions/admin_view.ctp:18
+msgid "Billing Group"
+msgstr "Группа биллинга"
+
+#: View/BillingSubscriptions/admin_view.ctp:25
+msgid "Active"
+msgstr "Активный"
+
+#: View/BillingSubscriptions/admin_view.ctp:30
+msgid "Expiration"
+msgstr "Дата окончания срока действия"
+
+#: View/BillingSubscriptions/admin_view.ctp:35
+msgid "Created"
+msgstr "Создан"
+
+#: View/BillingSubscriptions/admin_view.ctp:40
+msgid "Modified"
+msgstr "Изменен"
+
+#: View/BillingSubscriptions/admin_view.ctp:52
+msgid "Braintree Subscription"
+msgstr "Подписка Braintree"
+
+#: View/BillingSubscriptions/admin_view.ctp:56;86
+msgid "Subscription ID"
+msgstr "ID подписки"
+
+#: View/BillingSubscriptions/admin_view.ctp:60
+msgid "Current billing cycle"
+msgstr "Текущий учетный период"
+
+#: View/BillingSubscriptions/admin_view.ctp:64
+msgid "Start date"
+msgstr "Дата начала"
+
+#: View/BillingSubscriptions/admin_view.ctp:68
+msgid "End date"
+msgstr "Дата окончания"
+
+#: View/BillingSubscriptions/admin_view.ctp:72
+msgid "Next bill amount"
+msgstr "следующий учетный период"
+
+#: View/BillingSubscriptions/admin_view.ctp:83
+msgid "Braintree Plan"
+msgstr "План Braintree"
+
+#: View/BillingSubscriptions/admin_view.ctp:90
+msgid "Name"
+msgstr "Название"
+
+#: View/BillingSubscriptions/admin_view.ctp:102
+msgid "Braintree Transactions"
+msgstr "Транзакции Braintree"
+
+#: View/BillingSubscriptions/admin_view.ctp:108
+msgid "Transactiond ID"
+msgstr "ID транзакции"
+
+#: View/BillingSubscriptions/admin_view.ctp:109
+msgid "Payment"
+msgstr "Платеж"
+
+#: View/BillingSubscriptions/admin_view.ctp:110;141
+#: View/BillingUser/subscriptions.ctp:64
+msgid "Date & Time"
+msgstr "Дата и Время"
+
+#: View/BillingSubscriptions/admin_view.ctp:111
+#: View/BillingUser/subscriptions.ctp:65
+msgid "Amount"
+msgstr "Сумма"
+
+#: View/BillingSubscriptions/admin_view.ctp:134
+msgid "Braintree Status History"
+msgstr "История состояний подписки Braintree"
+
+#: View/BillingSubscriptions/admin_view.ctp:140
+#: View/BillingUser/subscriptions.ctp:63
+msgid "Source"
+msgstr "Источник"
+
+#: View/BillingSubscriptions/admin_view.ctp:142
+#: View/BillingUser/subscriptions.ctp:66
+msgid "Status"
+msgstr "Состояние"
+
+#: View/BillingSubscriptions/admin_view.ctp:162
+msgid "List Subscriptions"
+msgstr "Доступные подписки"
+
+#: View/BillingSubscriptions/admin_view.ctp:163
+msgid "Cancel Subscription"
+msgstr "Отменить подписку"
+
+#: View/BillingSubscriptions/payment.ctp:4
+#: View/BillingSubscriptions/payment_deprecated.ctp:44;106;114
+#: View/BillingSubscriptions/plans.ctp:76
+#: View/BillingSubscriptions/plans_members.ctp:57
+msgid "Subscribe"
+msgstr "Подписаться"
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:52
+#: View/Elements/payments_form.ctp:56
+msgid "Card number"
+msgstr "Номер карты"
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:56
+#: View/Elements/payments_form.ctp:60
+msgid "CVV"
+msgstr "CVV"
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:60
+msgid "Expiration Date"
+msgstr "Дата окончания срока действия"
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:65
+msgid "January"
+msgstr "Январь"
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:66
+msgid "February"
+msgstr "Февраль"
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:67
+msgid "March"
+msgstr "Март"
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:68
+msgid "April"
+msgstr "Апрель"
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:69
+msgid "May"
+msgstr "Май"
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:70
+msgid "June"
+msgstr "Июнь"
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:71
+msgid "July"
+msgstr "Июль"
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:72
+msgid "August"
+msgstr "Август"
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:73
+msgid "September"
+msgstr "Сентябрь"
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:74
+msgid "October"
+msgstr "Октябрь"
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:75
+msgid "November"
+msgstr "Ноябрь"
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:76
+msgid "December"
+msgstr "Декабрь"
+
+#: View/BillingSubscriptions/payment_deprecated.ctp:102
+msgid "Cardholder Name"
+msgstr "Имя на карте"
+
+#: View/BillingSubscriptions/plans.ctp:20;56
+msgid "current"
+msgstr "текущая"
+
+#: View/BillingSubscriptions/plans.ctp:29
+msgid "year"
+msgstr "год"
+
+#: View/BillingSubscriptions/plans.ctp:31
+msgid "month"
+msgstr "месяц"
+
+#: View/BillingSubscriptions/plans_members.ctp:9
+msgid "Expand available members"
+msgstr "Увеличить количество пользователей"
+
+#: View/BillingSubscriptions/plans_members.ctp:10
+msgid "1 user - 4$ per month"
+msgstr "1 пользователь - 4$/месяц"
+
+#: View/BillingSubscriptions/plans_members.ctp:12
+msgid "You are already subscribed to %d members"
+msgstr "Вы уже подписаны на %d пользователей"
+
+#: View/BillingSubscriptions/plans_members.ctp:21
+msgid "Members quantity"
+msgstr "Количество пользователей"
+
+#: View/BillingSubscriptions/plans_members.ctp:42
+msgid "Period"
+msgstr "Срок"
+
+#: View/BillingSubscriptions/plans_members.ctp:54
+msgid "Total"
+msgstr "Итого"
+
+#: View/BillingSubscriptions/success.ctp:2
+msgid "You are not successfully subscribed."
+msgstr "Оформить подписку не удалось"
+
+#: View/BillingSubscriptions/success.ctp:4
+msgid "You are successfully subscribed."
+msgstr "Вы успешно оформили подписку"
+
+#: View/BillingUser/payment.ctp:4
+msgid "Add funds"
+msgstr "Пополнить баланс"
+
+#: View/BillingUser/subscriptions.ctp:12
+msgid "Transactions"
+msgstr "Транзакции"
+
+#: View/BillingUser/subscriptions.ctp:42
+msgid "Change"
+msgstr "Изменить"
+
+#: View/BillingUser/subscriptions.ctp:53
+msgid "You are not subscribed to any subscription yet."
+msgstr "У вас еще нет ни одной подписки"
+
+#: View/BillingUser/subscriptions.ctp:108
+msgid "There was no any transactions yet."
+msgstr "На текущий момент не было ни одной транзакции"
+
+#: View/Elements/payments_form.ctp:12
+msgid "Saved payments"
+msgstr "Сохраненные "
+
+#: View/Elements/payments_form.ctp:16
+msgid "Add card"
+msgstr "Добавить карту"
+
+#: View/Elements/payments_form.ctp:19
+msgid "Add Paypal"
+msgstr "Добавить Paypal"
+
+#: View/Elements/payments_form.ctp:64
+msgid "Card expiration date"
+msgstr "Дата окончания срока действия карты"
+
+#: View/Elements/subscriptions/free.ctp:23
+msgid "Lifetime"
+msgstr "Бессрочный"
+
+#: View/Elements/subscriptions/paid.ctp:4
+msgid "yearly"
+msgstr "ежегодно"
+
+#: View/Elements/subscriptions/paid.ctp:4
+msgid "monthly"
+msgstr "ежемесяно"
+
+#~ msgid "Expand group"
+#~ msgstr "Расширить сообщество"
+
+#~ msgid "Project memebers monthly"
+#~ msgstr "Ежемесячно"
+
+#~ msgid "Project memebers yearly"
+#~ msgstr "Ежегодно"
+
+#: View/BillingSubscriptions/plans.ctp:8
+msgid "Disc space"
+msgstr "Дисковое пространство"

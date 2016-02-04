@@ -1,0 +1,26 @@
+User-agent: *
+Allow: /$
+Allow: /User/view/*
+Allow: /Group/view/*
+Allow: /Group/addresses/*
+Allow: /Group/members/*
+Allow: /Article/view/*
+Allow: /Article/category/*
+Allow: /*.js
+Allow: /*.css
+Allow: /*.jpg
+Allow: /*.gif
+Allow: /*.png
+Disallow: /
+
+User-agent: Yandex
+Allow: /$
+Allow: /User/view/*
+Allow: /Group/view/*
+Allow: /Group/addresses/*
+Allow: /Group/members/*
+Allow: /Article/view/*
+Allow: /Article/category/*
+Disallow: /
+Host: konstruktor.com
+

@@ -1,0 +1,98 @@
+/* PAYMENT FORM */
+
+.container-fluid.fixedLayout .container {
+    width: 100%;
+}
+
+.payment{
+    font-family: "Open Sans";
+}
+
+.payment .nav-pills{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.payment .nav-pills a{
+    width: 90%;
+    margin: 0 auto;
+    border: 1px solid #eee;
+    background: transparent;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: #818181;
+}
+
+.payment .nav-pills .active a{
+    width: 90%;
+    margin: 0 auto;
+    border: 1px solid #22b5ae;
+    background: #22b5ae;
+}
+
+.payment .nav-pills>li.active>a,
+.payment .nav-pills>li.active>a:hover,
+.payment .nav-pills>li.active>a:focus {
+    background: #22b5ae;
+}
+
+.payment .form-group{
+    color: black;
+    padding-bottom: 5px;
+    border-color: #a6a6a6;
+}
+
+.payment .form-group label{
+    color: black;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.payment .form-group input{
+    font-family: "Open Sans Semibold";
+    font-size: 24px;
+    font-weight: 100;
+}
+
+.payment .form-group .selectBlock{
+    margin-top: 10px;
+}
+
+.payment .form-group .jq-selectbox{
+    width: 100%;
+}
+
+.payment .contentEditable{
+    font-family: "Open Sans Semibold";
+    height: 34px;
+    color: #313131;
+    resize: none;
+    font-size: 24px;
+    font-weight: 100;
+    border:0;
+    margin: 0;
+}
+.payment .expDate{
+    display: inline-block;
+    width: 30px;
+    text-align: center;
+}
+.payment .expDateDivider{
+    font-family: "Open Sans Semibold";
+    line-height: 24px;
+    vertical-align: middle;
+    color: #313131;
+    display: inline-block;
+    width: 10px;
+    text-align: center;
+    margin-top: -25px;
+}
+.payment .braintreeError {
+    display: none;
+    color: red;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}

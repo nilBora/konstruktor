@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>SFM</title>
+		<link href="../app/webroot/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../app/webroot/css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
+		<link href="../app/webroot/css/style.css" rel="stylesheet">
+		
+		<link href="../app/webroot/css/main-panel-new.css" rel="stylesheet">
+		<link href="css/fonts.css" rel="stylesheet">
+		
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="js/jquery.formstyler.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		
+		<script src="js/bootstrap-datetimepicker.min.js"></script>
+		<script src="js/locales/bootstrap-datetimepicker.ru.js"></script>
+		
+		<script src="../app/webroot/js/main-panel.js"></script>
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<script type="text/javascript">document.addEventListener("touchstart", function() {},false);</script>
+	</head>
+	<body>
+		<div class="main-panel-before"></div>
+		<div class="main-panel">
+			<div class="main-panel-dropdown">
+				<div class="dropdown-panel dropdown-searchPanel">
+					<div class="dropdown-panel-wrapper">
+						<div class="searchBlock clearfix">
+							<form action="#">
+								<input type="text" placeholder="Найти пользователя" class="searchInput">
+								<button type="button" class="searchButton"><span class="glyphicons search"></span></button>
+							</form>
+						</div>                
+						<div class="dropdown-panel-scroll">
+							<ul class="search-list-user">
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/smallava2.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Лия Иванова</div>
+												<div class="user-list-item-spec">Ruby, Java, Oracle, MySQ</div>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/3.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Варфаламей Конс</div>
+												<div class="user-list-item-spec">JSP, Ruby, C#, Python</div>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/1.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Вадим Медянск</div>
+												<div class="user-list-item-spec">C++, C#, MsSQL, .NET</div>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/2.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Антон Кулаев</div>
+												<div class="user-list-item-spec">PHP, JS, CSS</div>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/4.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Оля Серова</div>
+												<div class="user-list-item-spec">ASM</div>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/3.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Степан Петрух</div>
+												<div class="user-list-item-spec">PHP, JSP, Ruby</div>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/1.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Николай Кошк</div>
+												<div class="user-list-item-spec">Oracle, MySQL, Postgre</div>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/2.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Зухра Низамие</div>
+												<div class="user-list-item-spec">C++, C#, ASP, .NET</div>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/4.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Рамиль Мухам</div>
+												<div class="user-list-item-spec">JSP, Ruby, C#, Python</div>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/2.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Евгений Никол</div>
+												<div class="user-list-item-spec">PHP, JSP, Ruby</div>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/4.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Даниил Авваку</div>
+												<div class="user-list-item-spec">Ruby, MySQL</div>
+											</div>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+            		</div>
+				</div>
+				<div class="dropdown-panel dropdown-chatPanel">
+					<div class="dropdown-panel-wrapper">
+						<div class="searchBlock clearfix">
+							<form action="#">
+								<input type="text" placeholder="Найти пользователя" class="searchInput">
+								<button type="button" class="searchButton"><span class="glyphicons search"></span></button>
+							</form>
+						</div>
+						<div class="dropdown-panel-scroll">
+							<div class="messages-list">
+								<ul>
+									<li class="messages-new clearfix">
+										<figure class="messages-user rate-10"><img alt="" src="img/temp/4.jpg" class="ava"></figure>
+										<div class="text">
+											<div class="name">Лия Иванова</div>
+											<div class="message clearfix">
+												<p>Ребята подсказали</p>
+											</div>
+										</div>
+										<div class="aside-block">
+											<div class="time">21:19</div>
+											<div class="count-b">
+												<span class="count">3</span>
+											</div>
+										</div>
+									</li>
+									<li class="messages-new clearfix">
+										<figure class="messages-user rate-10"><img alt="" src="img/temp/3.jpg" class="ava"></figure>
+										<div class="text">
+											<div class="name">Айдар Давлеев</div>
+											<div class="message clearfix">
+												<p>
+													<span class="inner-user"><img alt="" src="http://placehold.it/25"></span>
+													ааа) теперь понял
+												</p>
+											</div>
+										</div>
+										<div class="aside-block">
+											<div class="time">13:14</div>
+											<div class="count-b"></div>
+										</div>
+									</li>
+									<li class="messages-new clearfix">
+										<figure class="messages-user rate-10"><img alt="" src="img/temp/2.jpg" class="ava"></figure>
+										<div class="text">
+											<div class="name">Вадим Медянск</div>
+											<div class="message clearfix">
+												<p>а ну ладно тогда)</p>
+											</div>
+										</div>
+										<div class="aside-block">
+											<div class="time">9:11</div>
+											<div class="count-b">
+												<span class="count">4</span>
+											</div>
+										</div>
+									</li>
+									<li class="clearfix">
+										<figure class="messages-user rate-10"><img alt="" src="img/temp/1.jpg" class="ava"></figure>
+										<div class="text">
+											<div class="name">Антон Кулаев</div>
+											<div class="message clearfix">
+												<p>ну)</p>
+											</div>
+										</div>
+										<div class="aside-block">
+											<div class="time">13 авг</div>
+											<div class="count-b">
+												<span class="count">6</span>
+											</div>
+										</div>
+									</li>
+									<li class="clearfix">
+										<figure class="messages-user rate-10"><img alt="" src="img/temp/4.jpg" class="ava"></figure>
+										<div class="text">
+											<div class="name">Оля Серова</div>
+											<div class="message clearfix">
+												<p>ok</p>
+											</div>
+										</div>
+										<div class="aside-block">
+											<div class="time">13 авг</div>
+											<div class="count-b"></div>
+										</div>
+									</li>
+									<li class="clearfix">
+										<figure class="messages-user rate-10"><img alt="" src="img/temp/3.jpg" class="ava"></figure>
+										<div class="text">
+											<div class="name">Степан Петрух</div>
+											<div class="message clearfix">
+												<p>Макет подвижный</p>
+											</div>
+										</div>
+										<div class="aside-block">
+											<div class="time">12 авг</div>
+											<div class="count-b"></div>
+										</div>
+									</li>
+									<li class="clearfix">
+										<figure class="messages-user rate-10"><img alt="" src="img/temp/2.jpg" class="ava"></figure>
+										<div class="text">
+											<div class="name">Николай Кошк</div>
+											<div class="message clearfix">
+												<p>Пидарасы!</p>
+											</div>
+										</div>
+										<div class="aside-block">
+											<div class="time">12 авг</div>
+											<div class="count-b"></div>
+										</div>
+									</li>
+									<li class="clearfix">
+										<figure class="messages-user rate-10"><img alt="" src="img/temp/1.jpg" class="ava"></figure>
+										<div class="text">
+											<div class="name">Зухра Низамие</div>
+											<div class="message clearfix">
+												<p>Ну, это уж лучше, чем</p>
+											</div>
+										</div>
+										<div class="aside-block">
+											<div class="time">11 авг</div>
+											<div class="count-b"></div>
+										</div>
+									</li>
+									<li class="clearfix">
+										<figure class="messages-user rate-10"><img alt="" src="img/temp/4.jpg" class="ava"></figure>
+										<div class="text">
+											<div class="name">Рамиль Мухам</div>
+											<div class="message clearfix">
+												<p>Макет подвижный...</p>
+											</div>
+										</div>
+										<div class="aside-block">
+											<div class="time">11 авг</div>
+											<div class="count-b"></div>
+										</div>
+									</li>
+									<li class="clearfix">
+										<figure class="messages-user rate-10"><img alt="" src="img/temp/3.jpg" class="ava"></figure>
+										<div class="text">
+											<div class="name">Евгений Никол</div>
+											<div class="message clearfix">
+												<p>Макет подвижный...</p>
+											</div>
+										</div>
+										<div class="aside-block">
+											<div class="time">11 авг</div>
+											<div class="count-b"></div>
+										</div>
+									</li>
+									<li class="clearfix">
+										<figure class="messages-user rate-10"><img alt="" src="img/temp/2.jpg" class="ava"></figure>
+										<div class="text">
+											<div class="name">Даниил Авваку</div>
+											<div class="message clearfix">
+												<p>Макет подвижный...</p>
+											</div>
+										</div>
+										<div class="aside-block">
+											<div class="time">9 авг</div>
+											<div class="count-b"></div>
+										</div>
+									</li>
+									<li class="clearfix">
+										<figure class="messages-user rate-10"><img alt="" src="img/temp/1.jpg" class="ava"></figure>
+										<div class="text">
+											<div class="name">Марина Супер</div>
+											<div class="message clearfix">
+												<p>Макет подвижный...</p>
+											</div>
+										</div>
+										<div class="aside-block">
+											<div class="time">7 авг</div>
+											<div class="count-b"></div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="dropdown-panel dropdown-groupPanel">
+					<div class="dropdown-panel-wrapper">
+						<div class="searchBlock clearfix">
+							<form action="#">
+								<input type="text" placeholder="Найти пользователя" class="searchInput">
+								<button type="button" class="searchButton"><span class="glyphicons search"></span></button>
+							</form>
+						</div>
+						<div class="create-group">
+							<div class="page-menu">
+								<a class="btn btn-default" href="#">Создать</a>
+							</div>
+						</div>
+						<div class="dropdown-panel-scroll">
+							<ul class="group-list">
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/group.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Meduza Project</div>
+												<div class="user-list-item-spec">12 488 участников</div>
+											</div>
+										</div>
+									</a>
+									<div class="group-enter-btn clearfix">
+										<button class="btn btn-default">Принять</button>
+										<button class="btn btn-default">Отклонить</button>
+									</div>
+								</li>
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/group.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Red Keds</div>
+												<div class="user-list-item-spec">215 участников</div>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/group.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Сборная Мурманска</div>
+												<div class="user-list-item-spec">5 621 участник</div>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="simple-list-item">
+									<a href="#">
+										<div class="user-list-item clearfix">
+											<div class="user-list-item-avatar rate-10"><img alt="" src="img/temp/group.jpg"></div>
+											<div class="user-list-item-body">
+												<div class="user-list-item-name">Шедевры рекламы</div>
+												<div class="user-list-item-spec">2 251 834 участника</div>
+											</div>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="dropdown-panel dropdown-notesPanel">
+					<div class="dropdown-panel-wrapper">dropdown-notesPanel</div>
+				</div>
+				<div class="dropdown-panel dropdown-briefcasePanel">
+					<div class="dropdown-panel-wrapper">dropdown-briefcasePanel</div>
+				</div>
+				<div class="dropdown-panel dropdown-credit_cardPanel">
+					<div class="dropdown-panel-wrapper">dropdown-credit_cardPanel</div>
+				</div>
+				<div class="dropdown-panel dropdown-cloudPanel">
+					<div class="dropdown-panel-wrapper">dropdown-cloudPanel</div>
+				</div>
+				<div class="dropdown-panel dropdown-filePanel">
+					<div class="dropdown-panel-wrapper">dropdown-filePanel</div>
+				</div>
+				<div class="dropdown-panel dropdown-ipadPanel">
+					<div class="dropdown-panel-wrapper">
+						<div class="dropdown-panel-scroll">
+							<ul class="drop-device-list">
+								<li class="drop-device-list-cell clearfix">
+									<figure class="drop-device-icon"><span class="icon glyphicons ipad"></span></figure>
+									<div class="drop-device-info">
+										<div class="title">Мобильная точка</div>
+										<div class="text-descript">
+											<p>iPad 16 ГБ, доступ к платным сервисам, помощь 24/7.</p>
+											<div class="month-amount">$50/месяц</div>
+											<div class="select-option clearfix">
+												<div class="box-input">
+													<label for="drop-device-info-input-1"></label>
+													<input type="text" value="10" id="drop-device-info-input-1">
+												</div>
+												<div class="box-select">
+													<label for="drop-device-info-select-1"></label>
+													<div style="display: inline-block; position: relative; z-index:100" class="jq-selectbox jqselect formstyler changed" id="drop-device-info-select-1-styler"><select id="drop-device-info-select-1" name="" class="formstyler" style="margin: 0px; padding: 0px; position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; opacity: 0;">
+														<option value="0">2 года</option>
+														<option value="1">3 года</option>
+														<option value="2">4 года</option>
+														<option value="3">5 лет</option>
+														<option value="4" selected="selected">6 лет</option>
+													</select><div style="position: relative" class="jq-selectbox__select"><div class="jq-selectbox__select-text">6 лет</div><div class="jq-selectbox__trigger"><div class="jq-selectbox__trigger-arrow"></div></div></div><div style="position: absolute; display: none;" class="jq-selectbox__dropdown"><ul style="position: relative; list-style: none; overflow: auto; overflow-x: hidden"><li class="" style="display: block; white-space: nowrap;">2 года</li><li class="" style="display: block; white-space: nowrap;">3 года</li><li class="" style="display: block; white-space: nowrap;">4 года</li><li class="" style="display: block; white-space: nowrap;">5 лет</li><li class="selected sel" style="display: block; white-space: nowrap;">6 лет</li></ul></div></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</li>
+								<li class="drop-device-list-cell clearfix">
+									<figure class="drop-device-icon"><span class="icon glyphicons imac"></span></figure>
+									<div class="drop-device-info">
+										<div class="title">Стационарная точка</div>
+										<div class="text-descript">
+											<p>Монитор, компьютер, доступ к платным сервисам, помощь 24/7.</p>
+											<div class="month-amount">$75/месяц</div>
+											<div class="select-option clearfix">
+												<div class="box-input">
+													<label for="drop-device-info-input-2"></label>
+													<input type="text" value="4" id="drop-device-info-input-2">
+												</div>
+												<div class="box-select">
+													<div class="box-select">
+														<label for="drop-device-info-select-2"></label>
+														<div style="display: inline-block; position: relative; z-index:100" class="jq-selectbox jqselect formstyler" id="drop-device-info-select-2-styler"><select id="drop-device-info-select-2" name="" class="formstyler" style="margin: 0px; padding: 0px; position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; opacity: 0;">
+															<option value="0">2 года</option>
+															<option value="1">3 года</option>
+															<option value="2">4 года</option>
+															<option value="3">5 лет</option>
+															<option value="4">6 лет</option>
+														</select><div style="position: relative" class="jq-selectbox__select"><div class="jq-selectbox__select-text">2 года</div><div class="jq-selectbox__trigger"><div class="jq-selectbox__trigger-arrow"></div></div></div><div style="position: absolute; display: none;" class="jq-selectbox__dropdown"><ul style="position: relative; list-style: none; overflow: auto; overflow-x: hidden"><li class="selected sel" style="display: block; white-space: nowrap;">2 года</li><li class="" style="display: block; white-space: nowrap;">3 года</li><li class="" style="display: block; white-space: nowrap;">4 года</li><li class="" style="display: block; white-space: nowrap;">5 лет</li><li class="" style="display: block; white-space: nowrap;">6 лет</li></ul></div></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</li>
+								<li class="drop-device-list-cell clearfix">
+									<figure class="drop-device-icon">
+										<span class="icon glyphicons print"></span>
+									</figure>
+									<div class="drop-device-info">
+										<div class="title">Копия печать</div>
+										<div class="text-descript">
+											<p>Ч/б принтер, помощь 24/7, доступ к платным сервисам.</p>
+											<div class="month-amount">$0.2/страница</div>
+											<div class="select-option clearfix">
+												<div class="box-input">
+													<label for="drop-device-info-input-3"></label>
+													<input type="text" value="4" id="drop-device-info-input-3">
+												</div>
+												<div class="box-select">
+													<div class="box-select">
+														<label for="drop-device-info-select-3"></label>
+														<div style="display: inline-block; position: relative; z-index:100" class="jq-selectbox jqselect formstyler" id="drop-device-info-select-3-styler"><select id="drop-device-info-select-3" name="" class="formstyler" style="margin: 0px; padding: 0px; position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; opacity: 0;">
+															<option value="0">2 года</option>
+															<option value="1">3 года</option>
+															<option value="2">4 года</option>
+															<option value="3">5 лет</option>
+															<option value="4">6 лет</option>
+														</select><div style="position: relative" class="jq-selectbox__select"><div class="jq-selectbox__select-text">2 года</div><div class="jq-selectbox__trigger"><div class="jq-selectbox__trigger-arrow"></div></div></div><div style="position: absolute; display: none;" class="jq-selectbox__dropdown"><ul style="position: relative; list-style: none; overflow: auto; overflow-x: hidden"><li class="selected sel" style="display: block; white-space: nowrap;">2 года</li><li class="" style="display: block; white-space: nowrap;">3 года</li><li class="" style="display: block; white-space: nowrap;">4 года</li><li class="" style="display: block; white-space: nowrap;">5 лет</li><li class="" style="display: block; white-space: nowrap;">6 лет</li></ul></div></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div class="b-order-bottom-device clearfix">
+							<a class="my-orders" href="#">Мои заказы</a>
+							<a class="order-device" href="#">Заказать</a>
+						</div>
+					</div>
+				</div>
+				<div class="dropdown-panel dropdown-calendarPanel">
+					<div class="dropdown-panel-wrapper">dropdown-calendarPanel</div>
+				</div>
+			</div>
+			<div class="main-panel-block">
+				<div class="main-panel-wrapper">
+					<div class="user-image">
+						<a href="javascript: void(0)"><img alt="" src="img/temp/avatar.jpg"></a>
+					</div>
+					<div class="main-panel-list">
+						<ul>
+							<li><a href="javascript:void(0)"><span class="glyphicons search searchPanel"></span></a></li>
+							<li><a href="javascript:void(0)"><span class="glyphicons chat chatPanel"></span><div class="count">13</div></a></li>
+							<li><a href="javascript:void(0)"><span class="glyphicons group groupPanel"></span></a></li>
+							<li><a href="javascript:void(0)"><span class="glyphicons notes notesPanel"></span></a></li>
+							<li><a href="javascript:void(0)"><span class="glyphicons briefcase briefcasePanel"></span></a></li>
+							<li><a href="javascript:void(0)"><span class="glyphicons credit_card credit_cardPanel"></span><div class="count">13</div></a></li>
+							<li><a href="javascript:void(0)"><span class="glyphicons cloud cloudPanel"></span></a></li>
+							<li><a href="javascript:void(0)"><span class="glyphicons file filePanel"></span></a></li>
+							<li><a href="javascript:void(0)"><span class="glyphicons ipad ipadPanel"></span></a></li>
+							<li><a href="javascript:void(0)"><span class="glyphicons calendar calendarPanel"></span></a></li>
+						</ul>
+					</div>
+					<div class="service-menu">
+						<ul>
+							<li><a href="javascript:void(0)"><span class="glyphicons settings"></span></a></li>
+							<li><a href="javascript:void(0)"><span class="glyphicons exit"></span></a></li>
+							<li class="logo-li"><a href="javascript:void(0)"><span class="logo-icon"></span></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="wrapper-container">
+			<div class="container-fluid">
+				<h1>Журналистика</h1>
+				<div class="row fixedLayout userProjects investments">
+					<div class="col-sm-4">
+						<a href="#" class="item">
+							<div class="aboutProject">
+								<div class="thumb"><img alt="" src="img/temp/univer.jpg"></div>
+								<div class="info">
+									<div class="name">Qimini™ Deuce, wireless charger & powerbank</div>
+									<div class="count">139 участниковв</div>
+								</div>
+							</div>
+							<div class="description">Практические советы начинающим программистам (Ruby, JSP, C++) Практические советы начинающим программистам (Ruby, JSP, C++).</div>
+                            <div class="collected">Собрано 291 456 из 1 500 000</div>
+                            <div>Осталось 27 дней</div>
+						</a>
+						<a href="#" class="item">
+							<div class="aboutProject">
+								<div class="thumb"><img alt="" src="img/temp/univer.jpg"></div>
+								<div class="info">
+									<div class="name">Air Umbrella</div>
+									<div class="count">139 участниковв</div>
+								</div>
+							</div>
+							<div class="description">Невидимый зонт</div>
+                            <div class="collected">Собрано 291 456 из 1 500 000</div>
+                            <div>Осталось 27 дней</div>
+						</a>
+					</div>
+					<div class="col-sm-4">
+						<a href="#" class="item good">
+							<div class="aboutProject">
+								<div class="thumb"><img alt="" src="img/temp/univer.jpg"></div>
+								<div class="info">
+									<div class="name">KOINBE</div>
+									<div class="count">139 участниковв</div>
+								</div>
+							</div>
+							<div class="description">Невидимый зонт</div>
+                            <div class="collected">Собрано 291 456 из 1 500 000</div>
+                            <div>Осталось 27 дней</div>
+						</a>
+						<a href="#" class="item good">
+							<div class="aboutProject">
+								<div class="thumb"><img alt="" src="img/temp/univer.jpg"></div>
+								<div class="info">
+									<div class="name">KOINBE</div>
+									<div class="count">139 участниковв</div>
+								</div>
+							</div>
+							<div class="description">Невидимый зонт</div>
+                            <div class="collected">Собрано 291 456 из 1 500 000</div>
+                            <div>Осталось 27 дней</div>
+						</a>
+					</div>
+					<div class="col-sm-4">
+						<a href="#" class="item bad">
+							<div class="aboutProject">
+								<div class="thumb"><img alt="" src="img/temp/univer.jpg"></div>
+								<div class="info">
+									<div class="name">KOINBE</div>
+									<div class="count">139 участниковв</div>
+								</div>
+							</div>
+							<div class="description">Невидимый зонт</div>
+                            <div class="collected">Собрано 291 456 из 1 500 000</div>
+                            <div>Осталось 27 дней</div>
+						</a>
+					</div>
+				</div>
+				<br /><br /><br />
+			</div>
+		</div>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('select, input.filestyle, input.checkboxStyle').styler({fileBrowse: 'Загрузить фото'});
+		 $('#dateDelivery').datetimepicker({
+			 format:"dd.mm.yyyy",
+			 language:  'ru',
+			 weekStart: 1,
+			 autoclose: 1,
+			 todayHighlight: 1,
+			 startView: 4,
+			 startDate: "2015-02-14",
+			 endDate: "2016-02-14",
+			 minView: 2,
+			 linkFormat: "dd.mm.yyyy hh:ii:ss"
+		 });
+	});
+</script>
+		
+	</body>
+</html>
