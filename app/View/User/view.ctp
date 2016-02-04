@@ -828,19 +828,29 @@ $(document).ready(function(){
 				});
 			},
 			add: function (e, data) {
-				var ul = $('#video-attach-list');
-				var inputId = data.fileInput.prop('id');
-				if (inputId == 'video-user-upload') {
-					ul = $('#video-attach-user');
+				var uploadErrors = [];
+				var acceptFileTypes = /video\/.*$/i;
+				console.log(data.originalFiles);
+				if(data.originalFiles[0]['type'].length && !acceptFileTypes.test(data.originalFiles[0]['type'])) {
+					uploadErrors.push('<?php echo __('The selected file is not a video format')?>');
 				}
+				if(uploadErrors.length > 0) {
+					alert(uploadErrors.join("\n"));
+				} else {
+					var ul = $('#video-attach-list');
+					var inputId = data.fileInput.prop('id');
+					if (inputId == 'video-user-upload') {
+						ul = $('#video-attach-user');
+					}
 
-				var fileType = data.files[0].name.split('.').pop().toLowerCase().replace('jpeg', 'jpg');
-				var $tpl = $('#video-tpl-file-upload .item').clone();
-				var fileClass = Cloud.hasType(fileType) ? 'filetype ' + fileType : 'glyphicons file';
-				$tpl.find('.filetype').attr('class', fileClass);
-				$tpl.find('.title').text(data.files[0].name);
-				data.context = $tpl.prependTo(ul);
-				data.submit();
+					var fileType = data.files[0].name.split('.').pop().toLowerCase().replace('jpeg', 'jpg');
+					var $tpl = $('#video-tpl-file-upload .item').clone();
+					var fileClass = Cloud.hasType(fileType) ? 'filetype ' + fileType : 'glyphicons file';
+					$tpl.find('.filetype').attr('class', fileClass);
+					$tpl.find('.title').text(data.files[0].name);
+					data.context = $tpl.prependTo(ul);
+					data.submit();
+				}
 			},
 			progress: function (e, data) {
 				var progress = parseInt(data.loaded / data.total * 100, 10);

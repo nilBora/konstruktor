@@ -33,4 +33,43 @@ class RedactorHelper extends AppHelper{
 		return $html;
 	}
 
+	public function tiny($field, $options = array()) {
+		$scripts = array(
+			'tinymce.min.js',
+			'theme.min.js',
+			'tinyPlugins/advlist/plugin.min.js',
+			'tinyPlugins/autolink/plugin.min.js',
+			'tinyPlugins/lists/plugin.min.js',
+			'tinyPlugins/link/plugin.min.js',
+			'tinyPlugins/image/plugin.min.js',
+			'tinyPlugins/charmap/plugin.min.js',
+			'tinyPlugins/print/plugin.min.js',
+			'tinyPlugins/cloudfilemanager/plugin.js',
+			'tinyPlugins/preview/plugin.min.js',
+			'tinyPlugins/responsivefilemanager/plugin.min.js',
+			'tinyPlugins/anchor/plugin.min.js',
+			'tinyPlugins/searchreplace/plugin.min.js',
+			'tinyPlugins/visualblocks/plugin.min.js',
+			'tinyPlugins/code/plugin.min.js',
+			'tinyPlugins/fullscreen/plugin.min.js',
+			'tinyPlugins/insertdatetime/plugin.min.js',
+			'tinyPlugins/media/plugin.min.js',
+			'tinyPlugins/table/plugin.min.js',
+			'tinyPlugins/contextmenu/plugin.min.js',
+			'tinyPlugins/paste/plugin.min.js',
+			'tinyPlugins/code/plugin.min.js',
+			'tiny-init.js'
+		);
+		$css = array(
+			'../skins_tiny/lightgray/content.min.css',
+			'../skins_tiny/lightgray/skin.min.css',
+			'../skins_tiny/lightgray/content.inline.min.css'
+		);
+		$this->Html->script($scripts, array('inline' => false));
+		$this->Html->css($css, array('inline' => false));
+
+		return $this->textarea($field, 'tiny-mce', $options);
+
+	}
+
 }

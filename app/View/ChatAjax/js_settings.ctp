@@ -13,7 +13,7 @@ var chatURL = {
 	addMember: '<?=$this->Html->url(array('controller' => 'ChatAjax', 'action' => 'addMember'))?>.json',
 	removeMember: '<?=$this->Html->url(array('controller' => 'ChatAjax', 'action' => 'removeMember'))?>.json',
 	loadMore: '<?=$this->Html->url(array('controller' => 'ChatAjax', 'action' => 'loadMore'))?>.json',
-	
+
 	editMessage: '<?=$this->Html->url(array('controller' => 'ChatAjax', 'action' => 'editMessage'))?>.json',
 	removeMessage: '<?=$this->Html->url(array('controller' => 'ChatAjax', 'action' => 'removeMessage'))?>.json'
 }
@@ -38,5 +38,5 @@ var mediaURL = {
 	upload: '<?=$this->Html->url(array('plugin' => 'media', 'controller' => 'ajax', 'action' => 'upload'))?>',
 	move: '<?=$this->Html->url(array('plugin' => 'media', 'controller' => 'ajax', 'action' => 'move'))?>.json',
 	remove: '<?=$this->Html->url(array('plugin' => 'media', 'controller' => 'ajax', 'action' => 'delete'))?>.json',
-	froalaUpload: '<?=$this->Html->url(array('plugin' => 'media', 'controller' => 'ajax', 'action' => 'froalaUpload'))?>.json'
+	editorUpload: '<?=$this->Html->url(array('plugin' => 'media', 'controller' => 'ajax', 'action' => 'editorUpload'))?>.json'
 };

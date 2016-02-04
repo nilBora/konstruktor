@@ -5,7 +5,7 @@ class CloudController extends AppController {
     public $name = 'Cloud';
     public $layout = 'profile_new';
     public $uses = array('Cloud', 'Note', 'StorageLimit', 'Share');
-    public $helpers = array('Form', 'Html', 'Froala.Froala');
+    public $helpers = array('Form', 'Html');
 
     function beforeFilter()
     {

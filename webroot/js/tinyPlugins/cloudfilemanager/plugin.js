@@ -38,9 +38,11 @@ tinymce.PluginManager.add('cloudfilemanager', function(editor, url) {
 								var winElementMedia = winElement.getAttribute('data-media');
 								var winElementType  = winElement.getAttribute('data-type');
 								var winElementUrl   = winElement.getAttribute('data-url');
-								console.log(winElementMedia);
 								if(winElementType == 'file' && winElementMedia != 'false' ){
 									editor.insertContent('<img src="' + winElementMedia + '"/>');
+									win.close();
+								}else if(winElementType=='file' && winElement.getAttribute('data-video') == 'mp4'){
+									editor.insertContent('<video src="' + winElement.getAttribute('data-url-down') + '" controls preload></video>');
 									win.close();
 								}else if(winElementType=='file'){
 									editor.insertContent('<a href="' + winElementUrl + '">ссылка</a>');

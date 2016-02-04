@@ -185,12 +185,22 @@ $(document).ready(function () {
 
     $(document).on('click', '.smileSelect', function() {
         console.log($(this).text());
-        text = $('.sendForm textarea').val().length > 0 ? ' '+$(this).text() : ''+$(this).text();
-        $('.sendForm textarea').val( $('.sendForm textarea').val() + text );
+        var form = $(this).closest('form');
+		if(form.attr('id')=='msgEditForm'){
+			text = $('#msgEditForm.sendForm textarea').val().length > 0 ? ' '+$(this).text() : ''+$(this).text();
+			$('#msgEditForm.sendForm textarea').val( $('#msgEditForm.sendForm textarea').val() + text );
 
-        if ((/iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) || (navigator.userAgent.indexOf("Safari") > -1)) {
-            $('#sendChatSmile').popover('hide');
-        }
+			if ((/iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) || (navigator.userAgent.indexOf("Safari") > -1)) {
+				$('#sendChatSmileEdit').popover('hide');
+			}
+		}else{
+			text = $('.sendForm textarea').val().length > 0 ? ' '+$(this).text() : ''+$(this).text();
+			$('.sendForm textarea').val( $('.sendForm textarea').val() + text );
+
+			if ((/iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) || (navigator.userAgent.indexOf("Safari") > -1)) {
+				$('#sendChatSmile').popover('hide');
+			}
+		}
     });
 
     $('.abortload-chat-file').click(function (){

@@ -104,10 +104,14 @@ $(document).ready(function () {
 
     // upload file
     $('#cloud-manager-upload').on('click', function () {
-        if (!$(this).data('url')) {
+        var url = $(this).data('url');
+        if (!url) {
             return;
         }
-        window.open($(this).data('url'));
+        if(url.indexOf("/preview/") > 0){
+            url = url.replace("/preview/", "/download/");
+        }
+        location.href = url;
     });
 
     // uploader

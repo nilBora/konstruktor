@@ -3215,5 +3215,21 @@ msgstr "Другие интересные статьи"
 
 msgid "Tag cloud"
 msgstr "Облако тегов"
+
 msgid "External events"
 msgstr "Внешние задачи"
+
+msgid "The selected file is not a video format"
+msgstr "Выбранный файл не относится к видеоформату"
+
+msgid "Versions"
+msgstr "Версия"
+
+msgid "No versions available"
+msgstr "Версия не доступна"
+
+msgid "Add photos / video preview"
+msgstr "Добавить фото/видео превью"
+
+msgid "Tasks market"
+msgstr "Биржа задач"

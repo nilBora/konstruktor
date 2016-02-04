@@ -31,7 +31,7 @@ class AjaxController extends PAjaxController {
 		echo(json_encode($files));
 	}
 
-	public function froalaUpload() {
+	public function editorUpload() {
 		$this->autoRender = false;
 		$allowedExts = array("gif", "jpeg", "jpg", "png");
 

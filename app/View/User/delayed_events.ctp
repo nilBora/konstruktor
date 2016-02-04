@@ -1,6 +1,7 @@
 <?php
 	/* Breadcrumbs */
 	$this->Html->addCrumb(Hash::get($currUser, 'User.full_name'), array('controller' => 'User', 'action' => 'view/'.Hash::get($currUser, 'User.id')));
+	$this->Html->addCrumb(__('Time management'), array('controller' => 'User', 'action' => 'timeManagement'));
 	$this->Html->addCrumb(__('Delayed events'), array('controller' => 'User', 'action' => 'delayedEvents'));
 
 	$this->Html->script(array(

@@ -30,10 +30,10 @@ $this->Html->script($viewScripts, array('inline' => false));
         position: relative;
     }
 
-	#loadMoreTemp { 
-        position: absolute; 
-        visibility: hidden; 
-        z-index: -5000; 
+	#loadMoreTemp {
+        position: absolute;
+        visibility: hidden;
+        z-index: -5000;
         display: none;
         left: 0;
         right: 0;
@@ -50,23 +50,7 @@ $this->Html->script($viewScripts, array('inline' => false));
 </style>
 
 <div id="editMessage" class="modal fade" tabindex="-1" role="dialog">
-	<div class="outer-modal-dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<span class="glyphicons circle_remove" data-dismiss="modal"></span>
-				<h4><?=__('Edit message')?></h4>
-				<form id="msgEditForm">
-					<?=$this->Form->hidden('event_id')?>
-					<div class="form-group">
-						<?=$this->Form->input('message', array('type' => 'textarea', 'label' => false, 'class' => 'form-control', 'required' => 'required'))?>
-					</div>
-					<div class="clearfix">
-						<div id="postMessage" class="btn btn-primary loadBtn"><span><?=__('Save')?></span><img src="/img/ajax_loader.gif" style="height: 20px"></div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+	<?php echo $this->element('Chat/editMsg'); ?>
 </div>
 
 <!-- start - photoswipe -->

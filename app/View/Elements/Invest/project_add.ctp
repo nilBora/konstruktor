@@ -33,7 +33,7 @@
 			<div class="form-group InvestProject-name">
 				<input name="InvestProject[name]" maxlength="150" data-label="<?= __('Project name') ?>" required="true" type="text" class="form-control" placeholder="<?= __('Project name') ?>" value="" />
 			</div>
-			<?=$this->Redactor->redactor('body')?>
+			<?=$this->Redactor->tiny('body')?>
 			<div class="row InvestProject-totals">
 				<div class="col-sm-4">
 					<div class="form-group">

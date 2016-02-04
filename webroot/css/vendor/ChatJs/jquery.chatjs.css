@@ -246,11 +246,11 @@
     /*float: right;*/
     cursor: pointer;
     position: absolute;
-    width: 60px;
-    height: 60px;
+    width: 64px;
+    height: 64px;
     right: 9px;
     bottom: -68px;
-    background-image: url(/img/submit_smile_lighter_sprite.png);
+    background-image: url(/img/panel/smile.png);
     background-size: 100%;
     background-position: 0 0;
 }
@@ -272,7 +272,7 @@
 
 .openchat.active {
     opacity: 1;
-    background-position: 0 -120px;
+    /*background-position: 0 -120px;*/
 }
 
 .openchat.active:before {

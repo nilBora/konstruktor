@@ -7,10 +7,10 @@
 
 	$this->Html->css('jquery.Jcrop.min', null, array('inline' => false));
     $this->Html->css('font-awesome.min', null, array('inline' => false));
-    echo $this->Html->css('/Froala/css/froala_editor.min.css', null, array('block' => 'css'));
+    //echo $this->Html->css('vendor/editor.min.css', null, array('block' => 'css'));
 ?>
 <div id="note-<?=$id ? $id : 'new'?>" class="noteEditBlock active">
-	<?=$this->Form->create('Note', array('url' => array('controller' => 'NoteAjax', 'action' => 'editPanel')))?>		
+	<?=$this->Form->create('Note', array('url' => array('controller' => 'NoteAjax', 'action' => 'editPanel')))?>
 		<div class="row projectViewTitle">
 			<div class="col-sm-5 col-sm-push-7 controlButtons">
 				<button type="button" class="btn btn-default formSubmit" <?=$id ? 'data-note_id="'.$id.'"' : ''?>><?=__('Save')?></button>
@@ -32,9 +32,9 @@
 			</div>
 		</div>
 		<br/>
-<?		
+<?
 		if(!$id && $parent_id) {
-?>		
+?>
 			<?=$this->Form->hidden('Note.parent_id', array('value' => $parent_id))?>
 <?
 		} else {
@@ -64,18 +64,18 @@
     $(function() {
 
         var html = '<?php echo preg_replace( "/\r|\n/", "", $body );?>';
-
+		/*
         $('.wordProcessor').editable({
             key: '<?=Configure::read('froalaEditorKey')?>',
             inlineMode: false,
-            imageUploadURL: mediaURL.froalaUpload,
+            imageUploadURL: mediaURL.editorUpload,
             buttons: ["bold", "italic", "underline", "strikeThrough", "fontSize",
                 "fontFamily", "color", "sep", "formatBlock", "blockStyle", "align",
                 "insertOrderedList", "insertUnorderedList", "outdent", "indent", "sep",
                 "createLink", "insertImage", "insertVideo", "table", "undo", "redo",
                 "html","fullscreen"]
         });
-
+		*/
 //        $('.wordProcessor').on('editable.focus', function (e, editor) {
 //            console.log("asdasdassadsadasd");
 //        });

@@ -4,7 +4,7 @@ App::uses('CakeEmail', 'Network/Email');
 class UserController extends AppController {
 	public $name = 'User';
 	public $layout = 'profile_new';
-	public $helpers = array('Form', 'Html', 'Froala.Froala', 'Redactor.Redactor');
+	public $helpers = array('Form', 'Html', 'Redactor.Redactor');
 	public $components = array(
 		'Cookie',
 		'Attempt.Attempt' => array(

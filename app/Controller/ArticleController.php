@@ -4,8 +4,16 @@ App::uses('HttpSocket', 'Network/Http');
 class ArticleController extends AppController {
 	public $name = 'Article';
 	public $uses = array('Article', 'ArticleCategory', 'ArticleEvent');
-	public $helpers = array('Media', 'Redactor.Redactor', 'Form', 'Html', 'Froala.Froala');
+	public $helpers = array('Media', 'Redactor.Redactor', 'Form', 'Html');
 	public $layout = 'profile_new';
+
+	protected function _beforeInit() {
+		parent::_beforeInit();
+		/*$this->Article->updateAll(
+			array('Article.published' => '1'),
+			array('Article.created <= NOW()','Article.created <> "0000-00-00 00:00:00"','Article.deleted' => '0')
+		);*/
+	}
 
 	public function beforeFilter() {
 		parent::beforeFilter();
@@ -111,12 +119,48 @@ class ArticleController extends AppController {
 				$id = $article['Article']['id'];
 			}
 		} else {
-			$article = $this->Article->findByIdAndDeleted($id, 0);
+
+			$conditions = array('Article.deleted' => 0, 'Article.id' => $id);
+
+			$joins = array(
+				array(
+					'table' => 'groups',
+					'alias' => 'Group',
+					'type' => 'LEFT',
+					'conditions' => array(
+						'Article.group_id = Group.id'
+					)
+				),array(
+					'table' => 'media',
+					'alias' => 'GroupMedia',
+					'type' => 'LEFT',
+					'conditions' => array(
+						'GroupMedia.object_id = Group.id',
+						'GroupMedia.object_type = "Group"',
+					)
+				)
+			);
+			$fields = [ 'Article.*',
+				'ArticleMedia.*',
+				'GroupMedia.*',
+				'Group.title'];
+
+			$article = $this->Article->find('first', compact('conditions','fields','joins'));
+			$aPopularArticles = $this->Article->popularArticles($this->currUserID);
+			$aSimilarArticles = $this->Article->similarArticles($article['Article']['cat_id'],$article['Article']['id']);
+			$this->set(compact('aPopularArticles','aSimilarArticles'));
 		}
 
-		if(!$article || ($article['Article']['owner_id'] != $this->currUserID && $article['Article']['published'] != 1)) {
+		if(!$article || ($article['Article']['owner_id'] != $this->currUserID && ($article['Article']['published'] != 1 || $article['Article']['title']==''))) {
 			throw new NotFoundException();
 		}
+
+		$hits = $article['Article']['hits']+1;
+		$article['Article']['hits'] = $hits;
+		$this->Article->updateAll(
+			array('Article.hits' => $hits),
+			array('Article.id' => $id)
+		);
 
 		$title = $article['Article']['title'];
 		$this->set(compact('title'));
@@ -226,30 +270,6 @@ class ArticleController extends AppController {
 		if ($this->Article->save($this->request->data)){
 			return $this->redirect(array('action' => 'view', $id));
 		}
-	}
-
-	public function category($id) {
-		$conditions = array('cat_id' => $id, 'published' => 1, 'deleted' => 0);
-		$order = ('Article.created DESC');
-
-		$aCategoryOptions = $this->ArticleCategory->options();
-
-		if($id > count($aCategoryOptions)-1) {
-			throw new NotFoundException();
-		}
-
-		$aArticles = $this->Article->find('all', compact('conditions', 'order'));
-
-		$catOptions = $this->ArticleCategory->options();
-		$this->set('aArticles', $aArticles);
-		$this->set('aCategoryOptions', $catOptions);
-
-		$title = __('Articles').': '.$catOptions[$id];
-		$this->set(compact('title'));
-
-		$aID = Hash::extract($aArticles, '{n}.Article.id');
-		$aComments = $this->ArticleEvent->findAllByArticleId($aID);
-		$this->set('aComments', $aComments);
 	}
 
 	public function myArticles() {
@@ -393,15 +413,63 @@ class ArticleController extends AppController {
 		$this->set('aUsers', $aUsers);
 	}
 
-	public function all() {
-		$this->layout = 'timeline_new';
-
-		$conditions = array('published' => 1, 'deleted' => 0);
-		$order = 'Article.created DESC';
-		$limit = '15';
+	public function all($sort = 'date-down',$top = 'all') {
+		$conditions = array('Article.published' => 1, 'Article.deleted' => 0, 'Article.title !=' =>'');
+		$sortArr = ['date-up'=>'Article.created ASC','date-down'=>'Article.created DESC','hits-down'=>'Article.hits DESC','hits-up'=>'Article.hits ASC'];
 
 		$title = __('All articles');
 		$this->set(compact('title'));
+		$fields = [ 'Article.id',
+					'Article.owner_id',
+					'Article.title',
+					'Article.body',
+					'Article.cat_id',
+					'Article.group_id',
+					'Article.created',
+					'Article.shared',
+					'Article.hits',
+					'ArticleMedia.*',
+					'GroupMedia.*',
+					'Group.title'];
+
+		$limit = 4;
+		$order = 'Article.hits DESC';
+
+		$joins = array(
+			array(
+				'table' => 'groups',
+				'alias' => 'Group',
+				'type' => 'LEFT',
+				'conditions' => array(
+					'Article.group_id = Group.id'
+				)
+			),array(
+				'table' => 'media',
+				'alias' => 'GroupMedia',
+				'type' => 'LEFT',
+				'conditions' => array(
+					'GroupMedia.object_id = Group.id',
+					'GroupMedia.object_type = "Group"',
+				)
+			)
+		);
+
+		$aArticlesTop = $this->Article->find('all', compact('conditions', 'order', 'limit','fields','joins'));
+		$notArticleTop = Hash::extract($aArticlesTop,'{n}.Article.id');
+
+		if(in_array($sort,array_keys($sortArr))){
+			$order = $sortArr[$sort];
+		}else{
+			$order = 'Article.created DESC';
+		}
+		$conditions['Article.id NOT'] = $notArticleTop;
+		switch($top){
+			case 'all' 	  : $limit = 16; break;
+			case 'top25'  : $limit = 25;  $order = 'Article.hits DESC'; break;
+			case 'top50'  : $limit = 50;  $order = 'Article.hits DESC'; break;
+			case 'top100' : $limit = 100; $order = 'Article.hits DESC'; break;
+		}
+
 
 		/** @var Article $articleModel */
 		$articleModel = $this->Article;
@@ -410,22 +478,96 @@ class ArticleController extends AppController {
 			$search = $this->request->query['search'];
 			$aArticles = $articleModel->search($search);
 		} else {
-			$aArticles = $articleModel->find('all', compact('conditions', 'order', 'limit'));
+			$aArticles    = $this->Article->find('all', compact('conditions', 'order', 'limit','fields','joins'));;
 		}
 
 		$aUsers = array();
-		$aComments = array();
-
-		if($aArticles) {
-			$aID = Hash::extract($aArticles, '{n}.Article.id');
-			$aComments = $this->ArticleEvent->findAllByArticleId($aID);
+		if($aArticles || $aArticlesTop) {
+			$aID = Hash::extract(array_merge($aArticles,$aArticlesTop), '{n}.Article.owner_id');
 			$aUsers = $this->User->findAllById( $aID );
 		}
+		$aUsers = Hash::combine($aUsers,'{n}.User.id','{n}');
 		$aCategoryOptions = $this->ArticleCategory->options();
 
-		$this->set('aCategoryOptions', $aCategoryOptions);
-		$this->set('aArticles', $aArticles);
-		$this->set('aComments', $aComments);
-		$this->set('aUsers', $aUsers);
+		$this->set(compact('aCategoryOptions','aArticles','aArticlesTop','aUsers','sort','top'));
+	}
+
+	public function category($id,$sort ='date-down',$top = 'all') {
+		$aCategoryOptions = $this->ArticleCategory->options();
+		$category = $id;
+		if($id > count($aCategoryOptions)-1) {
+			throw new NotFoundException();
+		}
+
+		$title = __('Articles').': '.$aCategoryOptions[$id];
+		$this->set(compact('title'));
+
+		$conditions = array('Article.published' => 1, 'Article.deleted' => 0, 'Article.title !=' =>'', 'Article.cat_id' => $id);
+		$sortArr = ['date-up'=>'Article.created ASC','date-down'=>'Article.created DESC','hits-down'=>'Article.hits DESC','hits-up'=>'Article.hits ASC'];
+
+		$title = __('All articles');
+		$this->set(compact('title'));
+		$fields = [ 'Article.id',
+			'Article.owner_id',
+			'Article.title',
+			'Article.body',
+			'Article.cat_id',
+			'Article.owner_id',
+			'Article.group_id',
+			'Article.created',
+			'Article.shared',
+			'Article.hits',
+			'ArticleMedia.*',
+			'GroupMedia.*',
+			'Group.title'];
+
+		$joins = array(
+			array(
+				'table' => 'groups',
+				'alias' => 'Group',
+				'type' => 'LEFT',
+				'conditions' => array(
+					'Article.group_id = Group.id'
+				)
+			),array(
+				'table' => 'media',
+				'alias' => 'GroupMedia',
+				'type' => 'LEFT',
+				'conditions' => array(
+					'GroupMedia.object_id = Group.id',
+					'GroupMedia.object_type = "Group"',
+				)
+			)
+		);
+
+		$limit = 4;
+		$order = 'Article.hits DESC';
+		$aArticlesTop = $this->Article->find('all', compact('conditions', 'order', 'limit','fields','joins'));
+		$notArticleTop = Hash::extract($aArticlesTop,'{n}.Article.id');
+
+		if(in_array($sort,array_keys($sortArr))){
+			$order = $sortArr[$sort];
+		}else{
+			$order = 'Article.created DESC';
+		}
+		$conditions['Article.id NOT'] = $notArticleTop;
+		switch($top){
+			case 'all' 	  : $limit = 16; break;
+			case 'top25'  : $limit = 25;  $order = 'Article.hits DESC, '.$order; break;
+			case 'top50'  : $limit = 50;  $order = 'Article.hits DESC, '.$order; break;
+			case 'top100' : $limit = 100; $order = 'Article.hits DESC, '.$order; break;
+		}
+
+		$aArticles    = $this->Article->find('all', compact('conditions', 'order', 'limit','fields','joins'));
+
+		$aUsers = array();
+		if($aArticles || $aArticlesTop) {
+			$aID = Hash::extract(array_merge($aArticles,$aArticlesTop), '{n}.Article.owner_id');
+			$aUsers = $this->User->findAllById( $aID );
+		}
+		$aUsers = Hash::combine($aUsers,'{n}.User.id','{n}');
+
+		$this->set(compact('aCategoryOptions','aArticles','aArticlesTop','aUsers','category','sort','top'));
+		$this->render('all');
 	}
 }

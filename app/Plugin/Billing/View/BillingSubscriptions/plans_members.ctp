@@ -9,7 +9,7 @@ echo $this->Html->css('Billing.panels', array('inline' => false));
 	$this->Html->addCrumb(__d('billing', 'Members'), array('plugin' => 'billing', 'controller' => 'billing_subscriptions', 'action' => 'plans'.'/members'));
 ?>
 <div class="row">
-	<?php echo $this->Html->tag('h2', $group['BillingGroup']['title']) ?>
+	<?php echo $this->Html->tag('h2', __d('billing', $group['BillingGroup']['title'])) ?>
 	<?php echo $this->Form->create(false, array('id' => 'BillingSubscriptionPlansForm', 'url' => array('controller' => 'billing_subscriptions', 'action' => 'payment'))); ?>
 	<div class="col-md-6 col-md-offset-3 col-plan members">
 	    <div class="panel panel-primary">
@@ -37,12 +37,13 @@ echo $this->Html->css('Billing.panels', array('inline' => false));
 	                $plans = $addOns = array();
 	                foreach($group['BillingPlan'] as $billingPlan):
 	                    foreach($billingPlan['BraintreePlan'] as $braintreePlan):
-	                        $plans[$braintreePlan->id] = __d('braintree', $braintreePlan->name);
+	                        $plans[$braintreePlan->id] = __d('billing', $braintreePlan->name);
 	                        foreach($braintreePlan->addOns as $addOn):
 	                            $addOns[$braintreePlan->id][$addOn->id] = $addOn->amount;
 	                        endforeach;
 	                    endforeach;
 	                endforeach;
+
 	                echo $this->Form->input('plan', array(
 	                    'type' => 'select',
 	                    'id' => 'BillingMembersPeriod',
@@ -84,7 +85,7 @@ $(function() {
 			totalVal = totalVal + value;
         });
 		$('#BillingMembersTotal').val(total+' $');
-		$('#priceInfo').html('1 user - '+(+totalVal).toFixed(4).replace(/\.0+$/,'')+'$ per month');
+		$('#priceInfo').html('1 <?php echo __d('billing', 'user'); ?> - '+(+totalVal).toFixed(4).replace(/\.0+$/,'')+'$ <?php echo __d('billing', 'per month');?>');
     }
     $('#BillingMembersQuantity').bind("paste cut keyup", function(){
         currVal = $(this).val();

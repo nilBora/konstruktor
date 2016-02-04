@@ -685,6 +685,23 @@ if(!$currUserID){
 .edit-bar .glyphicons.edit:before{
 	top: 0px;
 }
+.popup-back{
+	display: none; position: fixed !important; top: 0px !important; z-index: 9999 !important; left: 0px !important; width: 100% !important; bottom: 0px !important; background: rgba(204, 204, 204,0.8)!important;
+}
+
+.popup-content{
+	z-index: 9999 !important;  position: absolute !important; top:50% !important; left:50% !important;  display: none; max-width:830px !important; margin:0px auto 40px !important; transform:translate(-50%,-50%);
+}
+
+.popup-content > div{
+	max-height:100% !important;
+	background: #fff !important;  position:static !important; height:100% !important;
+}
+
+.row.InvestProject-totals{
+	margin-top: 15px;
+}
+
 </style>
 <br /><br /><br />
 <?= $this->element('Invest/project_add')?>
@@ -1107,12 +1124,12 @@ $('.popup-content .close-button').on('click',function(){
 </script>
 <script type="text/javascript">
 var investments = function(){
-	var body = $('body');
+    //	var body = $('body');
 	var popup = $('.popup-back');
 	var content = $('.popup-content');
-	body.append(popup);
+    //	body.append(popup);
 	popup.show();
-	body.append(content);
+    //	body.append(content);
 	content.show();
 	$('select').styler();
 }

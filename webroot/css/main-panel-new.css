@@ -537,12 +537,13 @@
 #menu .menu-wrapper .planet {
     display: block;
     position: fixed;
-    bottom: 68px;
+    bottom: 50px;
     left: 24px;
-    width: 48px;
-    height: 48px;
+    width: 62px;
+    height: 60px;
     border-radius: 50%;
     box-sizing: content-box;
+    text-decoration: none;
 }
 
 #menu .menu-wrapper .planet:hover,
@@ -551,18 +552,35 @@
 }
 
 #menu .menu-wrapper .planet img {
-    width: 48px;
-    height: 48px;
+    width: 62px;
+    height: 60px;
     position: relative;
+}
+
+#menu .menu-wrapper .planet span {
+    font-size: 11px;
+    color: #999999;
+    text-decoration: none;
+    white-space: nowrap;
+    position: absolute;
+    width: 70px;
+    text-align: center;
+    left: 50%;
+    bottom: -20px;
+    margin: 0 0 0 -35px;
 }
 
 .logo-konstruktor {
     display: block;
     position: fixed;
-    right: 20px;
-    bottom: 53px;
+    right: 30px;
+    bottom: 35px;
     width: 70px;
     z-index: 100;
+}
+
+.logo-konstruktor .logo {
+    display: block;
 }
 
 #menu .menu-wrapper .logo img {
@@ -868,11 +886,17 @@
     color: #bbbbbb;
     text-decoration: none;
     display: inline-block;
+    transition: all 0.2s ease;
+}
+
+#breadcrumbs a:hover {
+    color: #666666;
 }
 
 #breadcrumbs a:last-child {
     color: #666666;
     font-weight: bold;
+    text-transform: uppercase;
 }
 
 #breadcrumbs span {
@@ -890,13 +914,13 @@
 .openchat.active,
 .openchat {
     bottom: -90px;
-    width: 60px;
-    height: 60px;
+    width: 64px;
+    height: 64px;
     right: 30px !important;
 }
 
 .openchat.active {
-    background-position: 0 -120px;
+    /*background-position: 0 -120px;*/
 }
 
 .user-list-windpw-minimize {

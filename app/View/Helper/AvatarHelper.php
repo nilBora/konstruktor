@@ -12,6 +12,7 @@ class AvatarHelper extends AppHelper {
 		);
 		$options = array_merge($_options, $options);
 		$img = $this->Media->imageUrl($user['UserMedia'], $options['size']);
+
 		if(!isset($options['alt'])&&isset($user['User']['full_name'])){
 			$options['alt'] = $user['User']['full_name'];
 		}

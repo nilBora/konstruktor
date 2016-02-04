@@ -527,3 +527,15 @@ msgstr "ежемесяно"
 #: View/BillingSubscriptions/plans.ctp:8
 msgid "Disc space"
 msgstr "Дисковое пространство"
+
+msgid "user"
+msgstr "пользователь"
+
+msgid "per month"
+msgstr "в месяц"
+
+msgid "Project members monthly"
+msgstr "Ежемесячно"
+
+msgid "Project members yearly"
+msgstr "Ежегодно"

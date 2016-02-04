@@ -945,6 +945,8 @@
   margin: 8px 0 0 0;
   font-size: 13px;
   color: #666666;
+  overflow: hidden;
+  min-height: 100px;
 }
 
 .similar-task_item-title {

@@ -20,12 +20,6 @@ $this->Html->script(array(
 ?>
 
 <div class="statisticPage">
-    <div class="btn-group" id="statistic-period">
-        <button type="button" class="btn btn-default" data-value="today"><?= __('Today') ?></button>
-        <button type="button" class="btn btn-default active" data-value="week"><?= __('Week') ?></button>
-        <button type="button" class="btn btn-default" data-value="month"><?= __('Month') ?></button>
-        <button type="button" class="btn btn-default" data-value="year"><?= __('Year') ?></button>
-    </div>
     <div class="rightButtons">
         <!--<b><?= __('Select period') ?>&emsp;</b>-->
         <div class="calandarPeriod">

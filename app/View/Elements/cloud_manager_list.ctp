@@ -1,11 +1,21 @@
 <!-- Folder -->
+<?php
+	function checkFullUrl($url) {
+		$protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://';
+		$baseHref = $protocol.$_SERVER['HTTP_HOST'];
+		if( strpos($url, $baseHref) === false ) {
+			$url = $baseHref . '/' . ltrim($url, '/');
+		}
+		return $url;
+	}
+?>
 <?php if(empty($id)) : ?>
-	<a href="javascript:void(0)" class="item shared-folder" data-url="<?= $this->Html->url(array(
+	<a href="javascript:void(0)" class="item shared-folder" data-url="<?= checkFullUrl($this->Html->url(array(
 		'controller' => 'Cloud',
 		'action' => $this->action=='fortiny' ? 'fortiny' : 'index',
 		'shared'
 
-	)) ?>"  data-type="folder">
+	))) ?>"  data-type="folder">
 					<span class="glyphicons folder_closed">
 					</span>
 
@@ -43,7 +53,7 @@
             ?>
             <!-- Folder -->
 			<div class="clearfix item"
-                 data-url="<?= $this->Html->url(array_merge($controller, $link), true) ?>"
+                 data-url="<?= checkFullUrl($this->Html->url(array_merge($controller, $link), true)) ?>"
                  data-id="<?= $cloud['Cloud']['id'] ?>" data-type="folder">
 				<div class="size"><?= $cloud['Cloud']['fileCount'] ?> <?= __('file(s)') ?></div>
 				<div class="date"><?=$this->LocalDate->dateTime($cloud['Cloud']['modified'])?></div>
@@ -63,7 +73,7 @@
 			?>
 			<!-- File -->
 			<?php if( $cloud['Media']['media_type'] == 'video') :?>
-				<div class="clearfix item video-pop-this" data-url="<?= $cloud['Media']['url_preview'] ?>" data-id="<?= $cloud['Cloud']['id'] ?>" data-type="file" data-media="<?php echo ($cloud['Media']['media_type'] == 'image') ? $cloud['Media']['url_download'] : 'false' ;?>" data-size="<?php echo $cloud['Media']['size'] ?>" data-url-down="<?=$cloud['Media']['url_download'];?>" data-converted="<?=$cloud['Media']['converted'];?>">
+				<div class="clearfix item video-pop-this" data-video="<?php echo trim($cloud['Media']['ext'], '.'); ?>" data-url="<?= checkFullUrl($cloud['Media']['url_preview']) ?>" data-id="<?= $cloud['Cloud']['id'] ?>" data-type="file" data-media="<?php echo ($cloud['Media']['media_type'] == 'image') ? $cloud['Media']['url_download'] : 'false' ;?>" data-size="<?php echo $cloud['Media']['size'] ?>" data-url-down="<?=$cloud['Media']['url_download'];?>" data-converted="<?=$cloud['Media']['converted'];?>">
 					<div class="size"><?= $this->File->humanFilesize($cloud['Media']['orig_fsize']) ?></div>
 					<div class="date"><?=$this->LocalDate->dateTime($cloud['Cloud']['modified'])?></div>
 					<div class="name">
@@ -76,7 +86,7 @@
 					</div>
 				</div>
 			<?php elseif( $cloud['Media']['media_type'] != 'video') :?>
-				<div class="clearfix item" data-url="<?= $cloud['Media']['url_preview'] ?>" data-id="<?= $cloud['Cloud']['id'] ?>" data-type="file" data-media="<?php echo ($cloud['Media']['media_type'] == 'image') ? $cloud['Media']['url_download'] : 'false' ;?>" data-size="<?php echo $cloud['Media']['size'] ?>">
+				<div class="clearfix item" data-url="<?= checkFullUrl($cloud['Media']['url_preview']) ?>" data-id="<?= $cloud['Cloud']['id'] ?>" data-type="file" data-media="<?php echo ($cloud['Media']['media_type'] == 'image') ? $cloud['Media']['url_download'] : 'false' ;?>" data-size="<?php echo $cloud['Media']['size'] ?>">
 					<div class="size"><?= $this->File->humanFilesize($cloud['Media']['orig_fsize']) ?></div>
 					<div class="date"><?=$this->LocalDate->dateTime($cloud['Cloud']['modified'])?></div>
 					<div class="name">
@@ -103,7 +113,7 @@
 						$link = 'Cloud/documentEdit/' . $note['Note']['id'];
             	}
             ?>
-            <a href="/<?php echo $link;?>" class="item"  data-url="<?= $this->Html->url('/',true) . $link; ?>" data-id="<?= $note['Note']['id'] ?>" data-type="doc">
+            <a href="/<?php echo $link;?>" class="item"  data-url="<?= checkFullUrl($this->Html->url('/',true) . $link); ?>" data-id="<?= $note['Note']['id'] ?>" data-type="doc">
                 <span class="glyphicons file pull-left">
                     <?php if(isset($note['Note']['is_shared'])) : ?>
                         <img src="<?php echo $this->Html->url('/', true) . 'img/share-small.png' ?>" class="shared shared-file" />
@@ -129,7 +139,7 @@
 				'action' => $this->action=='fortiny' ? 'fortiny' : 'index');
             ?>
             <!-- Folder -->
-			<a href="javascript:void(0)" class="item" data-url="<?= $this->Html->url(array_merge($controller, $link), true) ?>" data-id="<?= $cloud['Cloud']['id'] ?>" data-type="folder">
+			<a href="javascript:void(0)" class="item" data-url="<?= checkFullUrl($this->Html->url(array_merge($controller, $link), true)) ?>" data-id="<?= $cloud['Cloud']['id'] ?>" data-type="folder">
 				<span class="glyphicons folder_closed">
                     <?php if(isset($cloud['Cloud']['is_shared'])) : ?>
                         <img src="<?php echo $this->Html->url('/', true) . 'img/share.png' ?>" class="shared shared-folder" />
@@ -148,13 +158,13 @@
 		?>
 			<!-- File -->
 			<?php if( $cloud['Media']['media_type'] == 'video') :?>
-				<a href="javascript:void(0)" class="item video-pop-this" data-url="<?= $cloud['Media']['url_preview'] ?>"
+				<a href="javascript:void(0)" class="item video-pop-this" data-video="<?php echo trim($cloud['Media']['ext'], '.'); ?>" data-url="<?= checkFullUrl($cloud['Media']['url_preview']) ?>"
 				   data-id="<?= $cloud['Cloud']['id'] ?>" data-type="file" data-url-down="<?=$cloud['Media']['url_download'];?>" data-media="<?php echo ($cloud['Media']['media_type'] == 'image') ? $cloud['Media']['url_download'] : 'false';?>" data-size="<?php echo $cloud['Media']['size'] ?>" data-converted="<?=$cloud['Media']['converted'];?>">
 					<span class="<?= $class ?>"></span>
 					<div class="title"><?= $cloud['Cloud']['name'] ?></div>
 				</a>
 			<?php elseif( $cloud['Media']['media_type'] != 'video') :?>
-					<a href="javascript:void(0)" class="item" data-url="<?= $cloud['Media']['url_preview'] ?>"
+					<a href="javascript:void(0)" class="item" data-url="<?= checkFullUrl($cloud['Media']['url_preview']) ?>"
 				   data-id="<?= $cloud['Cloud']['id'] ?>" data-type="file" data-media="<?php echo ($cloud['Media']['media_type'] == 'image') ? $cloud['Media']['url_download'] : 'false';?>" data-size="<?php echo $cloud['Media']['size'] ?>">
 						<span class="<?= $class ?>">
 							<?php if( $cloud['Media']['media_type'] == 'image' ): ?>
@@ -180,7 +190,7 @@
 					}
 				}
             ?>
-            <a href="/<?php echo $link;?>" class="item" data-type="doc" data-url="<?= $this->Html->url('/',true) . $link; ?>" data-id="<?= $note['Note']['id'] ?>">
+            <a href="/<?php echo $link;?>" class="item" data-type="doc" data-url="<?= checkFullUrl($this->Html->url('/',true) . $link); ?>" data-id="<?= $note['Note']['id'] ?>">
                 <span class="glyphicons file">
                     <?php if(isset($note['Note']['is_shared'])) : ?>
                         <img src="<?php echo $this->Html->url('/', true) . 'img/share.png' ?>" class="shared shared-file" />

@@ -111,6 +111,7 @@
 		<div class="hiddenMail" id="shareToEmail">
 			<input type="text" class="inpMail" placeholder="<?php echo __('Enter your email friend'); ?>">
 			<input type="button" class="inpBtn" value="<?php echo __('Send'); ?>">
+			<div class="clear"></div>
 		</div>
 	</span>
 

@@ -26,7 +26,8 @@
         'main-panel-new',
         'style',
         'photoswipe/photoswipe',
-        'photoswipe/default-skin/default-skin'
+        'photoswipe/default-skin/default-skin',
+        'jquery.mmenu.all'
     );
     echo $this->Html->css(array_merge($vendorCss, $css));
 
@@ -34,7 +35,6 @@
 
     $vendorScripts = array(
         'vendor/jquery/jquery-1.10.2.min',
-
         'vendor/jquery/jquery-ui.min',
         'vendor/jquery/jquery.form.min',
         'vendor/jquery/jquery.ui.widget',
@@ -54,8 +54,6 @@
         'vendor/double-tap',
         'vendor/tappy',
         'vendor/fastclick',
-
-
         'vendor/ChatJs/jquery.chatjs.utils.js',
         'vendor/ChatJs/jquery.chatjs.adapter.servertypes.js',
         'vendor/ChatJs/jquery.chatjs.adapter.js',
@@ -67,7 +65,6 @@
         'vendor/ChatJs/jquery.chatjs.pmwindow.js',
         'vendor/ChatJs/jquery.chatjs.friendswindow.js',
         'vendor/ChatJs/jquery.chatjs.controller.js',
-
         'vendor/iscroll.js',
         'upload.js',
         'upload_chat.js'
@@ -96,7 +93,8 @@
         'highcharts',
         'exporting',
         'photoswipe/photoswipe',
-        'photoswipe/photoswipe-ui-default'
+        'photoswipe/photoswipe-ui-default',
+        'jquery.mmenu.min.all'
     );
 
     echo $this->Html->script(array_merge($vendorScripts, $scripts));
@@ -107,12 +105,10 @@
 
 ?>
 <script type="text/javascript" src="<?=$this->Html->url(array('plugin' => false, 'controller' => 'js', 'action' => 'settings'), true)?>?<?= time(); ?>"></script>
-<script type="text/javascript">document.addEventListener("touchstart", function() {},false);</script>
+
 <script type="text/javascript">
 var minichat = null;
 $(document).ready(function() {
-    FastClick.attach(document.body);
-
     $.ajaxSetup({ cache: false });
 
     $('select.formstyler, input.filestyle').styler({

@@ -42,7 +42,7 @@ if(Configure::read('Config.language') == 'rus'){
 			<div class="form-group InvestProject-name">
 				<input name="InvestProject[name]" maxlength="150" id="InvestProjectName" data-label="<?= __('Project name') ?>" required="true" type="text" class="form-control" placeholder="<?= __('Project name') ?>" value="<?=$investProject['InvestProject']['name']?>" />
 			</div>
-			<?=$this->Redactor->redactor('body',array('value' => $investProject['InvestProject']['body']))?>
+			<?=$this->Redactor->tiny('body',array('value' => $investProject['InvestProject']['body']))?>
 			<div class="row InvestProject-totals">
 				<div class="col-sm-4">
 					<div class="form-group">

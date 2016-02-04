@@ -129,13 +129,6 @@ class Article extends AppModel {
 		$this->loadModel('Statistic');
 		$this->loadModel('User');
 		$this->loadModel('Skill');
-		// $conditions = $this->dateRange('Group.created', $date, $date2);
-
-		/*
-		$order = 'Group.created DESC';
-		$limit = 2;
-		$aArticles = $this->find('all', compact('conditions', 'order', 'limit'));
-		*/
 
 		$user = $this->User->findById($currUserID);
 		$extractedSkills = explode(', ', Hash::get($user, 'User.skills'));
@@ -226,24 +219,61 @@ class Article extends AppModel {
 		$this->loadModel('Skill');
 		$skillModel = $this->Skill;
 		/** @todo add user interest to DB and then find article by user interests */
-//		$this->loadModel('Interests');
-//		$skillModel = $this->Interests;
-//		$user = $userModel->findById($currUserID);
 
-		//Should be replaced by nrmal call
-		$popularArticles = $statisticModel->query('SELECT Count.cnt, Article.id, Article.owner_id, Article.group_id, Article.title,
-			Article.video_url, Article.type, Article.published, Article.created,
-			Article.modified, Article.cat_id, Article.deleted
-											  FROM statistic Stat
-											  		INNER JOIN (SELECT pk, count(pk) as cnt
-																 FROM statistic
-																 WHERE statistic.type = 1
-																	GROUP BY pk) Count ON Stat.pk = Count.pk
-													INNER JOIN articles AS Article
-														ON Article.id = Stat.pk
-														WHERE Article.deleted = 0 AND Article.published = 1
-															GROUP BY Stat.pk
-																ORDER BY Count.cnt DESC LIMIT 0,3');
+		$conditions = array('Article.published' => 1, 'Article.deleted' => 0, 'Article.title !=' =>'');
+		$fields = ['Article.id',
+			'Article.owner_id',
+			'Article.title',
+			'Article.body',
+			'Article.cat_id',
+			'Article.group_id',
+			'Article.created',
+			'Article.shared',
+			'Article.hits',
+			'ArticleMedia.*',
+			'User.*',
+			'UserMedia.*',
+			'GroupMedia.*',
+			'Group.title'];
+
+		$limit = 3;
+		$order = 'Article.hits DESC';
+
+		$joins = array(
+			array(
+				'table' => 'groups',
+				'alias' => 'Group',
+				'type' => 'LEFT',
+				'conditions' => array(
+					'Article.group_id = Group.id'
+				)
+			),array(
+				'table' => 'media',
+				'alias' => 'GroupMedia',
+				'type' => 'LEFT',
+				'conditions' => array(
+					'GroupMedia.object_id = Group.id',
+					'GroupMedia.object_type = "Group"',
+				)
+			),array(
+				'table' => 'users',
+				'alias' => 'User',
+				'type' => 'LEFT',
+				'conditions' => array(
+					'Article.owner_id = User.id'
+				)
+			),array(
+				'table' => 'media',
+				'alias' => 'UserMedia',
+				'type' => 'LEFT',
+				'conditions' => array(
+					'UserMedia.object_id = Article.owner_id',
+					'UserMedia.object_type = "User"',
+				)
+			)
+		);
+
+		$popularArticles = $this->find('all', compact('conditions', 'order', 'limit','fields','joins'));
 
 		$ids = Hash::extract($popularArticles, '{n}.Article.id');
 
@@ -263,5 +293,91 @@ class Article extends AppModel {
 		}
 
 		return $popularArticles;
+	}
+
+	public function similarArticles($currCat,$currArt) {
+		/** @var User $userModel */
+		$this->loadModel('User');
+		$userModel = $this->User;
+		/** @var Statistic $statisticModel */
+		$this->loadModel('Statistic');
+		$statisticModel = $this->Statistic;
+		/** @var Skill $skillModel */
+		$this->loadModel('Skill');
+		$skillModel = $this->Skill;
+		/** @todo add user interest to DB and then find article by user interests */
+
+		$conditions = array('Article.published' => 1, 'Article.deleted' => 0, 'Article.title !=' =>'', 'Article.cat_id' => $currCat,'Article.id !='=>$currArt);
+		$fields = ['Article.id',
+			'Article.owner_id',
+			'Article.title',
+			'Article.body',
+			'Article.cat_id',
+			'Article.group_id',
+			'Article.created',
+			'Article.shared',
+			'Article.hits',
+			'ArticleMedia.*',
+			'User.*',
+			'UserMedia.*',
+			'GroupMedia.*',
+			'Group.title'];
+
+		$limit = 3;
+		$order = 'Article.hits DESC';
+
+		$joins = array(
+			array(
+				'table' => 'groups',
+				'alias' => 'Group',
+				'type' => 'LEFT',
+				'conditions' => array(
+					'Article.group_id = Group.id'
+				)
+			),array(
+				'table' => 'media',
+				'alias' => 'GroupMedia',
+				'type' => 'LEFT',
+				'conditions' => array(
+					'GroupMedia.object_id = Group.id',
+					'GroupMedia.object_type = "Group"',
+				)
+			),array(
+				'table' => 'users',
+				'alias' => 'User',
+				'type' => 'LEFT',
+				'conditions' => array(
+					'Article.owner_id = User.id'
+				)
+			),array(
+				'table' => 'media',
+				'alias' => 'UserMedia',
+				'type' => 'LEFT',
+				'conditions' => array(
+					'UserMedia.object_id = Article.owner_id',
+					'UserMedia.object_type = "User"',
+				)
+			)
+		);
+		$similarArticles = $this->find('all', compact('conditions', 'order', 'limit','fields','joins'));
+
+		$ids = Hash::extract($similarArticles, '{n}.Article.id');
+
+		/** @var Media $mediaModel */
+		$this->loadModel('Media.Media');
+		$mediaModel = $this->Media;
+
+		$conditions = array('object_id' => $ids, 'object_type' => 'Article');
+		$articleMedias = $mediaModel->find('all', compact('conditions'));
+
+		foreach ($similarArticles as $keyArticle => $similarArticle) {
+			foreach ($articleMedias as $keyMedia => $articleMedia) {
+				if ($articleMedia['Media']['object_id'] == $similarArticle['Article']['id']) {
+					$similarArticles[$keyArticle]['Media'] = $articleMedia['Media'];
+				}
+			}
+		}
+
+		return $similarArticles;
 	}
 }

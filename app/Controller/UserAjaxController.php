@@ -468,7 +468,7 @@ class UserAjaxController extends PAjaxController {
             }
             $share['UserEventShare']['acceptance'] = '-1';
             if (!$this->UserEventShare->save($share)) throw new Exception(__('Error on saving'));
-            $this->checkExternalStatus($id);
+            $this->checkExternalStatus($event['UserEvent']['id']);
             $this->setResponse('done');
         } catch (Exception $e) {
             $this->setError($e->getMessage());

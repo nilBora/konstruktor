@@ -1,3 +1,7 @@
+<?php
+    $this->Html->addCrumb(__('Cloud'), array('controller' => 'Cloud', 'action' => 'index'));
+    $this->Html->addCrumb(__('File Usage via Pie Chart'), array('controller' => 'Cloud', 'action' => 'usage'));
+?>
 <div>
     <div id="chart-container" class="col-xs-8"></div>
     <div id="chart-description" class="col-xs-4" style="font-weight: bold;color: red;">

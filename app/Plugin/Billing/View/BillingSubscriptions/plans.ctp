@@ -8,7 +8,7 @@
 	$this->Html->addCrumb(__d('billing', 'Disc space'), array('plugin' => 'billing', 'controller' => 'billing_subscriptions', 'action' => 'plans'.'/disc-space'));
 ?>
 <div class="row">
-    <?php echo $this->Html->tag('h2', $group['BillingGroup']['title'], array('class' => 'page-header')) ?>
+    <?php echo $this->Html->tag('h2', __d('billing', $group['BillingGroup']['title']), array('class' => 'page-header')) ?>
     <?php echo $this->Flash->render() ?>
     <?php echo $this->Form->create(false, array('id' => 'BillingSubscriptionPlansForm', 'url' => array('controller' => 'billing_subscriptions', 'action' => 'payment'))); ?>
     <?php foreach($group['BillingPlan'] as $plan): ?>

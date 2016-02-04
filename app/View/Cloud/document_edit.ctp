@@ -1,3 +1,40 @@
+<?php
+	$this->Html->script(array(
+		'tinymce.min.js',
+		'theme.min.js',
+		'tinyPlugins/advlist/plugin.min.js',
+		'tinyPlugins/autolink/plugin.min.js',
+		'tinyPlugins/lists/plugin.min.js',
+		'tinyPlugins/link/plugin.min.js',
+		'tinyPlugins/image/plugin.min.js',
+		'tinyPlugins/charmap/plugin.min.js',
+		'tinyPlugins/print/plugin.min.js',
+		'tinyPlugins/cloudfilemanager/plugin.js',
+		'tinyPlugins/preview/plugin.min.js',
+		'tinyPlugins/responsivefilemanager/plugin.min.js',
+		'tinyPlugins/anchor/plugin.min.js',
+		'tinyPlugins/searchreplace/plugin.min.js',
+		'tinyPlugins/visualblocks/plugin.min.js',
+		'tinyPlugins/code/plugin.min.js',
+		'tinyPlugins/fullscreen/plugin.min.js',
+		'tinyPlugins/insertdatetime/plugin.min.js',
+		'tinyPlugins/media/plugin.min.js',
+		'tinyPlugins/table/plugin.min.js',
+		'tinyPlugins/contextmenu/plugin.min.js',
+		'tinyPlugins/paste/plugin.min.js',
+		'tinyPlugins/code/plugin.min.js',
+	), array('inline' => false));
+
+	$css = array(
+		'content.min.css',
+		'skin.min.css',
+		'../skins_tiny/lightgray/content.min.css',
+		'../skins_tiny/lightgray/skin.min.css',
+		'../skins_tiny/lightgray/content.inline.min.css'
+	);
+
+	$this->Html->css($css, array('inline' => false));
+?>
 <style type="text/css">
     .custom-close::before {
         content: url("<?php echo $this->Html->url('/', true) . 'img/close.png' ?>");
@@ -19,7 +56,6 @@
 
     $this->Html->css('jquery.Jcrop.min', null, array('inline' => false));
     $this->Html->css('font-awesome.min', null, array('inline' => false));
-    echo $this->Html->css('/Froala/css/froala_editor.min.css', null, array('block' => 'css'));
 
 	/* Breadcrumbs */
 	$this->Html->addCrumb(__('Cloud'), array('controller' => 'Cloud', 'action' => 'index'));
@@ -51,12 +87,12 @@
                 $full_text = __ ('Last changed by ') . $changeBy . $change_date;
             }
             else {
-                $full_text = "No versions available";
+                $full_text = __("No versions available");
             }
             echo __($full_text);
             ?>
             <span>
-                <a href="javascript:void(0)" id="versions" class="btn btn-primary">Versions</a>
+                <a href="javascript:void(0)" id="versions" class="btn btn-primary"><?php echo __("Versions"); ?></a>
             </span>
         </div>
 <?
@@ -80,6 +116,7 @@
         </div>
 
         <div class="wordProcessor">
+			<textarea name="wordProcessor" id="wordProcessor"></textarea>
         </div>
         <br/>
         <br/>
@@ -167,7 +204,7 @@
             id = form.data('note_id');
             url += '/' + id;
         }
-        var html = $('.wordProcessor').editable('getHTML');
+        var html = tinyMCE.get('wordProcessor').getContent();
 
         $.ajax({
             type: "POST",
@@ -221,7 +258,7 @@
                             if(!$.isEmptyObject(response.data)) {
                                 var data = response.data;
                                 if(data.hasOwnProperty('doc') && data['doc'].hasOwnProperty('body')) {
-                                    $('.wordProcessor').editable('setHTML', data['doc']['body']);
+									tinyMCE.get('wordProcessor').setContent(data['doc']['body']);
                                 }
                                 if(data.hasOwnProperty('doc') && data['doc'].hasOwnProperty('title')) {
                                     $('#NoteTitle').val(data['doc']['title']);
@@ -240,98 +277,23 @@
 
         var html = '<?php echo preg_replace( "/\r|\n/", "", $body );?>';
 
-        $('.wordProcessor').editable({
-            key: '<?=Configure::read('froalaEditorKey')?>',
-            inlineMode: false,
-            imageUploadURL: mediaURL.froalaUpload,
-            minHeight: 250,
-            maxHeight: 500,
-            saveRequestType: 'POST',
-            buttons: ["bold", "italic", "underline", "strikeThrough", "fontSize",
-                "fontFamily", "color", "sep", "formatBlock", "blockStyle", "align",
-                "insertOrderedList", "insertUnorderedList", "outdent", "indent", "sep",
-                "createLink", "insertImage", "insertVideo", "table", "undo", "redo",
-                "html","fullscreen"]
-        });
+		tinymce.init({
+			selector: '#wordProcessor',
+			plugins: [
+				'advlist autolink lists link image charmap print preview anchor',
+				'searchreplace visualblocks code fullscreen',
+				'insertdatetime media table contextmenu paste code cloudfilemanager'
+			],
+			relative_urls: false,
+			image_advtab: true,
+			external_filemanager_path:"/Cloud/index",
+			filemanager_title: '<?php echo __('File manager');?>',
+			toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link cloudfilemanager',
+			init_instance_callback : function(editor) {
+				editor.setContent('<?php echo Hash::get($note,'Note.body')?>');
+			}
+		});
 
-        $('.wordProcessor').on('editable.beforeSave', function (e, editor) {
-            var html = '<?php echo preg_replace( "/\r|\n/", "", $body );?>';
-            var id = '';
-            var form = $('.formSubmit');
-            if (typeof form.data('note_id') !== 'undefined')
-                id = form.data('note_id');
-            var data = form.parents('form').serialize();
-            var html = $('.wordProcessor').editable('getHTML');
-            data += "&Note"+encodeURIComponent('[body]') + "=" + encodeURIComponent(html);
-            $('.wordProcessor').editable('option', 'saveParams', {
-                title: $('.NoteTitle').val(),
-                body: html,
-                id: id,
-                parent_id: $('#NoteParentId').val()
-            });
-            var saveURL = noteURL.editPanel + id;
-            $('.wordProcessor').editable('option', 'saveURL', noteURL.editPanel + '/' + id);
-        });
-
-        $('.wordProcessor').on('editable.beforeImageUpload', function (e, editor, images) {
-            moveImage = {};
-
-            moveImage = {
-                type: images[0].type,
-                name: images[0].name,
-                size: images[0].size,
-                object_id: '<?=$currUserID?>',
-                object_type: 'UserMedia'
-            }
-
-        });
-
-
-        $('.wordProcessor').on('editable.afterImageUpload', function (e, editor, response) {
-            var base_url = '<?php echo rtrim($this->Html->url('/',true),'/'); ?>';
-            moveImage.url = base_url + $.parseJSON(response).link;
-            var ret = null;
-            $.ajax({
-                type: "POST",
-                url: mediaURL.move,
-                async: false,
-                data: moveImage,
-                success: function(response) {
-
-                    if( response.data[0].Media.orig_w < 1000 ) {
-                        ret = '{"link": "' + response.data[0].Media.url_download + '" }';
-                    } else {
-                        var url = response.data[0].Media.url_img;
-                        url = url.replace('noresize', '1000px');
-                        ret = '{"link": "' + url + '" }';
-                    }
-                },
-                error: function() {
-                    ret = 'error'
-                }
-            });
-            return ret;
-        });
-        $('.wordProcessor').editable('setHTML', html);
-
-        $('.wordProcessor').on('editable.imageError', function (e, editor, error) {
-            // Custom error message returned from the server.
-            if (error.code == 0) { console.log('error 0: Custom error message returned from the server'); }
-            // Bad link.
-            else if (error.code == 1) { console.log('error 1: Bad link'); }
-            // No link in upload response.
-            else if (error.code == 2) { console.log('error 2: No link in upload response'); }
-            // Error during file upload.
-            else if (error.code == 3) { console.log('error 3: Error during file upload'); }
-            // Parsing response failed.
-            else if (error.code == 4) { console.log('error 4: Parsing response failed'); }
-            // File too text-large.
-            else if (error.code == 5) { console.log('error 5: File too text-large'); }
-            // Invalid file type.
-            else if (error.code == 6) { console.log('error 6: Invalid file type'); }
-            // File can be uploaded only to same domain in IE 8 and IE 9.
-            else if (error.code == 7) { console.log('error 7: File can be uploaded only to same domain in IE 8 and IE 9'); }
-        });
 
 
 

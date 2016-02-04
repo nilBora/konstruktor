@@ -73,7 +73,7 @@
 	}
 
 	$css = array(
-		'/Froala/css/froala_editor.min.css',
+		//'vendor/editor.min.css',
 		'/css/task.css',
 		'jquery.mCustomScrollbar.min.css',
 		'dropzone.css',
@@ -308,9 +308,9 @@
 	.task-description-page .task-content .comment-block .send-coment .btn{
 		float: right;
 	}
-	.fixedLayout{
+/*	.fixedLayout{
 		max-width: 1024px;
-	}
+	}*/
 	.right-sidebar{
 		border: 1px solid #CCC;
 		height: 100%;
@@ -460,6 +460,14 @@
 
 	.dropzone .dz-preview .dz-details .dz-filename:not(:hover) span{
 		border:none !important;
+	}
+
+	ol{
+		padding-left:0;
+	}
+
+	.clear{
+		clear:both;
 	}
 /*
 	.filetype.zip{
@@ -825,6 +833,8 @@
 								<?php echo __('%s was created task',array(Hash::get($newCatTask, 'User.full_name'))); ?>
 								<a href="/User/task/<?=Hash::get($newCatTask, 'UserEvent.id')?>" class="similar-task_item-title">«<?=Hash::get($newCatTask, 'UserEvent.title')?>»</a>
 							</div>
+
+							<div class="clear"></div>
 
 							<div class="similar-task_item-meta">
 								<?php if(Hash::get($newCatTask, 'UserEvent.price')>0): ?>

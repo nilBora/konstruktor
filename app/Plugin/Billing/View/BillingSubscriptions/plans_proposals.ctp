@@ -1,7 +1,7 @@
 <?php echo $this->Html->css('Billing.panels', array('inline' => false)); ?>
 
 <div class="row">
-	<?php echo $this->Html->tag('h2', $group['BillingGroup']['title']) ?>
+	<?php echo $this->Html->tag('h2', __d('billing', $group['BillingGroup']['title'])) ?>
 	<?php echo $this->Form->create(false, array('id' => 'BillingSubscriptionPlansForm', 'url' => array('controller' => 'billing_subscriptions', 'action' => 'payment'))); ?>
 	<div class="col-md-6 col-md-offset-3 col-plan members">
 	    <div class="panel panel-primary">

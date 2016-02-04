@@ -31,7 +31,7 @@ $aMonths = array( __(' January'), __(' February'), __(' March'), __(' April'), _
 
 $created = Hash::get($investProject,'InvestProject.created');
 
-$this->Html->css('/Froala/css/froala_editor.min.css', array('inline' => false));
+$this->Html->css('vendor/editor.min.css', array('inline' => false));
 	$month = $aMonths[(int)date('m',strtotime($created))-1];
 	$day = date('d',strtotime($created));
 	if(!empty($users)){
@@ -56,6 +56,7 @@ $this->Html->css('/Froala/css/froala_editor.min.css', array('inline' => false));
 					}
 					.fixedLayout{
 						max-width: 1024px;
+						margin: 0 auto!important;
 					}
 					#TaskDescr img{
 						max-width: 100%;
@@ -443,12 +444,12 @@ $this->Html->css('/Froala/css/froala_editor.min.css', array('inline' => false));
 <script type="text/javascript">
 function edit(){
 	//   popup-content
-	var body = $('body');
+	// var body = $('body');
 	var popup = $('.popup-back');
 	var content = $('.popup-edit-content');
-	body.append(popup);
+	// body.append(popup);
 	popup.show();
-	body.append(content);
+	// body.append(content);
 	content.show();
 
 

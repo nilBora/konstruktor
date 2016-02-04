@@ -44,7 +44,7 @@ var mediaURL = {
 	upload: '<?=$this->Html->url(array('plugin' => 'media', 'controller' => 'ajax', 'action' => 'upload'), true)?>',
 	move: '<?=$this->Html->url(array('plugin' => 'media', 'controller' => 'ajax', 'action' => 'move'), true)?>.json',
 	remove: '<?=$this->Html->url(array('plugin' => 'media', 'controller' => 'ajax', 'action' => 'delete'), true)?>.json',
-	froalaUpload: '<?=$this->Html->url(array('plugin' => 'media', 'controller' => 'ajax', 'action' => 'froalaUpload'), true)?>.json'
+	editorUpload: '<?=$this->Html->url(array('plugin' => 'media', 'controller' => 'ajax', 'action' => 'editorUpload'), true)?>.json'
 };
 
 //CloudAjax

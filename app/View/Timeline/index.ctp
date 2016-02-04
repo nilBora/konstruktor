@@ -1104,8 +1104,8 @@
       width: 60px;
       height: 60px;
       margin-left: 0px;
-      
-    
+
+
       background: #fbba00;
       border-radius: 100%;
       color: white;
@@ -1445,7 +1445,7 @@
       width: 60px;
       height: 60px;
       margin-left: 0px;
-    
+
       background: #818181;
       border-radius: 100%;
       color: white;
@@ -2978,8 +2978,9 @@
         var month = created.getMonth();
         var mL = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         var mS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-
-        var count = o.globalData.popular_articles[i].Count.cnt;
+		//TODO: restore counts for popular articles
+		var count = 0;
+        //var count = o.globalData.popular_articles[i].Count.cnt;
         if (o.globalData.popular_articles[i].Media != undefined) {
             var articleImg = o.globalData.popular_articles[i].Media.url_img;
         }
@@ -3007,7 +3008,7 @@
 				<div class="col-xs-8 article-text-info">
 					<div class="article-digits">
 						<span class="glyphicons calendar create-date col-xs-5">{%=day%} {%=mS[month]%}</span>
-						<span class="glyphicons eye_open count col-xs-5">{%=count%}</span>
+						<!--span class="glyphicons eye_open count col-xs-5">{%=count%}</span-->
 					</div>
 					<div class="article-info">
 						<a href="{%=userUrl.replace(/~id/, user.User.id)%}" class="underline">{%=user.User.full_name%}</a> <?=__('published an article')?>

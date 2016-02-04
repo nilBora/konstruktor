@@ -265,7 +265,15 @@ class ArticleAjaxController extends PAjaxController {
         $subscription = $this->request->data('subscriptions') ? $this->request->data('subscriptions') : 0;
         $category = $this->request->data('category') ? $this->request->data('category') : 0;
 
-        $conditions = array();
+		$sort = $this->request->data('sort') ? $this->request->data('sort') : 0;
+		$sortArr = ['date-up'=>'Article.created ASC','date-down'=>'Article.created DESC','hits-down'=>'Article.hits DESC','hits-up'=>'Article.hits ASC'];
+		if(in_array($sort,array_keys($sortArr))){
+			$order = $sortArr[$sort];
+		}else{
+			$order = 'Article.created DESC';
+		}
+
+		$conditions = array();
         if($subscription) {
             $this->loadModel('Subscription');
             $this->loadModel('User');
@@ -291,20 +299,50 @@ class ArticleAjaxController extends PAjaxController {
             ));
         }
 
-        $conditions['deleted'] = 0;
-        if($published) $conditions['published'] = 1;
-        if($category) $conditions['category'] = $category;
-        $order = 'Article.created DESC';
-        $limit = '15';
+        $conditions['Article.deleted'] = 0;
+        $conditions['Article.title !='] = '';
+        if($published) $conditions['Article.published'] = 1;
+        if($category) $conditions['Article.cat_id'] = $category;
+        $limit = '16';
 
-        $aArticles = $this->Article->find('all', compact('conditions', 'order', 'limit', 'page'));
-        $aComments = array();
+		$fields = [ 'Article.id',
+			'Article.owner_id',
+			'Article.title',
+			'Article.body',
+			'Article.cat_id',
+			'Article.group_id',
+			'Article.created',
+			'Article.shared',
+			'Article.hits',
+			'ArticleMedia.*',
+			'GroupMedia.*',
+			'Group.title'];
+
+		$joins = array(
+			array(
+				'table' => 'groups',
+				'alias' => 'Group',
+				'type' => 'LEFT',
+				'conditions' => array(
+					'Article.group_id = Group.id'
+				)
+			),array(
+				'table' => 'media',
+				'alias' => 'GroupMedia',
+				'type' => 'LEFT',
+				'conditions' => array(
+					'GroupMedia.object_id = Group.id',
+					'GroupMedia.object_type = "Group"',
+				)
+			)
+		);
+
+        $aArticles = $this->Article->find('all', compact('conditions', 'order', 'limit', 'page','fields' ,'joins'));
         $aUsers = array();
         if($aArticles) {
-            $aID = Hash::extract($aArticles, '{n}.Article.id');
-            $aComments = $this->ArticleEvent->findAllByArticleId($aID);
+            $aID = Hash::extract($aArticles, '{n}.Article.owner_id');
             $aUsers = $this->User->findAllById( $aID );
-			$this->set('aComments', $aComments);
+			$aUsers = Hash::combine($aUsers,'{n}.User.id','{n}');
 			$this->set('aUsers', $aUsers);
 		}
 		$aCategoryOptions = $this->ArticleCategory->options();
