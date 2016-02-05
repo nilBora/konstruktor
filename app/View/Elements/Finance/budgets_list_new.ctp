@@ -62,9 +62,18 @@ $monthNames = array(
         <span class="value"></span>
         <span class="value" style="position: relative; left: -60px;"><?= $monthNames[1] ?>, <?= date('Y', strtotime($month1)) ?></span>
         <span class="value" style="position: relative; left: -60px;"><?= $monthNames[2] ?>, <?= date('Y', strtotime($month2)) ?></span>
+        <div class="rightButtons" style="padding-top: 10px;">
+            <div class="dateTime date" id="finance-report-filter-fromMonth">
+                <span class="add-on"><i class="icon-th glyphicons calendar"></i></span>
+                <input type="text" class="form-control" placeholder="<?= __('Begin from') ?>" readonly="readonly">
+                <input type="hidden" id="finance-report-filter-fromMonth-mirror" name="fromMonth"
+                    <? if (@$this->request->query['month1']) { ?> value="<?= $this->request->query['month1']?>"<? } ?>>
+            </div>
+        </div>
 <!--        <span class="value">--><?//= $monthNames[3] ?><!--, --><?//= date('Y', strtotime($month3)) ?><!--</span>-->
 <!--        <span class="value">--><?//= $monthNames[4] ?><!--, --><?//= date('Y', strtotime($month4)) ?><!--</span>-->
     </div>
+
     <?
     $chartPlanExpense = $chartPlanIncome = $chartExpense = $chartIncome = array(
         $monthNames[1] => 0,
@@ -107,49 +116,6 @@ $monthNames = array(
             $chartPlanExpense[$monthNames[3]] += $plan;
             $chartPlanExpense[$monthNames[4]] += $plan;
             ?>
-<!--            <div class="item">-->
-<!--                <span class="category">--><?//= $categoryName ?><!--</span>-->
-<!--			<span class="value">-->
-<!--				<span class="plan">--><?//= $plan ?><!--</span>-->
-<!--				<span class="slash">/</span>-->
-<!--				<span>--><?//= $sum_amount_1 ? $sum_amount_1 : 0 ?><!--</span>-->
-<!--				<div class="negative">-->
-<!--                    --><?// if (($delta = $plan - $sum_amount_1) < 0) { ?>
-<!--                        --><?//= $delta ?>
-<!--                    --><?// } ?>
-<!--                </div>-->
-<!--			</span>-->
-<!--			<span class="value">-->
-<!--				<span class="plan">--><?//= $plan ?><!--</span>-->
-<!--				<span class="slash">/</span>-->
-<!--				<span>--><?//= $sum_amount_2 ? $sum_amount_2 : 0 ?><!--</span>-->
-<!--				<div class="negative">-->
-<!--                    --><?// if (($delta = $plan - $sum_amount_2) < 0) { ?>
-<!--                        --><?//= $delta ?>
-<!--                    --><?// } ?>
-<!--                </div>-->
-<!--			</span>-->
-<!--			<span class="value">-->
-<!--				<span class="plan">--><?//= $plan ?><!--</span>-->
-<!--				<span class="slash">/</span>-->
-<!--				<span>--><?//= $sum_amount_3 ? $sum_amount_3 : 0 ?><!--</span>-->
-<!--				<div class="negative">-->
-<!--                    --><?// if (($delta = $plan - $sum_amount_3) < 0) { ?>
-<!--                        --><?//= $delta ?>
-<!--                    --><?// } ?>
-<!--                </div>-->
-<!--			</span>-->
-<!--			<span class="value">-->
-<!--				<span class="plan">--><?//= $plan ?><!--</span>-->
-<!--				<span class="slash">/</span>-->
-<!--				<span>--><?//= $sum_amount_4 ? $sum_amount_4 : 0 ?><!--</span>-->
-<!--				<div class="negative">-->
-<!--                    --><?// if (($delta = $plan - $sum_amount_4) < 0) { ?>
-<!--                        --><?//= $delta ?>
-<!--                    --><?// } ?>
-<!--                </div>-->
-<!--			</span>-->
-<!--            </div>-->
             <?
             $expense1 += $sum_amount_1;
             $expense2 += $sum_amount_2;
@@ -164,7 +130,7 @@ $monthNames = array(
 //        echo "<pre>";
 //        print_r($finOperationFull);
         $sum_amount_1 = $sum_amount_2 = 0;
-
+        $sum_expence1 = $sum_expence2 = $sum_income1 = $sum_income2 = 0;
         $sum_amounts = $sum_amounts2 = array();
         if(isset($projectsFull) && !empty($projectsFull)):?>
             <div class="title"><?= __('Expenses projected/actual') ?></div>
@@ -192,50 +158,7 @@ $monthNames = array(
                             <?php ///$sum_amounts[$v3['Task']['id']] = 0;?>
                             <?php  if($v3['Task']['subproject_id'] == $v2['Subproject']['id']):?>
 
-                                <?php foreach($financeAccountFull as $k5=>$v5):?>
-                                    <?php $nn =  trim(str_replace(array('account','счет'), '', $v5['FinanceAccount']['name']));?>
-                                    <?php if(strcasecmp($v3['Task']['title'], $nn) == 0):?>
 
-                                        <?php foreach($v5['Operations'] as $k6=>$v6):?>
-                                            <?php  if($v6['type'] == 1 && date('n', strtotime($month1)) == date('n', strtotime($v6['created']))):?>
-                                                <?php
-                                                $amount = $v6['amount']*-1;
-                                                $am = isset($sum_amounts[$v3['Task']['id']]) ?  $sum_amounts[$v3['Task']['id']] : 0;
-                                                $sum_amounts[$v3['Task']['id']]=$amount+$am;
-                                                $sum_amount_1+=  $amount;?>
-                                            <?php endif;?>
-                                            <?php  if($v6['type'] == 1 && date('n', strtotime($month2)) == date('n', strtotime($v6['created']))):?>
-                                                <?php
-                                                $amount = $v6['amount'];
-                                                $am = isset($sum_amounts2[$v3['Task']['id']]) ?  $sum_amounts2[$v3['Task']['id']] : 0;
-                                                $sum_amounts2[$v3['Task']['id']]=$amount+$am;
-                                                $sum_amount_2+=  $amount;?>
-                                            <?php endif;?>
-                                        <?php endforeach;?>
-                                    <?php endif;?>
-                                <?php endforeach;?>
-
-
-
-<!--                                --><?php //foreach ($finOperationFull as $k4=>$v4):?>
-<!--                                    --><?php //if(($v4['FinanceOperation']['account_id'] == $v3['Task']['id']) && $v4['FinanceOperation']['type']==1):?>
-<!--                                        --><?php // if(date('n', strtotime($month1)) == date('n', strtotime($v4['FinanceOperation']['created']))):?>
-<!--                                            --><?php
-//                                           // print_r($v4['FinanceOperation']);
-//                                            $amount = $v4['FinanceOperation']['amount']*-1;
-//                                            $am = isset($sum_amounts[$v3['Task']['id']]) ?  $sum_amounts[$v3['Task']['id']] : 0;
-//                                            $sum_amounts[$v3['Task']['id']]=$amount+$am;
-//                                            $sum_amount_1+=  $amount;?>
-<!--                                        --><?php //endif;?>
-<!--                                        --><?php // if(date('n', strtotime($month2)) == date('n', strtotime($v4['FinanceOperation']['created']))):?>
-<!--                                            --><?php
-//                                                $amount = $v4['FinanceOperation']['amount']*-1;
-//                                                $sum_amount_2+=  $amount;
-//                                            ?>
-<!--                                        --><?php //endif;?>
-<!---->
-<!--                                    --><?php //endif;?>
-<!--                                --><?php //endforeach;?>
 
                                 <div class="item">
                                     <span class="value"></span>
@@ -245,7 +168,9 @@ $monthNames = array(
                                         <?php $plan = (isset($crmTaskFull[$v3['Task']['id']]['CrmTask']['money']) ? $crmTaskFull[$v3['Task']['id']]['CrmTask']['money'] : 0);?>
                                         <span class="plan"><?=number_format($plan);?></span>
                                         <span class="slash">/</span>
-                                        <span><?= isset( $v3['Task']['fullExpense_m1']) ?  $v3['Task']['fullExpense_m1'] : 0 ?></span>
+                                        <?php $expence1 = isset( $v3['Task']['fullExpense_m1']) ?  $v3['Task']['fullExpense_m1'] : 0; ?>
+                                        <?php $sum_expence1+=$expence1; ?>
+                                        <span><?=$expence1;?></span>
                                         <div class="negative">
 
 <!--                                            --><?// if (($delta = $plan - $sum_amount_1) < 0) { ?>
@@ -257,7 +182,9 @@ $monthNames = array(
                                         <?php $plan = (isset($crmTaskFull[$v3['Task']['id']]['CrmTask']['money']) ? $crmTaskFull[$v3['Task']['id']]['CrmTask']['money'] : 0);?>
                                         <span class="plan"><?=number_format($plan);?></span>
                                         <span class="slash">/</span>
-                                        <span><?= isset(  $v3['Task']['fullExpense_m2']) ?  $v3['Task']['fullExpense_m2'] : 0 ?></span>
+                                        <?php $expence2 = isset( $v3['Task']['fullExpense_m2']) ?  $v3['Task']['fullExpense_m2'] : 0; ?>
+                                        <?php $sum_expence2+=$expence2; ?>
+                                        <span><?=$expence2; ?></span>
                                         <div class="negative">
 <!--                                            --><?// if (($delta = $plan - $sum_amount_1) < 0) { ?>
 <!--                                                --><?//= $delta ?>
@@ -301,29 +228,6 @@ $monthNames = array(
                         <?php foreach($taskFull as $k3=>$v3):?>
                             <?php  if($v3['Task']['subproject_id'] == $v2['Subproject']['id']):?>
 
-                                <?php foreach($financeAccountFull as $k5=>$v5):?>
-                                    <?php $nn =  trim(str_replace(array('account','счет'), '', $v5['FinanceAccount']['name']));?>
-                                    <?php if(strcasecmp($v3['Task']['title'], $nn) == 0):?>
-
-                                        <?php foreach($v5['Operations'] as $k6=>$v6):?>
-                                            <?php  if($v6['type'] == 0 && date('n', strtotime($month1)) == date('n', strtotime($v6['created']))):?>
-                                                <?php
-                                                $amount = $v6['amount'];
-                                                $am = isset($sum_amounts[$v3['Task']['id']]) ?  $sum_amounts[$v3['Task']['id']] : 0;
-                                                $sum_amounts[$v3['Task']['id']]=$amount+$am;
-                                                $sum_amount_1+=  $amount;?>
-                                            <?php endif;?>
-                                            <?php  if($v6['type'] == 0 && date('n', strtotime($month2)) == date('n', strtotime($v6['created']))):?>
-                                                <?php
-                                                $amount = $v6['amount'];
-                                                $am = isset($sum_amounts2[$v3['Task']['id']]) ?  $sum_amounts2[$v3['Task']['id']] : 0;
-                                                $sum_amounts2[$v3['Task']['id']]=$amount+$am;
-                                                $sum_amount_2+=  $amount;?>
-                                            <?php endif;?>
-                                        <?php endforeach;?>
-                                    <?php endif;?>
-                                <?php endforeach;?>
-
                                 <div class="item">
                                     <span class="value"></span>
                                     <span class="value"></span>
@@ -332,7 +236,9 @@ $monthNames = array(
                                             <?php $plan = (isset($crmTaskFull[$v3['Task']['id']]['CrmTask']['money']) ? $crmTaskFull[$v3['Task']['id']]['CrmTask']['money'] : 0);?>
                                             <span class="plan"><?=number_format($plan);?></span>
                                             <span class="slash">/</span>
-                                            <span><?= isset( $v3['Task']['fullIncome_m1']) ?  $v3['Task']['fullIncome_m1'] : 0 ?></span>
+                                            <?php $income1 = isset( $v3['Task']['fullIncome_m1']) ?  $v3['Task']['fullIncome_m1'] : 0; ?>
+                                            <?php $sum_income1+=$income1; ?>
+                                            <span><?=$income1; ?></span>
                                             <div class="negative">
 <!--                                                --><?// if (($delta = $plan - $sum_amount_1) < 0) { ?>
 <!--                                                    --><?//= //$delta ?>
@@ -343,7 +249,9 @@ $monthNames = array(
                                             <?php $plan = (isset($crmTaskFull[$v3['Task']['id']]['CrmTask']['money']) ? $crmTaskFull[$v3['Task']['id']]['CrmTask']['money'] : 0);?>
                                             <span class="plan"><?=number_format($plan);?></span>
                                             <span class="slash">/</span>
-                                            <span><?= isset( $v3['Task']['fullIncome_m2']) ?  $v3['Task']['fullIncome_m2'] : 0 ?></span>
+                                            <?php $income2 = isset( $v3['Task']['fullIncome_m2']) ?  $v3['Task']['fullIncome_m2'] : 0; ?>
+                                            <?php $sum_income2+=$income2; ?>
+                                            <span><?=$income2; ?></span>
                                             <div class="negative">
 <!--                                                --><?// if (($delta = $plan - $sum_amount_1) < 0) { ?>
 <!--                                                    --><?//= $delta ?>
@@ -383,49 +291,6 @@ $monthNames = array(
             $chartPlanIncome[$monthNames[3]] += $plan;
             $chartPlanIncome[$monthNames[4]] += $plan;
             ?>
-<!--            <div class="item">-->
-<!--                <span class="category">--><?//= $item['category']['name'] ?><!--</span>-->
-<!--			<span class="value">-->
-<!--				<span class="plan">--><?//= $plan ?><!--</span>-->
-<!--				<span class="slash">/</span>-->
-<!--				<span>--><?//= $sum_amount_1 ? $sum_amount_1 : 0 ?><!--</span>-->
-<!--				<div>-->
-<!--                    --><?// if (($delta = $plan - $sum_amount_1) < 0) { ?>
-<!--                        +--><?//= -$delta ?>
-<!--                    --><?// } ?>
-<!--                </div>-->
-<!--			</span>-->
-<!--			<span class="value">-->
-<!--				<span class="plan">--><?//= $plan ?><!--</span>-->
-<!--				<span class="slash">/</span>-->
-<!--				<span>--><?//= $sum_amount_2 ? $sum_amount_2 : 0 ?><!--</span>-->
-<!--				<div>-->
-<!--                    --><?// if (($delta = $plan - $sum_amount_2) < 0) { ?>
-<!--                        +--><?//= -$delta ?>
-<!--                    --><?// } ?>
-<!--                </div>-->
-<!--			</span>-->
-<!--			<span class="value">-->
-<!--				<span class="plan">--><?//= $plan ?><!--</span>-->
-<!--				<span class="slash">/</span>-->
-<!--				<span>--><?//= $sum_amount_3 ? $sum_amount_3 : 0 ?><!--</span>-->
-<!--				<div>-->
-<!--                    --><?// if (($delta = $plan - $sum_amount_3) < 0) { ?>
-<!--                        +--><?//= -$delta ?>
-<!--                    --><?// } ?>
-<!--                </div>-->
-<!--			</span>-->
-<!--			<span class="value">-->
-<!--				<span class="plan">--><?//= $plan ?><!--</span>-->
-<!--				<span class="slash">/</span>-->
-<!--				<span>--><?//= $sum_amount_4 ? $sum_amount_4 : 0 ?><!--</span>-->
-<!--				<div>-->
-<!--                    --><?// if (($delta = $plan - $sum_amount_4) < 0) { ?>
-<!--                        +--><?//= -$delta ?>
-<!--                    --><?// } ?>
-<!--                </div>-->
-<!--			</span>-->
-<!--            </div>-->
             <?
             $income1 += $sum_amount_1;
             $income2 += $sum_amount_2;
@@ -449,28 +314,30 @@ $monthNames = array(
         $chartExpense[$monthNames[3]] = $expense3;
         $chartExpense[$monthNames[4]] = $expense4;
         ?>
+
         <div class="item total">
             <span class="text"><?= __('Balance')?></span>
-		<span class="value">
-			<span class="plan"><?= $planBalance ?></span>
-			<span class="slash">/</span>
-			<span><?= $balance1 ?></span>
+        <span class="value">
+            <span class="plan"></span>
+            <span class="slash"></span>
+            <span></span>
 		</span>
 		<span class="value">
-			<span class="plan"><?= $planBalance ?></span>
-			<span class="slash">/</span>
-			<span><?= $balance2 ?></span>
+			<span class="plan"></span>
+			<span class="slash"></span>
+			<span></span>
 		</span>
-		<span class="value">
-			<span class="plan"><?= $planBalance ?></span>
+		<span class="value" style="position: relative; left: -60px;">
+			<span class="plan"><?=$sum_expence1; ?></span>
 			<span class="slash">/</span>
-			<span><?= $balance3 ?></span>
+			<span><?= $sum_income1 ?></span>
 		</span>
-		<span class="value">
-			<span class="plan"><?= $planBalance ?></span>
+		<span class="value" style="position: relative; left: -60px;">
+			<span class="plan"><?= $sum_expence2 ?></span>
 			<span class="slash">/</span>
-			<span><?= $balance4 ?></span>
+			<span><?= $sum_income2 ?></span>
 		</span>
+
         </div>
         <?
     }
@@ -483,14 +350,7 @@ $monthNames = array(
         <button type="button" class="btn btn-default active" data-value="expense"><?= __('Expense') ?></button>
         <button type="button" class="btn btn-default" data-value="income"><?= __('Income') ?></button>
     </div>
-    <div class="rightButtons">
-        <div class="dateTime date" id="finance-report-filter-fromMonth">
-            <span class="add-on"><i class="icon-th glyphicons calendar"></i></span>
-            <input type="text" class="form-control" placeholder="<?= __('Begin from') ?>" readonly="readonly">
-            <input type="hidden" id="finance-report-filter-fromMonth-mirror" name="fromMonth"
-                <? if (@$this->request->query['month1']) { ?> value="<?= $this->request->query['month1']?>"<? } ?>>
-        </div>
-    </div>
+
     <div id="finance-budget-chart" style="height: 350px; margin-top: 34px"></div>
 </div>
 

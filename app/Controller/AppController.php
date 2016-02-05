@@ -176,6 +176,7 @@ class AppController extends Controller {
                 $this->Auth->login($this->currUser['User']);
             }
         }
+		$this->_addStatistic();
         if ($this->Auth->loggedIn()) {
             $this->loadModel('Group');
 
@@ -185,7 +186,6 @@ class AppController extends Controller {
 			}
 			$this->_initTimezone($this->currUser['User']['timezone']);
 			$this->_initLang($this->currUser['User']['lang']);
-			$this->_addStatistic();
 
 			$conditions = array(
 				'Group.owner_id' => $this->currUserID,
@@ -248,6 +248,30 @@ class AppController extends Controller {
 	private function _addStatistic() {
 		$this->loadModel('Statistic');
 		$userId = $this->currUserID ? $this->currUserID : 0;
-		$this->Statistic->addData($userId, $this->request->params);
+		$params = $this->request->params;
+
+		foreach($this->Statistic->targets as $target){
+			$viewed = $this->Session->read($params['controller'].'.'.$params['action']);
+			if(empty($viewed)){
+				$viewed = array();
+			}
+			if (($target['controller'] === $params['controller'])
+				&&($target['action'] === $params['action'])
+				&&!empty($params['pass'][0])
+				&&!in_array($params['pass'][0], $viewed)) {
+
+				$stats = array(
+					'pk' => (int) $params['pass'][0],
+					'type' => $target['type'],
+					'created' => date('Y-m-d H:i:s'),
+					'visitor_id' => $userId,
+				);
+				if($this->Statistic->save($stats)){
+					$this->Session->write($params['controller'].'.'.$params['action'].'.'.$params['pass'][0], (int)$params['pass'][0]);
+				}
+			}
+
+		}
+		//$this->Statistic->addData($userId, $this->request->params);
 	}
 }

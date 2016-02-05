@@ -874,39 +874,20 @@ class UserAjaxController extends PAjaxController {
     function loadPlanet(){
         $data = $this->request->data;
 
-        $this->loadModel('User');
         $this->loadModel('UserEvent');
+		// Time Filters
+		$dateFrom = $this->getTmeFiltersDate($data['timeFilter']);
 
-        $conditions = array(
-            'User.is_deleted' => '0',
-            'AND' => array(
-                array(
-                    'User.lat >=' => $data['location']['minlat'],
-                    'User.lat <=' => $data['location']['maxlat'],
-                    ),
-                array(
-                    'User.lng >=' => $data['location']['minlng'],
-                    'User.lng <=' => $data['location']['maxlng'],
-                    ),
-			),
-		);
-		/* Users will be find in window location open, if need find at all planet need some code rework */
-		if(!empty($data['search'])) {
-			$conditions['AND'][] = array('User.full_name LIKE ?' => '%' . $data['search'] . '%');
-		}
-		if(!empty($data['userKeys']) && empty($data['search'])){
-			$conditions['AND'][] = array('User.id NOT' => $data['userKeys']);
-		}
+		// Users
+		$users = $this->getUserInfo($data, $dateFrom);
 
-		// USERS
-		$users = $this->User->find('all',compact('conditions'));
-//		$UIDs = Hash::extract($users,'{n}.User.id');
-		$users = $this->getUserInfo($users);
-
-		// GROUP
+		// Groups
 		$groups = [];
 		if(!empty($data['search'])) {
 			$groups = $this->getGroupInfo($data);
+		}
+		if($dateFrom) {
+			$groups = $this->getGroupInfo($data, $dateFrom);
 		}
 
 		$this->loadModel('GroupMember');
@@ -951,7 +932,10 @@ class UserAjaxController extends PAjaxController {
 		if(!empty($data['search'])) {
 			$conditions['AND'][] = array('UserEvent.title LIKE ?' => '%' . $data['search'] . '%');
 		}
-		if(!empty($data['eventKeys']) && empty($data['search'])){
+		if($dateFrom) {
+			$conditions['AND'][] = array('UserEvent.created >=' => $dateFrom);
+		}
+		if(!empty($data['eventKeys']) && empty($data['search']) && $dateFrom == null){
 			$conditions['AND'][] = array('UserEvent.id NOT' => $data['eventKeys']);
 		}
 		$order = array('UserEvent.event_time', 'UserEvent.created');
@@ -963,10 +947,16 @@ class UserAjaxController extends PAjaxController {
 		if(!empty($data['search'])) {
 			$investProjects = $this->getInvestProjectInfo($data);
 		}
+		if($dateFrom) {
+			$investProjects = $this->getInvestProjectInfo($data, $dateFrom);
+		}
 		// External Event
 		$externalEvents = [];
 		if(!empty($data['search'])) {
 			$externalEvents = $this->getExternalEventInfo($data);
+		}
+		if($dateFrom) {
+			$externalEvents = $this->getExternalEventInfo($data, $dateFrom);
 		}
 
         // Data
@@ -982,13 +972,68 @@ class UserAjaxController extends PAjaxController {
     }
 
 	/**
+	 * Get date from filter
+	 *
+	 * @param $timeFilter
+	 * @return bool|null|string
+	 */
+	private function getTmeFiltersDate($timeFilter = null)
+	{
+		$dateFrom = null;
+		switch ($timeFilter) {
+			case 'day':
+				$last = time();	break;
+			case 'week':
+				$last = time() - (7 * 24 * 60 * 60);break;
+			case 'month':
+				$last = time() - (30 * 24 * 60 * 60);break;
+			case 'year':
+				$last = time() - (365 * 24 * 60 * 60);break;
+			case null:
+				$last = 0;	break;
+		}
+		if ($last) {
+			$dateFrom = date('Y-m-d', $last);
+		}
+		return $dateFrom;
+	}
+
+	/**
 	 * Get User info like Image, skills, name... and push it to frontend
 	 *
 	 * @param $users
 	 * @return array
 	 */
-	private function getUserInfo($users)
+	private function getUserInfo($data, $dateFrom = null)
 	{
+		$this->loadModel('User');
+		$conditions = array(
+			'User.is_deleted' => '0',
+			'AND' => array(
+				array(
+					'User.lat >=' => $data['location']['minlat'],
+					'User.lat <=' => $data['location']['maxlat'],
+				),
+				array(
+					'User.lng >=' => $data['location']['minlng'],
+					'User.lng <=' => $data['location']['maxlng'],
+				),
+			),
+		);
+		/* Users will be find in window location open, if need find at all planet need some code rework */
+		if(!empty($data['search'])) {
+			$conditions['AND'][] = array('User.full_name LIKE ?' => '%' . $data['search'] . '%');
+		}
+		/* Time Filters will find Users in window location open for some period of time such as day, week, ... */
+		if($dateFrom) {
+			$conditions['AND'][] = array('User.created >=' => $dateFrom);
+		}
+		if(!empty($data['userKeys']) && empty($data['search']) && $dateFrom == null){
+			$conditions['AND'][] = array('User.id NOT' => $data['userKeys']);
+		}
+
+		$users = $this->User->find('all',compact('conditions'));
+
 		$out = [];
 		/** @var View $view */
 		$view = new View($this);
@@ -1016,7 +1061,7 @@ class UserAjaxController extends PAjaxController {
 	 * @param $data
 	 * @return array
 	 */
-	private function getGroupInfo($data)
+	private function getGroupInfo($data, $dateFrom = null)
 	{
 		$this->loadModel('Group');
 		/** @var View $view */
@@ -1027,7 +1072,6 @@ class UserAjaxController extends PAjaxController {
 		$conditions = array(
 			'Group.hidden' => '0',
 			'AND' => array(
-				array('Group.title LIKE ?' => '%' . $data['search'] . '%'),
 				array(
 					'User.lat >=' => $data['location']['minlat'],
 					'User.lat <=' => $data['location']['maxlat'],
@@ -1038,6 +1082,12 @@ class UserAjaxController extends PAjaxController {
 				),
 			),
 		);
+		if($data['search']) {
+			$conditions['AND'][] = array('Group.title LIKE ?' => '%' . $data['search'] . '%');
+		}
+		if($dateFrom) {
+			$conditions['AND'][] = array('Group.created >=' => $dateFrom);
+		}
 		$groups = $this->Group->find('all', compact('conditions'));
 
 		foreach ($groups as $key => $group) {
@@ -1061,14 +1111,13 @@ class UserAjaxController extends PAjaxController {
 	 * @param $data
 	 * @return array
 	 */
-	private function getInvestProjectInfo($data)
+	private function getInvestProjectInfo($data, $dateFrom = null)
 	{
 		$this->loadModel('InvestProject');
 
 		$clearInvestProject = [];
 		$conditions = array(
 			'AND' => array(
-				array('InvestProject.name LIKE ?' => '%' . $data['search'] . '%'),
 				array(
 					'User.lat >=' => $data['location']['minlat'],
 					'User.lat <=' => $data['location']['maxlat'],
@@ -1079,6 +1128,12 @@ class UserAjaxController extends PAjaxController {
 				),
 			),
 		);
+		if($data['search']) {
+			$conditions['AND'][] = array('InvestProject.name LIKE ?' => '%' . $data['search'] . '%');
+		}
+		if($dateFrom) {
+			$conditions['AND'][] = array('InvestProject.created >=' => $dateFrom);
+		}
 		$investProjects = $this->InvestProject->find('all', compact('conditions'));
 
 		foreach ($investProjects as $key => $investProject) {
@@ -1099,14 +1154,13 @@ class UserAjaxController extends PAjaxController {
 	 * @param $data
 	 * @return array
 	 */
-	private function getExternalEventInfo($data)
+	private function getExternalEventInfo($data, $dateFrom = null)
 	{
 		$this->loadModel('UserEvent');
 
 		$conditions = array(
 			'AND' => array(
 				array(
-					'UserEvent.title LIKE ?' => '%' . $data['search'] . '%',
 					'UserEvent.external' => '1',
 					),
 				array(
@@ -1119,6 +1173,12 @@ class UserAjaxController extends PAjaxController {
 				),
 			),
 		);
+		if($data['search']) {
+			$conditions['AND'][] = array('UserEvent.title LIKE ?' => '%' . $data['search'] . '%');
+		}
+		if($dateFrom) {
+			$conditions['AND'][] = array('UserEvent.created >=' => $dateFrom);
+		}
 		$order = array('UserEvent.event_time', 'UserEvent.created');
 		$externalEvents = $this->UserEvent->find('all', compact('conditions', 'order'));
 		$clearExternalEvent = $this->getTaskInfo($externalEvents, $data);

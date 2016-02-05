@@ -457,7 +457,7 @@ $(document).ready(function(){
      }
      });
      */
-    $('.item').doubletap(function (event) {
+	$('.item').doubletap(function (event) {
         $this = $(event.currentTarget);
 
         var child_span = $this.children('span');

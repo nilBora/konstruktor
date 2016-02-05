@@ -328,4 +328,73 @@ class CloudAjaxController extends PAjaxController {
 		echo json_encode($video);
 		exit;
 	}
+
+	/**
+	 * Cloud time filter per day, week, ...
+	 */
+//	public function cloudFilter()
+//	{
+//		$this->layout = 'ajax';
+//
+//		$filter = $this->request->data('filter') ? $this->request->data('filter') : 0;
+//		$shared = $this->request->data('shared') ? $this->request->data('shared') : null;
+//
+//		switch ($filter) {
+//			case 'day':
+//				$last = time();
+//				break;
+//			case 'week':
+//				$last = time() - (7 * 24 * 60 * 60);
+//				break;
+//			case 'month':
+//				$last = time() - (30 * 24 * 60 * 60);
+//				break;
+//			case 'year':
+//				$last = time() - (365 * 24 * 60 * 60);
+//				break;
+//		}
+//		$dateFrom = date('Y-m-d', $last);
+//		$this->renderFilter($dateFrom, $shared);
+//	}
+//
+//	public function renderFilter($dateFrom = null, $shared = null)
+//	{
+//		$id = $shared;
+//		$shared_id = null;;
+//		$this->loadModel('StorageLimit');
+//		$this->loadModel('Note');
+//		$this->loadModel('Cloud');
+//		$storage_stats = $this->StorageLimit->getStats($this->Auth->user('id'));
+//		if (isset($this->request->query['view'])) {
+//			$view = $this->request->query['view'];
+//			$this->Session->write('Cloud.view', $view);
+//		} else {
+//			$view = $this->Session->read('Cloud.view');
+//		}
+//		if (isset($this->request->query['sort'])) {
+//			$sort = $this->request->query['sort'];
+//			$this->Session->write('Cloud.sort', $sort);
+//		} else {
+//			$sort = $this->Session->read('Cloud.sort');
+//		}
+//		$this->Session->write('Cloud.sort', $sort);
+//		$result['files'] = $this->Cloud->search($this->currUserID, $shared, null, $sort, $shared_id, $dateFrom);
+//		$result['docs'] = $this->Note->search($this->currUserID, $shared, null, $sort, $shared_id, $dateFrom);
+//
+//		$folders = $this->Cloud->find('all', array(
+//			'sort' => 'Cloud.lft ASC',
+//			'conditions' => array(
+//				'Cloud.user_id' => $this->currUserID,
+//				'Cloud.media_id' => 0,
+//				'Cloud.created >=' => $dateFrom,
+//			),
+//			'fields' => array(
+//				'Cloud.id',
+//				'Cloud.name',
+//				'Cloud.lft',
+//				'Cloud.rght'
+//			)
+//		));
+//		$this->set(compact('id','view', 'sort', 'storage_stats', 'result', 'folders'));
+//	}
 }

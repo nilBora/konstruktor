@@ -155,16 +155,19 @@ class ArticleController extends AppController {
 			throw new NotFoundException();
 		}
 
-		$hits = $article['Article']['hits']+1;
-		$article['Article']['hits'] = $hits;
-		$this->Article->updateAll(
-			array('Article.hits' => $hits),
-			array('Article.id' => $id)
-		);
+		//We continue using old statistic for Articles.
+		//TODO: hits should be only cahced counter for records from stats table
+		//$this->loadModel('Statistic');
+		//$stats = $this->Statistic->findCountById($article['Article']['id'], $this->request->params);
+		//$article['Article']['hits'] = (int)$stats;
+		//currently disabled until viewed will be counter from statistic table
+		//$this->Article->updateAll(
+		//	array('Article.hits' => $hits),
+		//	array('Article.id' => $id)
+		//);
 
 		$title = $article['Article']['title'];
 		$this->set(compact('title'));
-
 		// обновление даты последнего просмотра новостей
 
 		if( $article['Article']['group_id'] ) {
@@ -273,6 +276,7 @@ class ArticleController extends AppController {
 	}
 
 	public function myArticles() {
+
 		$title = __('My articles');
 		$this->set(compact('title'));
 
@@ -470,16 +474,7 @@ class ArticleController extends AppController {
 			case 'top100' : $limit = 100; $order = 'Article.hits DESC'; break;
 		}
 
-
-		/** @var Article $articleModel */
-		$articleModel = $this->Article;
-
-		if(isset($this->request->query['search'])) {
-			$search = $this->request->query['search'];
-			$aArticles = $articleModel->search($search);
-		} else {
-			$aArticles    = $this->Article->find('all', compact('conditions', 'order', 'limit','fields','joins'));;
-		}
+		$aArticles    = $this->Article->find('all', compact('conditions', 'order', 'limit','fields','joins'));;
 
 		$aUsers = array();
 		if($aArticles || $aArticlesTop) {
@@ -569,5 +564,127 @@ class ArticleController extends AppController {
 
 		$this->set(compact('aCategoryOptions','aArticles','aArticlesTop','aUsers','category','sort','top'));
 		$this->render('all');
+	}
+
+	/**
+	 * @param $search
+	 * @param string $sort
+	 * @param string $top
+	 */
+	public function search($search, $sort ='date-down', $top = 'all') {
+		$this->set('search', $search);
+		$conditions = array('Article.published' => 1, 'Article.deleted' => 0, 'Article.title LIKE ' => '%' . $search . '%');
+		$top = 'withoutlimit';
+		$this->renderAllArticlesWithConditions($conditions, $sort, $top);
+	}
+
+	/**
+	 * @param $timeFilter
+	 * @param string $sort
+	 * @param string $top
+	 */
+	public function timeFilter($timeFilter, $sort ='date-down', $top = 'all') {
+		$this->set('timeFilter', $timeFilter);
+		$dateFrom = $this->articleFilter($timeFilter);
+		$conditions = array('Article.published' => 1, 'Article.deleted' => 0, 'Article.title !=' =>'', 'Article.created >=' => $dateFrom);
+		$top = 'withoutlimit';
+		$this->renderAllArticlesWithConditions($conditions, $sort, $top);
+	}
+
+	/**
+	 * @param $conditions
+	 * @param $sort
+	 * @param $top
+	 */
+	private function renderAllArticlesWithConditions($conditions, $sort, $top)
+	{
+		$sortArr = ['date-up'=>'Article.created ASC','date-down'=>'Article.created DESC','hits-down'=>'Article.hits DESC','hits-up'=>'Article.hits ASC'];
+
+		$title = __('All articles');
+		$this->set(compact('title'));
+		$fields = [ 'Article.id',
+			'Article.owner_id',
+			'Article.title',
+			'Article.body',
+			'Article.cat_id',
+			'Article.owner_id',
+			'Article.group_id',
+			'Article.created',
+			'Article.shared',
+			'Article.hits',
+			'ArticleMedia.*',
+			'GroupMedia.*',
+			'Group.title'];
+
+		$joins = array(
+			array(
+				'table' => 'groups',
+				'alias' => 'Group',
+				'type' => 'LEFT',
+				'conditions' => array(
+					'Article.group_id = Group.id'
+				)
+			),array(
+				'table' => 'media',
+				'alias' => 'GroupMedia',
+				'type' => 'LEFT',
+				'conditions' => array(
+					'GroupMedia.object_id = Group.id',
+					'GroupMedia.object_type = "Group"',
+				)
+			)
+		);
+
+		$limit = 4;
+		$order = 'Article.hits DESC';
+		$aArticlesTop = $this->Article->find('all', compact('conditions', 'order', 'limit','fields','joins'));
+		$notArticleTop = Hash::extract($aArticlesTop,'{n}.Article.id');
+
+		if(in_array($sort,array_keys($sortArr))){
+			$order = $sortArr[$sort];
+		}else{
+			$order = 'Article.created DESC';
+		}
+		$conditions['Article.id NOT'] = $notArticleTop;
+		switch($top){
+			case 'all' 	  : $limit = 16; break;
+			case 'top25'  : $limit = 25;  $order = 'Article.hits DESC, '.$order; break;
+			case 'top50'  : $limit = 50;  $order = 'Article.hits DESC, '.$order; break;
+			case 'top100' : $limit = 100; $order = 'Article.hits DESC, '.$order; break;
+			case 'withoutlimit' : $limit = 999; $order = 'Article.hits DESC, '.$order; break;
+		}
+
+		$aArticles = $this->Article->find('all', compact('conditions', 'order', 'limit','fields','joins'));
+
+		$aUsers = array();
+		if($aArticles || $aArticlesTop) {
+			$aID = Hash::extract(array_merge($aArticles,$aArticlesTop), '{n}.Article.owner_id');
+			$aUsers = $this->User->findAllById( $aID );
+		}
+		$aUsers = Hash::combine($aUsers,'{n}.User.id','{n}');
+		$aCategoryOptions = $this->ArticleCategory->options();
+
+		$this->set(compact('aCategoryOptions','aArticles','aArticlesTop','aUsers','sort','top'));
+		$this->render('all');
+	}
+
+	/**
+	 * Filter for articles
+	 * receive str - day, week, month, year
+	 *
+	 * @param $filter
+	 * @return bool|string
+	 */
+	private function articleFilter($filter)
+	{
+		switch ($filter) {
+			case 'day':		$last = time();							break;
+			case 'week':	$last = time() - (7 * 24 * 60 * 60);	break;
+			case 'month':	$last = time() - (30 * 24 * 60 * 60);	break;
+			case 'year':	$last = time() - (365 * 24 * 60 * 60);	break;
+		}
+		$dateFrom = date('Y-m-d', $last);
+
+		return $dateFrom;
 	}
 }

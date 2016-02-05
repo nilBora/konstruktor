@@ -19,10 +19,10 @@
     for (var i = data.length - 1; i >= 0; i--) {
         if(data[i].name == "Projects"){
             data[i].name = "<?php echo __('Projects'); ?>";
-        } 
+        }
         else if(data[i].name == "Cloud"){
             data[i].name = "<?php echo __('Cloud'); ?>";
-        } 
+        }
         else if(data[i].name == "Messages"){
             data[i].name = "<?php echo __('Messages'); ?>";
         }

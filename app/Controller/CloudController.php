@@ -22,6 +22,24 @@ class CloudController extends AppController {
 	public function index($id = null, $shared_id = null) {
         $storage_stats = $this->StorageLimit->getStats($this->Auth->user('id'));
         $q = isset($this->request->query['search']) ? $this->request->query['search'] : null;
+        $filter = isset($this->request->query['filter']) ? $this->request->query['filter'] : '0';
+		$dateFrom = null;
+		switch ($filter) {
+			case 'day':
+				$last = time();	break;
+			case 'week':
+				$last = time() - (7 * 24 * 60 * 60);	break;
+			case 'month':
+				$last = time() - (30 * 24 * 60 * 60); 	break;
+			case 'year':
+				$last = time() - (365 * 24 * 60 * 60); 	break;
+			case '0':
+				$last = 0; break;
+		}
+		if ($last) {
+			$dateFrom = date('Y-m-d', $last);
+		}
+
         if (isset($this->request->query['view'])) {
             $view = $this->request->query['view'];
             $this->Session->write('Cloud.view', $view);
@@ -35,8 +53,9 @@ class CloudController extends AppController {
             $sort = $this->Session->read('Cloud.sort');
         }
         $this->Session->write('Cloud.sort', $sort);
-        $result['files'] = $this->Cloud->search($this->currUserID, $id, $q, $sort, $shared_id);
-        $result['docs'] = $this->Note->search($this->currUserID, $id, $q, $sort, $shared_id);
+
+        $result['files'] = $this->Cloud->search($this->currUserID, $id, $q, $sort, $shared_id, $dateFrom);
+        $result['docs'] = $this->Note->search($this->currUserID, $id, $q, $sort, $shared_id, $dateFrom);
 
         $folders = $this->Cloud->find('all', array(
             'sort' => 'Cloud.lft ASC',

@@ -18,10 +18,22 @@ class Statistic extends AppModel
 		array('controller' => 'Group', 'action' => 'view', 'type' => self::TYPE_GROUP),
 	);
 
+	public $belongsTo = array(
+        'Article' => array(
+            'className' => 'Article',
+            'foreignKey' => 'pk',
+			'counterCache' => 'hits',
+			'counterScope' => array(
+				'Statistic.type' => self::TYPE_ARTICLE,
+            )
+        )
+    );
+
 	/**
 	 * Adding data to statistic
 	 * @param array $params
 	 */
+	 //Maybe deprecated!!! but still used in API
 	public function addData($userId, array $params) {
 		foreach ($this->targets as $target) {
 			if ($target['controller'] === $params['controller'] && $target['action'] === $params['action'] && !empty($params['pass'][0])) {
@@ -33,6 +45,20 @@ class Statistic extends AppModel
 				));
 			}
 		}
+	}
+
+	public function findCountById($id, $params){
+		foreach ($this->targets as $target) {
+			if ($target['controller'] === $params['controller'] && $target['action'] === $params['action'] && !empty($params['pass'][0])) {
+				return $this->find('count', array(
+					'conditions' => array(
+						'pk' => $id,
+						'type' => $target['type'],
+					),
+				));
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -176,15 +202,17 @@ class Statistic extends AppModel
 			'fields' => array('Group.id', 'Group.owner_id', 'Group.title'),
 		));
 		$groups = Hash::combine($groups, '{n}.Group.id', '{n}.Group.title');
-		$this->virtualFields['visits'] = 'COUNT(id)';
+		$this->virtualFields['visits'] = 'COUNT(`Statistic`.`id`)';
 		$statistic = $this->find('all', array(
 			'conditions' => array_merge(array(
 				'Statistic.pk' => array_keys($groups),
 				'Statistic.type' => self::TYPE_GROUP,
-				"Statistic.visitor_id <> $userId",
+				//This is not true way to count stats. All hits should be shown from all users including author.
+				//"Statistic.visitor_id <> $userId",
 			), $periodConditions),
 			'group' => 'Statistic.pk',
-			'fields' => array('Statistic.pk', 'Statistic.visits')
+			'fields' => array('Statistic.pk', 'Statistic.visits'),
+			'recursive' => -1
 		));
 		$statistic = Hash::combine($statistic, '{n}.Statistic.pk', '{n}.Statistic.visits');
 		$return = array(array('name', 'visits'));
@@ -235,15 +263,17 @@ class Statistic extends AppModel
 		));
 		$articles = Hash::combine($articles, '{n}.Article.id', '{n}.Article.title');
 
-		$this->virtualFields['visits'] = 'COUNT(id)';
+		$this->virtualFields['visits'] = 'COUNT(`Statistic`.`id`)';
 		$statistic = $this->find('all', array(
 			'conditions' => array_merge(array(
 					'Statistic.pk' => array_keys($articles),
 					'Statistic.type' => self::TYPE_ARTICLE,
-					"Statistic.visitor_id <> $userId",
+					//This is not true way to count stats. All hits should be shown from all users including author.
+					//"Statistic.visitor_id <> $userId",
 				), $periodConditions),
 			'group' => 'Statistic.pk',
-			'fields' => array('Statistic.pk', 'Statistic.visits')
+			'fields' => array('Statistic.pk', 'Statistic.visits'),
+			'recursive' => -1
 		));
 		$statistic = Hash::combine($statistic, '{n}.Statistic.pk', '{n}.Statistic.visits');
 		$return = array(array('name', 'visits'));

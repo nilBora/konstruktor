@@ -53,7 +53,7 @@ class Cloud extends AppModel {
 	 * @param null $shared_id
 	 * @return array
 	 */
-	public function search($userId, $parent, $q, $sort = null, $shared_id = null) {
+	public function search($userId, $parent, $q, $sort = null, $shared_id = null, $dateFrom = null) {
         $this->loadModel('Share');
         if ($sort) {
             if ($sort == 'created') {
@@ -67,22 +67,20 @@ class Cloud extends AppModel {
         $parent_conditions = [];
         if($parent != 'shared') {
             if(isset($parent) && !is_numeric($parent)) {
-
                 if (is_numeric(base64_decode($parent))) {
-
                     $parent = base64_decode($parent);
-
                     $shared_by_link = $this->Share->sharedByLink($parent);
                     $cloudConditions = array(
                         'Cloud.parent_id' => !empty($shared_by_link) ? $shared_by_link : -1
                     );
-
                 }
 
                 $cloudConditions['Cloud.user_id'] = $userId;
+				if ($dateFrom) {
+					$cloudConditions['Cloud.created >='] = $dateFrom;
+				}
 
                 $clouds = $this->find('all', array('conditions' => $cloudConditions, 'order' => $cloudOrder));
-
                 $aCloud = null;
                 if(empty($clouds))
                     throw new NotFoundException();
@@ -98,6 +96,9 @@ class Cloud extends AppModel {
                     'Cloud.id' => $parent,
                     'Cloud.user_id' => $userId
                 );
+				if ($dateFrom) {
+					$cloudConditions['Cloud.created >='] = $dateFrom;
+				}
                 $clouds = $this->find('all', array('conditions' => $cloudConditions, 'order' => $cloudOrder));
                 $aCloud = $parent ? $this->find('first',
                     array('conditions' => $parent_conditions)) : null;
@@ -145,6 +146,9 @@ class Cloud extends AppModel {
             } else {
                 $order = 'Cloud.media_id, Cloud.created, Cloud.name';
             }
+			if ($dateFrom) {
+				$conditions['AND']['Share.created >='] = $dateFrom;
+			}
 
             $result = $this->Share->find('all', array(
                 'joins' => array(
@@ -179,6 +183,8 @@ class Cloud extends AppModel {
                 if(!is_null($cloud['Media']['id'])) {
                     $cloud['Media']['ext'] = str_replace('.', '', $cloud['Media']['ext']);
                     $cloud['Media']['url_preview'] = $this->getFilePreviewUrl($cloud['Media']['id']);
+					$cloud['Media']['converted'] = $this->getFileConverted($cloud['Media']['id']);
+					$cloud['Media']['size'] = ($cloud['Media']['media_type'] == 'image') ? $cloud['Media']['orig_w'] . 'x' . $cloud['Media']['orig_h'] : false;
                     $cloud['Cloud']['fileCount'] = $this->find('count', array(
                         'conditions' => array(
                             'Cloud.parent_id' => $cloud['Cloud']['id'],

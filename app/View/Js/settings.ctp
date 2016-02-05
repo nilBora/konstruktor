@@ -3,6 +3,7 @@ var articleURL = {
     panel: '<?=$this->Html->url(array('plugin'=> false, 'controller' => 'ArticleAjax', 'action' => 'panel'), true)?>',
     loadMore: '<?=$this->Html->url(array('plugin'=> false, 'controller' => 'ArticleAjax', 'action' => 'loadMore'), true)?>',
     saveArticle: '<?=$this->Html->url(array('plugin'=> false, 'controller' => 'ArticleAjax', 'action' => 'saveArticle'), true).'.json'?>',
+	articleFilter: '<?=$this->Html->url(array('plugin'=> false, 'controller' => 'ArticleAjax', 'action' => 'articleFilter'), true)?>',
 }
 
 //ChatAjax
@@ -53,8 +54,9 @@ var cloudURL = {
 	panelMove: '<?= $this->Html->url(array('plugin'=> false, 'controller' => 'CloudAjax', 'action' => 'panelMove'), true) ?>',
 	addFolder: '<?= $this->Html->url(array('plugin'=> false, 'controller' => 'CloudAjax', 'action' => 'addFolder'), true) ?>.json',
 	deActive: '<?= $this->Html->url(array('plugin'=> false, 'controller' => 'CloudAjax', 'action' => 'deActive'), true) ?>.json',
-  delFolder: '<?= $this->Html->url(array('plugin'=> false, 'controller' => 'CloudAjax', 'action' => 'delFolder'), true) ?>.json',
-	move: '<?= $this->Html->url(array('plugin'=> false, 'controller' => 'CloudAjax', 'action' => 'move'), true) ?>.json'
+  	delFolder: '<?= $this->Html->url(array('plugin'=> false, 'controller' => 'CloudAjax', 'action' => 'delFolder'), true) ?>.json',
+	move: '<?= $this->Html->url(array('plugin'=> false, 'controller' => 'CloudAjax', 'action' => 'move'), true) ?>.json',
+	cloudFilter: '<?= $this->Html->url(array('plugin'=> false, 'controller' => 'CloudAjax', 'action' => 'cloudFilter'), true) ?>'
 }
 
 //DeviceAjax

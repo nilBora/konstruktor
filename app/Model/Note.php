@@ -25,7 +25,7 @@ class Note extends AppModel {
 		)
 	);
 	//4й параметр уберем как только николай сделает редактор таблиц
-	public function search($currUserID, $parent, $q, $onlyText=false, $shared_id = null)
+	public function search($currUserID, $parent, $q, $onlyText=false, $shared_id = null, $dateFrom = null)
     {
         $this->loadModel('DocumentVersion');
         $this->loadModel('Share');
@@ -52,6 +52,9 @@ class Note extends AppModel {
             }
 
             $conditions['user_id'] = $currUserID;
+			if ($dateFrom) {
+				$conditions['Note.created >='] = $dateFrom;
+			}
             $order = 'Note.is_folder DESC, Note.created, Note.title';
             $aNotes = $this->find('all', compact('conditions', 'order'));
             $sharedDoc = $this->Share->DocumentSharedBy($currUserID);
@@ -83,6 +86,9 @@ class Note extends AppModel {
             $order = 'Cloud.media_id, Cloud.created, Cloud.name';
 
             $conditions['Note.parent_id'] = $shared_id;
+			if ($dateFrom) {
+				$conditions['AND']['Share.created >='] = $dateFrom;
+			}
 
             $results = $this->Share->find('all', array(
                 'joins' => array(

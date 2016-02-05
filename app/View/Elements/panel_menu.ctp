@@ -221,7 +221,7 @@
 				<div class="col-xs-6 search">
 					<div class="searchLine" style="width: 100%">
 						<span class="searchLine-box">
-                            <input type="search" id="searchInput" placeholder="<?=__('Search users, groups, articles').'...'?>">
+                            <input type="search" id="searchInput" placeholder="<?=__('Search users, groups, articles').'...'?>" value="<?php if (isset($search)) echo $search; ?>">
                             <span class="glyphicons search"></span>
                             <span id="returnMarkers" class="glyphicons unshare"></span>
                             <input type="hidden" id="controller-name" value="<?=$this->params['controller'];?>"/>
@@ -231,15 +231,6 @@
 
 					<div class="headerTimeline clearfix">
 					    <span class="ajax-loader" style="display: none;"><img src="../img/ajax_loader.gif" alt="" style="width: 20px; height: 20px;"> <?=__('Loading...')?></span>
-					    <!-- <div class="col-sm-6">
-					         <div id="breadcrumb" style="display: none;">
-					            <ol class="breadcrumb">
-					                <li><a href="#">Home</a></li>
-					                <li><a href="#">Library</a></li>
-					                <li class="active">Data</li>
-					            </ol>
-					        </div>
-					    </div> -->
 					    <div class="col-sm-12">
 							<?php if($this->request->controller == 'Statistic'): ?>
 								<div class="btn-group" id="statistic-period">
@@ -249,11 +240,11 @@
 									<button type="button" class="btn btn-default" data-value="year"><?= __('Year') ?></button>
 								</div>
 							<?php else: ?>
-								<div class="btn-group">
-									<button id="showDay" class="btn btn-default active" type="button"><span><?=__('Day')?></span></button>
-									<button id="showWeek" class="btn btn-default" type="button"><span><?=__('Week')?></span></button>
-									<button id="showMonth" class="btn btn-default" type="button"><span><?=__('Month')?></span></button>
-									<button id="showYear" class="btn btn-default" type="button"><span><?=__('Year')?></span></button>
+								<div class="btn-group filters-btn">
+									<button id="showDay" class="btn btn-default" type="button" data-filter="day"><span><?=__('Day')?></span></button>
+									<button id="showWeek" class="btn btn-default" type="button" data-filter="week"><span><?=__('Week')?></span></button>
+									<button id="showMonth" class="btn btn-default" type="button" data-filter="month"><span><?=__('Month')?></span></button>
+									<button id="showYear" class="btn btn-default" type="button" data-filter="year"><span><?=__('Year')?></span></button>
 								</div>
 							<?php endif ?>
 					    </div>
@@ -408,6 +399,24 @@
 			}"></script>
 
 <script type="text/javascript">
+	$(document).ready(function(){
+		var filter = location.href;
+		if (filter != '') {
+			if (filter.indexOf('day') + 1) {
+				$('#showDay').addClass('active');
+			}
+			if (filter.indexOf('week') + 1) {
+				$('#showWeek').addClass('active');
+			}
+			if (filter.indexOf('month') + 1) {
+				$('#showMonth').addClass('active');
+			}
+			if (filter.indexOf('year') + 1) {
+				$('#showYear').addClass('active');
+			}
+		}
+
+	});
 
 $(window).resize();
 
@@ -431,36 +440,7 @@ var controller = $('#controller-name').val();
 var action = $('#controller-action').val();
 
 if (controller != 'Timeline') {
-	if ( controller == 'Article' && (action == 'view' || action == 'edit') ) {
-		$('#header .searchLine .glyphicons.search').on('click', function() {
-			location.replace('/'+controller+'/all?search='+$('#searchInput').val());
-		});
-		$("body").keyup(function(event){
-			if ($('#searchInput').val() != '') {
-				if(event.keyCode == 13){
-					location.replace('/'+controller+'/all?search='+$('#searchInput').val());
-				}
-			}
-		});
-		$('body').on('click', '#returnMarkers', function(){
-			location.replace('/'+controller+'/all');
-		});
-
-	} else if ( controller == 'Article' && (action != 'view' || action != 'edit')) {
-		$('#header .searchLine .glyphicons.search').on('click', function() {
-			location.replace('/'+controller+'/'+action+'?search='+$('#searchInput').val());
-		});
-		$("body").keyup(function(event){
-			if ($('#searchInput').val() != '') {
-				if(event.keyCode == 13){
-					location.replace('/'+controller+'/'+action+'?search='+$('#searchInput').val());
-				}
-			}
-		});
-		$('body').on('click', '#returnMarkers', function(){
-			location.replace('/'+controller+'/'+action);
-		});
-	} else if ( controller == 'Cloud' && action == 'index' ) {
+	if ( controller == 'Cloud' && action == 'index' ) {
 		$('#header .searchLine .glyphicons.search').on('click', function() {
 			location.replace('/'+controller+'/'+action+'?search='+$('#searchInput').val());
 		});
@@ -504,24 +484,46 @@ if (controller != 'Timeline') {
 
 } else if ( controller == 'Timeline' && action == 'planet' ) {
 	$('#header .searchLine .glyphicons.search').on('click', function() {
+		$('.filters-btn').find('button').removeClass('active');
+		//Planet
 		_mapLoadPlanet();
 	});
 
 	$("body").keyup(function(event){
 		if ($('#searchInput').val() != '') {
+			$('.filters-btn').find('button').removeClass('active');
 			if(event.keyCode == 13){
+				//Planet
 				_mapLoadPlanet();
 			}
 		}
 	});
 
-//	var buttonTmpl = '<span id="returnMarkers" class="glyphicons unshare"></span>';
-//	$('.searchLine-box').append(buttonTmpl);
+	$('.filters-btn').on('click', 'button', function() {
+		var _this = $(this);
+		var filter = _this.data('filter');
+
+		if ( !_this.hasClass('active')) {
+			$('#searchInput').val('');
+			$('.filters-btn').find('button').removeClass('active');
+			_this.addClass('active');
+			//Planet
+			_setTimeFilters(filter);
+		}
+
+	});
 
 	$('body').on('click', '#returnMarkers', function(){
+		//Planet
 		_returnMarkersBack();
 		$(this).fadeOut(400);
+		$('.filters-btn').find('button').removeClass('active');
+
 	});
+} else if ( controller == 'Timeline' && action == 'index' ) {
+	$('#showDay').addClass('active');
+} else if ( controller == 'Article'  ) {
+
 }
 
 if (controller != 'Chat') {
@@ -535,4 +537,27 @@ if (controller != 'Chat') {
 			}
 	});
 }
+//Time Filters
+if ( controller == 'Cloud' && action == 'index' ) {
+	$('.filters-btn').on('click', 'button', function() {
+
+		var _this = $(this);
+		var filter = _this.data('filter');
+
+		if ( !_this.hasClass('active')) {
+			$('#searchInput').val('');
+			$('.filters-btn').find('button').removeClass('active');
+
+			if (location.pathname.indexOf('shared') + 1 ) {
+				location.replace('/'+controller+'/index/shared?filter='+filter);
+			} else {
+				location.replace('/'+controller+'/index?filter='+filter);
+			}
+
+			_this.addClass('active');
+		}
+
+	});
+}
+
 </script>

@@ -49,22 +49,28 @@ $(document).ready(function() {
 		var sort = '<?php echo $sort?>';
 		var top = $('#topSel').val();
 		var category = $('#categorySel').val();
+		var timeFilter = $('.filters-btn').find('button.active').data('filter') || null;
+		var search = $('#searchInput').val() || '';
 
-		if(sort=='date-down' && top=='all'){
+		if (sort=='date-down' && top=='all'){
 			var sortStr = '';
 			var topStr = '';
-		}else{
+		} else {
 			var sortStr = '/' + sort ;
 			if(top=='all'){
 				var topStr = '';
-			}else{
+			} else {
 				var topStr = '/' + top;
 			}
 		}
 
 		if(category>0){
 			var link = '/Article/category/' + category + sortStr + topStr;
-		}else{
+		} else if (timeFilter != null && search == '') {
+			var link = '/Article/timeFilter/' + timeFilter + '/'+ sortStr + topStr;
+		} else if (search != '') {
+			var link = '/Article/search/' + search + sortStr + topStr;
+		} else {
 			var link = '/Article/all' + sortStr + topStr;
 		}
 
@@ -73,6 +79,42 @@ $(document).ready(function() {
 
 	$('#topSel,#categorySel').on('change',function(){
 		window.location.href = getFilterLink();
+	});
+
+	//Time Filters
+	$('.filters-btn').on('click', 'button', function() {
+
+		var _this = $(this);
+		var filter = _this.data('filter');
+
+		if ( !_this.hasClass('active')) {
+			$('.filters-btn').find('button').removeClass('active');
+			_this.addClass('active');
+			window.location.href = getFilterLink();
+		}
+
+	});
+	//Search
+	$('#header .searchLine .glyphicons.search').on('click', function() {
+		window.location.href = getFilterLink();
+	});
+	//Search Enter key press
+	$("body").keyup(function(event){
+		if ($('#searchInput').val() != '') {
+			if(event.keyCode == 13){
+				window.location.href = getFilterLink();
+			}
+		}
+	});
+
+	var timeFilterReturn = $('.filters-btn').find('button.active').data('filter') || '';
+	var searchReturn = $('#searchInput').val() || '';
+	if (timeFilterReturn.length || searchReturn.length) {
+		$('#returnMarkers').fadeIn(400);
+	}
+
+	$('body').on('click', '#returnMarkers', function(){
+		location.replace('/Article/all');
 	});
 
 	<?php if($top == 'all'): ?>
@@ -145,8 +187,8 @@ $(document).ready(function() {
 								$('.stylingArticlesGrid .grid').append( $(html[loop.iteration()])).isotope( 'appended', $(html[loop.iteration()]));
 								loop.next();
 							}
-							
-							
+
+
 						});
 
 						setTimeout(function () {
@@ -169,11 +211,14 @@ $(document).mouseup(function(e) {
         div.siblings('.toggleBtnSort').removeClass('active');
     }
 });
+
+
 </script>
 
 <style>#map-load{position:absolute;top:0;right:0;bottom:0;left:0;display:none;width:60px;height:46px;margin:auto;-ms-transform:translateY(-80px);transform:translateY(-80px);pointer-events:none;opacity:.6}#map-load:before{content:'';position:absolute;top:50%;left:50%;width:94px;height:94px;margin:-17px 0 0 -48px;border:3px solid #777;border-radius:200px;background-color:#fff}.cssload-thecube,.cssload-thecube .cssload-cube{-webkit-transform:rotateZ(45deg);-moz-transform:rotateZ(45deg);-ms-transform:rotateZ(45deg);position:relative}.map-loading #map-load{display:block}.cssload-thecube{width:45px;height:45px;margin:30px auto 0;-o-transform:rotateZ(45deg);transform:rotateZ(45deg)}.cssload-thecube .cssload-cube{transform:rotateZ(45deg);border:1px solid #fff;float:left;width:50%;height:50%;-webkit-transform:scale(1.1);-moz-transform:scale(1.1);-ms-transform:scale(1.1);-o-transform:scale(1.1);transform:scale(1.1)}.cssload-thecube .cssload-cube:before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;-webkit-transform-origin:100% 100%;-moz-transform-origin:100% 100%;-ms-transform-origin:100% 100%;-o-transform-origin:100% 100%;transform-origin:100% 100%;-webkit-animation:cssload-fold-thecube 1.32s infinite linear both;-moz-animation:cssload-fold-thecube 1.32s infinite linear both;-ms-animation:cssload-fold-thecube 1.32s infinite linear both;-o-animation:cssload-fold-thecube 1.32s infinite linear both;animation:cssload-fold-thecube 1.32s infinite linear both;background-color:#777}.cssload-thecube .cssload-c2{-webkit-transform:scale(1.1) rotateZ(90deg);-moz-transform:scale(1.1) rotateZ(90deg);-ms-transform:scale(1.1) rotateZ(90deg);-o-transform:scale(1.1) rotateZ(90deg);transform:scale(1.1) rotateZ(90deg)}.cssload-thecube .cssload-c3{-webkit-transform:scale(1.1) rotateZ(180deg);-moz-transform:scale(1.1) rotateZ(180deg);-ms-transform:scale(1.1) rotateZ(180deg);-o-transform:scale(1.1) rotateZ(180deg);transform:scale(1.1) rotateZ(180deg)}.cssload-thecube .cssload-c4{-webkit-transform:scale(1.1) rotateZ(270deg);-moz-transform:scale(1.1) rotateZ(270deg);-ms-transform:scale(1.1) rotateZ(270deg);-o-transform:scale(1.1) rotateZ(270deg);transform:scale(1.1) rotateZ(270deg)}.cssload-thecube .cssload-c2:before{-webkit-animation-delay:.165s;-moz-animation-delay:.165s;-ms-animation-delay:.165s;-o-animation-delay:.165s;animation-delay:.165s}.cssload-thecube .cssload-c3:before{-webkit-animation-delay:.33s;-moz-animation-delay:.33s;-ms-animation-delay:.33s;-o-animation-delay:.33s;animation-delay:.33s}.cssload-thecube .cssload-c4:before{-webkit-animation-delay:.495s;-moz-animation-delay:.495s;-ms-animation-delay:.495s;-o-animation-delay:.495s;animation-delay:.495s}@keyframes cssload-fold-thecube{0%,10%{transform:perspective(84px) rotateX(-180deg);opacity:0}25%,75%{transform:perspective(84px) rotateX(0);opacity:1}100%,90%{transform:perspective(84px) rotateY(180deg);opacity:0}}
 </style>
 
+<input type="hidden" id="timeFilter" value="<?php if (isset($timeFilter)) echo $timeFilter;?>"/>
 <div class="headerControls">
 	<div class="wrapperSelects">
 		<div>

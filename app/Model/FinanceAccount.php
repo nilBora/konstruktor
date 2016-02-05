@@ -170,7 +170,7 @@ class FinanceAccount extends AppModel {
 		return $return;
 	}
 
-	public function fullIncome($accountId, $from = null, $to = null) {
+	public function fullIncome($accountId, $from = null, $to = null, $to2 = null) {
 		$this->loadModel('FinanceOperation');
 		$this->FinanceOperation->virtualFields['result'] = 'SUM(FinanceOperation.amount)';
 		$conditions = array(
@@ -178,10 +178,13 @@ class FinanceAccount extends AppModel {
 			'FinanceOperation.type' => FinanceOperation::TYPE_INCOME,
 		);
 		if ($from) {
-			$conditions[] = "FinanceOperation.created >= '$from'";
+			$conditions[] = "UNIX_TIMESTAMP(FinanceOperation.created) >= '$from'";
 		}
 		if ($to) {
 			$conditions[] = "FinanceOperation.created <= DATE_ADD('$to', INTERVAL 24 HOUR)";
+		}
+		if ($to2) {
+			$conditions[] = "UNIX_TIMESTAMP(FinanceOperation.created) < '$to2'";
 		}
 		$result = $this->FinanceOperation->find('all', array(
 			'conditions' => $conditions,
@@ -193,7 +196,7 @@ class FinanceAccount extends AppModel {
 		}
 	}
 
-	public function fullExpense($accountId, $from = null, $to = null) {
+	public function fullExpense($accountId, $from = null, $to = null, $to2 = null) {
 		$this->loadModel('FinanceOperation');
 		$this->FinanceOperation->virtualFields['result'] = '-SUM(FinanceOperation.amount)';
 		$conditions = array(
@@ -206,11 +209,16 @@ class FinanceAccount extends AppModel {
 		if ($to) {
 			$conditions[] = "FinanceOperation.created <= DATE_ADD('$to', INTERVAL 24 HOUR)";
 		}
+		if($to2) {
+			$conditions[] = "UNIX_TIMESTAMP(FinanceOperation.created) < '$to2'";
+		}
+
 		$result = $this->FinanceOperation->find('all', array(
 			'conditions' => $conditions,
 			'group' => array('FinanceOperation.account_id'),
 			'fields' => array('FinanceOperation.result'),
 		));
+
 		if (!empty($result)) {
 			return $result[0][0]['FinanceOperation__result'];
 		}

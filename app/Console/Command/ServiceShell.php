@@ -41,11 +41,30 @@ class ServiceShell extends AppShell {
 				'help' => __d('cake_console', 'Set db config <config>. Uses \'default\' if none is specified.')
 			))->addSubcommand('ratings', array(
 				'help' => __d('cake_console', 'Update ratings for all users and groups'),
-			))->addSubcommand('merry_christmas_card', array(
-				'help' => __d('cake_console', '2015 christmas card'),
+			))->addSubcommand('recount_articles', array(
+				'help' => __d('cake_console', 'Recount articles hits'),
 			))
 		;
 		return $parser;
+	}
+
+	public function recount_articles(){
+		$this->loadModel('Article');
+		$this->loadModel('Statistic');
+		$articles = $this->Article->find('list');
+		foreach($articles as $id=>$title){
+			$this->Statistic->create();
+			$data = array('Statistic' => array(
+				'pk' => $id,
+				'type' => 1,
+				'created' => date('Y-m-d H:i:s'),
+				'visitor_id' => 1,
+			));
+			if($this->Statistic->save($data)){
+				$this->out('Count for article '.$id.' updated');
+				$this->Statistic->delete($this->Statistic->getLastInsertId());
+			}
+		}
 	}
 
 	public function ratings(){

@@ -52,7 +52,7 @@
 <?
 		foreach($aContainer as $container) {
 ?>
-			<div class="col-sm-4">
+			<div class="col-sm-4 articleColumn">
 				<?=$container?>
 			</div>
 <?

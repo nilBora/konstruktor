@@ -124,12 +124,13 @@ class FinanceBudgetController extends FinanceController {
 		$financeAccountFull = Hash::combine($financeAccountFull, '{n}.FinanceAccount.id', '{n}');
 
 		//echo strtotime('+1 month', strtotime($fromMonth));
-		foreach($taskFull as $key=>$item) {
-			$taskFull[$key]['Task']['fullExpense_m1'] = $this->FinanceAccount->fullExpense($item['CrmTask']['account_id'],strtotime($fromMonth));
-			$taskFull[$key]['Task']['fullIncome_m1'] = $this->FinanceAccount->fullIncome($item['CrmTask']['account_id'], strtotime($fromMonth));
 
-			$taskFull[$key]['Task']['fullExpense_m2'] = $this->FinanceAccount->fullExpense($item['CrmTask']['account_id'],strtotime('+1 month', strtotime($fromMonth)));
-			$taskFull[$key]['Task']['fullIncome_m2'] = $this->FinanceAccount->fullIncome($item['CrmTask']['account_id'], strtotime('+1 month', strtotime($fromMonth)));
+		foreach($taskFull as $key=>$item) {
+			$taskFull[$key]['Task']['fullExpense_m1'] = $this->FinanceAccount->fullExpense($item['CrmTask']['account_id'],strtotime($fromMonth), null, strtotime('+1 month', strtotime($fromMonth)));
+			$taskFull[$key]['Task']['fullIncome_m1'] = $this->FinanceAccount->fullIncome($item['CrmTask']['account_id'], strtotime($fromMonth), null, strtotime('+1 month', strtotime($fromMonth)));
+
+			$taskFull[$key]['Task']['fullExpense_m2'] = $this->FinanceAccount->fullExpense($item['CrmTask']['account_id'],strtotime('+1 month', strtotime($fromMonth)), null, strtotime('+2 month', strtotime($fromMonth)));
+			$taskFull[$key]['Task']['fullIncome_m2'] = $this->FinanceAccount->fullIncome($item['CrmTask']['account_id'], strtotime('+1 month', strtotime($fromMonth)), null, strtotime('+2 month', strtotime($fromMonth)));
 		}
 
 		$this->set('financeAccountFull', $financeAccountFull);

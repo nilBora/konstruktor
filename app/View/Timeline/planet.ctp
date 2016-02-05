@@ -399,6 +399,7 @@
 	}]];
 
 	var search = null;
+	var timeFilter = null;
 
 /*------  map_functions  ------*/
 
@@ -531,6 +532,11 @@
 			if(search != null && search != '') {
 				_clearWhenSearch();
 				$('#returnMarkers').fadeIn(400);
+				timeFilter = null;
+			}
+			if (timeFilter != null) {
+				_clearWhenSearch();
+				$('#returnMarkers').fadeIn(400);
 			}
 			if (MapRequest) {
 				console.log('==> AJAX');
@@ -542,7 +548,8 @@
 						location: MapInstance.boundsRect,
 						userKeys: MapInstance.usersArray,
 						eventKeys: MapInstance.eventsArray,
-						search: search
+						search: search,
+						timeFilter: timeFilter
 					},
 					global: false,
 					ifModified: true,
@@ -895,6 +902,7 @@
 			_panelCheckEventElement();
 			if (MapWriteResults) {
 				_setOldMarkers(MapInstance.markerUsers, MapInstance.markerEvents, MapInstance.markerGroups, MapInstance.markerInvests, MapInstance.markerEventsExternal);
+				_setOldRemembers(MapInstance.rememberedUsers, MapInstance.rememberedEvents, MapInstance.rememberedEventsExternal, MapInstance.rememberedGroups, MapInstance.rememberedInvests);
 				MapWriteResults = false;
 			}
 			_mapPlaceMarkers(MapInstance.markerUsers.concat(MapInstance.markerEvents).concat(MapInstance.markerGroups).concat(MapInstance.markerInvests).concat(MapInstance.markerEventsExternal));
@@ -1543,21 +1551,11 @@
 			} else {
 				return false;
 			}
-		};
+		},
 
 		_clearWhenSearch = function() {
 			$('#searchInput').val('');
-			//Rememmber data from old result
-			MapInstance.rememberedUsersOld = MapInstance.rememberedUsers;
-			MapInstance.rememberedEventsOld = MapInstance.rememberedEvents;
-			MapInstance.rememberedEventsExternalOld = MapInstance.rememberedEventsExternal;
-			MapInstance.rememberedGroupsOld = MapInstance.rememberedGroups;
-			MapInstance.rememberedInvestsOld = MapInstance.rememberedInvests;
-//			MapInstance.markerUsersOld = MapInstance.markerUsers;
-//			MapInstance.markerEventsOld = MapInstance.markerEvents;
-//			MapInstance.markerGroupsOld =  MapInstance.markerGroups;
-//			MapInstance.markerInvestsOld = MapInstance.markerInvests;
-//			MapInstance.markerEventsExternalOld = MapInstance.markerEventsExternal;
+
 			//clear results
 			MapInstance.rememberedUsers = {};
 			MapInstance.rememberedEvents = {};
@@ -1570,10 +1568,11 @@
 			$(MapConfig.idPanelEventsExternal).show();
 			$(MapConfig.idPanelGroups).show();
 			$(MapConfig.idPanelInvests).show();
-			console.log(MapInstance);
+
 		};
 
 		_returnMarkersBack = function() {
+			timeFilter = null;
 			markerUserClusterer.clearMarkers();
 			//Take data from old result
 			MapInstance.rememberedUsers = MapInstance.rememberedUsersOld;
@@ -1588,21 +1587,30 @@
 			MapInstance.markerInvests = MapInstance.markerInvestsOld;
 			MapInstance.markerEventsExternal = MapInstance.markerEventsExternalOld;
 
-//			$(MapConfig.idPanelEventsExternal).fadeOut(400);
-//			$(MapConfig.idPanelGroups).fadeOut(400);
-//			$(MapConfig.idPanelInvests).fadeOut(400);
-
 			_panelInitSearch(true);
-//			_panelCheckEventElement();
+			_panelCheckEventElement();
 			_mapPlaceMarkers(MapInstance.markerUsersOld.concat(MapInstance.markerEventsOld).concat(MapInstance.markerGroupsOld).concat(MapInstance.markerInvestsOld).concat(MapInstance.markerEventsExternalOld));
 		};
 
-		_setOldMarkers  = function(markerUsers, markerEvents, markerGroups, markerInvests, markerEventsExternal) {
+		_setOldMarkers = function(markerUsers, markerEvents, markerGroups, markerInvests, markerEventsExternal) {
 			MapInstance.markerUsersOld = markerUsers;
 			MapInstance.markerEventsOld = markerEvents;
 			MapInstance.markerGroupsOld =  markerGroups;
 			MapInstance.markerInvestsOld = markerInvests;
 			MapInstance.markerEventsExternalOld = markerEventsExternal;
+		};
+		//Remember data from old result
+		_setOldRemembers = function(rememberedUsers, rememberedEvents, rememberedEventsExternal, rememberedGroups, rememberedInvests) {
+			MapInstance.rememberedUsersOld = rememberedUsers;
+			MapInstance.rememberedEventsOld = rememberedEvents;
+			MapInstance.rememberedGroupsOld =  rememberedGroups;
+			MapInstance.rememberedInvestsOld = rememberedInvests;
+			MapInstance.rememberedEventsExternalOld = rememberedEventsExternal;
+		};
+
+		_setTimeFilters  = function(filter) {
+			timeFilter = filter;
+			_mapLoadPlanet();
 		};
 
 
