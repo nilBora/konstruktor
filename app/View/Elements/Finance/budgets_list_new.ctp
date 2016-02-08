@@ -60,8 +60,8 @@ $monthNames = array(
 	</span>
         <span class="value"></span>
         <span class="value"></span>
-        <span class="value" style="position: relative; left: -60px;"><?= $monthNames[1] ?>, <?= date('Y', strtotime($month1)) ?></span>
-        <span class="value" style="position: relative; left: -60px;"><?= $monthNames[2] ?>, <?= date('Y', strtotime($month2)) ?></span>
+        <span class="value" style="position: relative; left: -60px; top: 90px;"><?= $monthNames[1] ?>, <?= date('Y', strtotime($month1)) ?></span>
+        <span class="value" style="position: relative; left: -60px; top: 90px;"><?= $monthNames[2] ?>, <?= date('Y', strtotime($month2)) ?></span>
         <div class="rightButtons" style="padding-top: 10px;">
             <div class="dateTime date" id="finance-report-filter-fromMonth">
                 <span class="add-on"><i class="icon-th glyphicons calendar"></i></span>

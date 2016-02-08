@@ -26,7 +26,7 @@ class BillingUserController extends BillingAppController {
 		));
 		//maybe buggy
 		foreach($subscriptions as $key=>$subscription){
-			if($subscription['BraintreeSubscription']->status == 'Canceled'){
+			if(isset($subscription['BraintreeSubscription']->status) && $subscription['BraintreeSubscription']->status == 'Canceled'){
 				unset($subscriptions[$key]);
 				$sameGroupCount = Hash::extract($subscriptions, "{n}.BillingSubscription[group_id=".$subscription['BillingSubscription']['group_id']."]");
 				if(count($sameGroupCount) > 0){
