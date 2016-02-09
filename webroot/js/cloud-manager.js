@@ -71,8 +71,7 @@ $(document).ready(function () {
     });
 
     // select file or folder
-
-    $('.foldersAndFiles .item:not(".shared-folder")').on('click', function (e) {
+    $('.foldersAndFiles').on('click', '.item:not(".shared-folder")', function (e) {
 
         $(this).toggleClass('active');
 

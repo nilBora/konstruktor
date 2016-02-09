@@ -162,18 +162,7 @@ tinymce.PluginManager.add('media', function(editor, url) {
 		win = editor.windowManager.open({
 			title: 'Insert/edit video',
 			data: data,
-			bodyType: 'tabpanel',
-			body: [
-				{
-					title: 'General',
-					type: "form",
-					onShowTab: function() {
-						data = htmlToData(this.next().find('#embed').value());
-						this.fromJSON(data);
-					},
-					items: generalFormItems
-				},
-
+			body:
 				{
 					title: 'Embed',
 					type: "container",
@@ -193,8 +182,7 @@ tinymce.PluginManager.add('media', function(editor, url) {
 						},
 						embedTextBox
 					]
-				}
-			],
+				},
 			onSubmit: function() {
 				var beforeObjects, afterObjects, i, y;
 

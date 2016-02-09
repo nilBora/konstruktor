@@ -341,7 +341,7 @@ div.btn.loadBtn img{ display: none }
 .popover .arrow { display: none;}
 
 .chat-dialogs {
-    margin-top: 140px;
+    /*margin-top: 140px;*/
 }
 
 @media (max-width: 1024px) {

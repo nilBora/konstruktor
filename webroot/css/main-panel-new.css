@@ -75,7 +75,7 @@
 }
 
 #header .col-xs-3 {
-    padding: 0;
+    /*padding: 0;*/
 }
 
 #header .userLink {
@@ -83,7 +83,7 @@
     width: 56px;
     max-width: 56px;
     height: 56px;
-    margin: 24px 20px 24px 24px;
+    margin: 24px 20px 24px 9px;
     float: left;
     position: relative;
 }
@@ -123,18 +123,18 @@
 
 /*
 #header .searchLine #searchInput {
-	height: 30px;
-	width: calc(100% - 100px);
-	margin-top: 9px;
-	margin-left: 50px;
-	border-style: solid;
-	border-width: 0 0 1px 0;
-	border-color: #818181;
-	border-radius: 0;
-	outline: none;
-	font-family: "Roboto", sans-serif;
-	font-size: 15px;
-	line-height: 30px;
+    height: 30px;
+    width: calc(100% - 100px);
+    margin-top: 9px;
+    margin-left: 50px;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: #818181;
+    border-radius: 0;
+    outline: none;
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+    line-height: 30px;
 }*/
 
 #header .searchLine #searchInput {
@@ -156,7 +156,8 @@
 
 #header .searchLine .glyphicons {
     position: absolute;
-	right: 0;
+    right: 0;
+    top: 0;
     font-size: 20px;
     color: #999;
     cursor: pointer;
@@ -168,7 +169,7 @@
 
 #header .searchLine .glyphicons:before {
     position: absolute;
-    top: 16px;
+    top: 0px;
     right: 0px;
     left: auto;
     z-index: 10;
@@ -182,22 +183,18 @@
 #header .addPanel .menu-btn {
     position: relative;
     box-sizing: border-box;
-    width: 80px;
     height: 65px;
     font-size: 32px;
     text-align: center;
     float: left;
     color: #818181;
     text-decoration: none;
-}
-
-#header .addPanel .menu-btn.articles {
-    width: 60px;
-    margin-right: 10px;
+    margin-right: 20px;
+    width: 50px;
 }
 
 #header .addPanel .menu-btn.cloud {
-    margin-right: 5px;
+    margin-right: 0px;
 }
 
 #header .addPanel .menu-btn .caption {
@@ -245,6 +242,10 @@
     line-height: 24px;
 }
 
+.btn-group > button {
+    width: 50px;
+}
+
 .menu-wrapper .companyLink {
     display: inline-block;
     height: 60px;
@@ -258,7 +259,7 @@
 }
 
 .menu-wrapper .companyLink a .text {
-    font-family: 'Open Sans';
+    font-family: 'PT Sans', sans-serif;
     font-size: 13px;
     margin-top: 6px;
     text-align: center;
@@ -284,10 +285,10 @@
 }
 
 #header .btn-group .btn-default span {
-	position: absolute;
-	left: 0;
-	top: 4px;
-	width: 100%;
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 100%;
 }
 
 #header .btn-group .btn-default.active,
@@ -323,17 +324,13 @@
 }
 
 @media (max-width: 991px) {
-	#header .searchLine #searchInput {
-		max-width: 280px;
-		width: 100%;
-	}
-	#header .addPanel .menu-btn .cloud {
-		font-size: inherit;
-	}
-
-	#header .addPanel .menu-btn.articles {
-		width: 40px;
-	}
+    #header .searchLine #searchInput {
+        max-width: 280px;
+        width: 100%;
+    }
+    #header .addPanel .menu-btn .cloud {
+        font-size: inherit;
+    }
 }
 
 #header .myLinks {
@@ -341,7 +338,7 @@
     float: left;
     position: relative;
     margin-top: 10px;
-    display: none;
+    display: block;
 }
 
 #header .myLinks img.group-logo {
@@ -506,10 +503,9 @@
 }
 
 @media (max-width: 768px) {
-	#header .col-xs-3.chart .myLinks{
-		display: none;
-	}
-
+    #header .col-xs-3.chart .myLinks {
+        display: none;
+    }
 }
 
 
@@ -559,6 +555,7 @@
 
 #menu .menu-wrapper .planet span {
     font-size: 11px;
+    font-family: 'PT Sans', sans-serif;
     color: #999999;
     text-decoration: none;
     white-space: nowrap;
@@ -573,7 +570,7 @@
 .logo-konstruktor {
     display: block;
     position: fixed;
-    right: 30px;
+    right:25px;
     bottom: 35px;
     width: 70px;
     z-index: 100;
@@ -591,18 +588,15 @@
 /* ----- Chat BTN ----- */
 
 #chatLink {
-	width: 40px;
-	height: 65px;
-	font-size: 30px;
-	text-align: center;
-	z-index: 100;
-	cursor: pointer;
-	color: #818181;
-	position: relative;
-	float: left;
-	right: 31px;
+    height: 65px;
+    font-size: 30px;
+    text-align: center;
+    z-index: 100;
+    cursor: pointer;
+    color: #818181;
+    position: relative;
+    float: left;
 }
-
 
 #chatLink .caption {
     width: 100%;
@@ -651,24 +645,24 @@
 
 /*
 [id*="_layout_container"] li {
-	border: 0px solid white!important;
+    border: 0px solid white!important;
 }
 
 [id*="_layout_container"] {
-	box-shadow: 0 0 20px 0 rgba(0, 0, 0, .35);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, .35);
 }
 
 .noty_type_alert .noty_message {
-	color: white;
-	background: #00B6AF;
-	font-family: 'Open Sans';
-	font-size: 14px;
-	font-weight: 600;
+    color: white;
+    background: #00B6AF;
+    font-family: 'Open Sans';
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .noty_type_alert .noty_buttons {
-	border: 0px solid white!important;
-	font-family: 'Open Sans';
+    border: 0px solid white!important;
+    font-family: 'Open Sans';
 }
 */
 
@@ -933,55 +927,137 @@
     left: 14px;
 }
 
-
-#header .addPanel #chatLink, #header .addPanel .menu-btn {
-	display: none;
-}
-
-@media(min-width: 768px) {
-	#header .addPanel #chatLink,#header .addPanel .menu-btn {
-		display: block;
-	}
+#header .addPanel #chatLink,
+#header .addPanel .menu-btn {
+    display: block;
 }
 
 @media (min-width: 992px) {
-	#chatLink {
-		width: 60px;
-		height: 65px;
-		float: left;
-		right: 21px;
-	}
-	#chatLink .caption {
-		display: block;
-	}
-	.btn-group > button {
-		width: 50px;
-	}
-	.headerTimeline .btn-group {
-		padding-left: 35px;
-	}
-	#header .myLinks {
-		width: 140px;
-		display: block;
-	}
+    #chatLink {
+        height: 65px;
+        float: left;
+    }
+    #chatLink .caption {
+        display: block;
+    }
+    .headerTimeline .btn-group {
+        padding-left: 35px;
+    }
 }
 
 @media (min-width: 1200px) {
-	#header .col-xs-3.chart .myLinks{
-		display: block;
-	}
-
+    #header .col-xs-3.chart .myLinks {
+        display: block;
+    }
 }
+
+
 /*special for header .myLinks*/
-@media (min-width: 1270px) {
-	#header .myLinks {
-		width: 200px;
 
-	}
+@media (min-width: 1270px) {
+    #header .myLinks {
+        width: 200px;
+    }
 }
+
+
 /*end*/
+
 .user-list-windpw-minimize .user-list {
     height: 100px;
 }
 
-#header #returnMarkers{	width: 25px;right: -35px;display: none;	font-size: 26px;}
+#header #returnMarkers {
+    width: 25px;
+    right: -35px;
+    display: none;
+    font-size: 26px;
+}
+
+/**/
+
+.mobile-nav {
+    display: none;
+    width: 60px;
+    height: 60px;
+    margin: 28px 0px 0;
+    float: right;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+}
+
+.mobile-nav:hover {
+    opacity: 1;
+}
+
+.mobile-nav svg {
+    width: 40px;
+    height: 40px;
+    fill: #818181;
+}
+
+@media (max-width: 992px) {
+    #header .myLinks {
+        display: none;
+    }
+
+    #header .chart {
+        width: 15%;
+    }
+
+    #header .search {
+        width: 55%;
+    }
+
+    #header .additional {
+        width: 30%;
+    }
+}
+
+@media (max-width: 767px) {
+    .chat-window.ui-draggable,
+    .openchat {
+        display: none !important;
+    }
+
+    #header .addPanel #chatLink,
+    #header .addPanel .menu-btn {
+        display: none;
+    }
+
+    .mobile-nav {
+        display: block;
+    }
+
+    #menu {
+        display: none;
+    }
+
+    .logo-konstruktor {
+        display: none;
+    }
+
+    #header .chart {
+        display: none;
+    }
+
+    #header .search {
+        width: 80%;
+    }
+
+    #header .searchLine {
+        /*margin-top: 0;*/
+    }
+
+    #header .additional {
+        width: 20%;
+    }
+
+    #header .searchLine #searchInput {
+        max-width: 100%;
+    }
+
+    .headerTimeline {
+        margin: 0 0 20px 0;
+    }
+}

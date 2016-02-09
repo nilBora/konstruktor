@@ -147,9 +147,9 @@
     border: none;
 }
 
-.headerTimeline .btn-group {
-    margin-right: 5px !important;
-}
+/*.headerTimeline .btn-group {*/
+    /*margin-right: 5px !important;*/
+/*}*/
 
 .chat-jq-file input.fileuploader {
     position: absolute;
@@ -246,13 +246,14 @@
     /*float: right;*/
     cursor: pointer;
     position: absolute;
-    width: 64px;
-    height: 64px;
+    width: 58px;
+    height: 57px;
     right: 9px;
     bottom: -68px;
-    background-image: url(/img/panel/smile.png);
+    background-image: url(/img/panel/smile_pic.png);
     background-size: 100%;
     background-position: 0 0;
+    background-repeat: no-repeat;
 }
 
 .openchat:before {
@@ -266,7 +267,7 @@
     color: #b1b1b1;
     font-weight: bold;
     bottom: -30px;
-    left: 22px;
+    left: 25px;
     transition: .5s all linear;
 }
 
