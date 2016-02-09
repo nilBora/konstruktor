@@ -256,21 +256,21 @@ class ArticleAjaxController extends PAjaxController {
     }
 
     /**
-     * Load more articles
+     * Delete Folder
      */
     public function loadMore() {
-		$this->layout = 'ajax';
-		$page = $this->request->data('page');
-		$published = $this->request->data('published') ? $this->request->data('published') : 0;
-		$subscription = $this->request->data('subscriptions') ? $this->request->data('subscriptions') : 0;
-		$category = $this->request->data('category') ? $this->request->data('category') : 0;
-
+        $this->layout = 'ajax';
+        $page = $this->request->data('page');
+        $published = $this->request->data('published') ? $this->request->data('published') : 0;
+        $subscription = $this->request->data('subscriptions') ? $this->request->data('subscriptions') : 0;
+        $category = $this->request->data('category') ? $this->request->data('category') : 0;
+		$notArticleTop = $this->request->data('not') ? json_decode($this->request->data('not')) : 0;
 		$sort = $this->request->data('sort') ? $this->request->data('sort') : 0;
 		$sortArr = ['date-up'=>'Article.created ASC','date-down'=>'Article.created DESC','hits-down'=>'Article.hits DESC','hits-up'=>'Article.hits ASC'];
 		if(in_array($sort,array_keys($sortArr))){
-			$order = $sortArr[$sort];
+			$order = $sortArr[$sort].', Article.id';
 		}else{
-			$order = 'Article.created DESC';
+			$order = 'Article.created DESC, Article.id';
 		}
 
 		$conditions = array();
@@ -278,13 +278,13 @@ class ArticleAjaxController extends PAjaxController {
             $this->loadModel('Subscription');
             $this->loadModel('User');
 
-			$aSubscriptions = $this->Subscription->findAllBySubscriberIdAndType($this->currUserID, 'group');
-			$GID = Hash::extract($aSubscriptions, '{n}.Subscription.object_id');
+            $aSubscriptions = $this->Subscription->findAllBySubscriberIdAndType($this->currUserID, 'group');
+            $GID = Hash::extract($aSubscriptions, '{n}.Subscription.object_id');
 
-			$aSubscriptions = $this->Subscription->findAllBySubscriberIdAndType($this->currUserID, 'user');
-			$UID = Hash::extract($aSubscriptions, '{n}.Subscription.object_id');
+            $aSubscriptions = $this->Subscription->findAllBySubscriberIdAndType($this->currUserID, 'user');
+            $UID = Hash::extract($aSubscriptions, '{n}.Subscription.object_id');
 
-			$conditions = array('OR' => array(
+            $conditions = array('OR' => array(
                 array(
                     'group_id' => $GID,
                     'published' => 1,
@@ -297,14 +297,15 @@ class ArticleAjaxController extends PAjaxController {
                     'deleted' => 0
                 )
             ));
-		}
-
-		$order = 'Article.created DESC';
+        }
 
         $conditions['Article.deleted'] = 0;
         $conditions['Article.title !='] = '';
-        if($published) $conditions['Article.published'] = 1;
+
+		if($published) $conditions['Article.published'] = 1;
         if($category) $conditions['Article.cat_id'] = $category;
+        if($notArticleTop) $conditions['Article.id NOT'] = $notArticleTop;
+
         $limit = '16';
 
 		$fields = [ 'Article.id',
@@ -340,7 +341,6 @@ class ArticleAjaxController extends PAjaxController {
 		);
 
         $aArticles = $this->Article->find('all', compact('conditions', 'order', 'limit', 'page','fields' ,'joins'));
-
         $aUsers = array();
         if($aArticles) {
             $aID = Hash::extract($aArticles, '{n}.Article.owner_id');
@@ -483,25 +483,4 @@ class ArticleAjaxController extends PAjaxController {
             ->send();
         $this->setResponse('success');
     }
-
-	/**
-	 * Filter for articles
-	 * receive str - day, week, month, year
-	 */
-	private function articleFilter($filter)
-	{
-		switch ($filter) {
-			case 'day':
-				$last = time(); break;
-			case 'week':
-				$last = time() - (7 * 24 * 60 * 60);    break;
-			case 'month':
-				$last = time() - (30 * 24 * 60 * 60);   break;
-			case 'year':
-				$last = time() - (365 * 24 * 60 * 60);  break;
-		}
-		$dateFrom = date('Y-m-d', $last);
-
-		return $dateFrom;
-	}
 }

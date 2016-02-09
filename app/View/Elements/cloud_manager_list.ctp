@@ -165,7 +165,7 @@
 				</a>
 			<?php elseif( $cloud['Media']['media_type'] != 'video') :?>
 					<a href="javascript:void(0)" class="item" data-url="<?= checkFullUrl($cloud['Media']['url_preview']) ?>"
-				   data-id="<?= $cloud['Cloud']['id'] ?>" data-type="file" data-media="<?php echo ($cloud['Media']['media_type'] == 'image') ? $cloud['Media']['url_download'] : 'false';?>" data-size="<?php echo $cloud['Media']['size'] ?>">
+				   data-id="<?= $cloud['Cloud']['id'] ?>" data-type="file" data-media="<?php echo ($cloud['Media']['media_type'] == 'image') ? $cloud['Media']['url_download'] : 'false';?>" data-size="<?php echo isset($cloud['Media']['size']) ? $cloud['Media']['size'] : '';  ?>">
 						<span class="<?= $class ?>">
 							<?php if( $cloud['Media']['media_type'] == 'image' ): ?>
 								<img src="<?php echo $cloud['Media']['url_download']; ?>" class="shared shared-file" />

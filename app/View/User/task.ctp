@@ -26,7 +26,7 @@
 		'tinyPlugins/code/plugin.min.js',
 		'tinyPlugins/fullscreen/plugin.min.js',
 		'tinyPlugins/insertdatetime/plugin.min.js',
-		'tinyPlugins/media/plugin.min.js',
+		'tinyPlugins/media/plugin.js',
 		'tinyPlugins/table/plugin.min.js',
 		'tinyPlugins/contextmenu/plugin.min.js',
 		'tinyPlugins/paste/plugin.min.js',
@@ -260,6 +260,17 @@
 	.task-description-page .task-content .content{
 		padding: 20px 0;
 	}
+
+	.task-content .content ul,
+	.task-content .content ol {
+		list-style-position: inside;
+		margin-bottom: 20px;
+	}
+
+	.task-content .content ul {
+		list-style-type: disc;
+	}
+
 	.task-description-page .task-content .button-bar{
 		padding: 10px 0;
 		border: none;

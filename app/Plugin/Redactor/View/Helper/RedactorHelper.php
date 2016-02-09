@@ -53,7 +53,7 @@ class RedactorHelper extends AppHelper{
 			'tinyPlugins/code/plugin.min.js',
 			'tinyPlugins/fullscreen/plugin.min.js',
 			'tinyPlugins/insertdatetime/plugin.min.js',
-			'tinyPlugins/media/plugin.min.js',
+			'tinyPlugins/media/plugin.js',
 			'tinyPlugins/table/plugin.min.js',
 			'tinyPlugins/contextmenu/plugin.min.js',
 			'tinyPlugins/paste/plugin.min.js',

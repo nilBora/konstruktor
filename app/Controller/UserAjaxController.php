@@ -875,8 +875,13 @@ class UserAjaxController extends PAjaxController {
         $data = $this->request->data;
 
         $this->loadModel('UserEvent');
-		// Time Filters
-		$dateFrom = $this->getTmeFiltersDate($data['timeFilter']);
+
+		if(isset($data['timeFilter'])){
+			// Time Filters
+			$dateFrom = $this->getTmeFiltersDate($data['timeFilter']);
+		}else{
+			$dateFrom = NULL;
+		}
 
 		// Users
 		$users = $this->getUserInfo($data, $dateFrom);
@@ -1024,12 +1029,13 @@ class UserAjaxController extends PAjaxController {
 		if(!empty($data['search'])) {
 			$conditions['AND'][] = array('User.full_name LIKE ?' => '%' . $data['search'] . '%');
 		}
+		if(!empty($data['userKeys']) && empty($data['search'])){
+			$conditions['AND'][] = array('User.id NOT' => $data['userKeys']);
+		}
+
 		/* Time Filters will find Users in window location open for some period of time such as day, week, ... */
 		if($dateFrom) {
 			$conditions['AND'][] = array('User.created >=' => $dateFrom);
-		}
-		if(!empty($data['userKeys']) && empty($data['search']) && $dateFrom == null){
-			$conditions['AND'][] = array('User.id NOT' => $data['userKeys']);
 		}
 
 		$users = $this->User->find('all',compact('conditions'));
@@ -1043,6 +1049,11 @@ class UserAjaxController extends PAjaxController {
 			$img =  $avatar->getMediaLink($user, array(
 				'size' => 'thumb50x50'
 			));
+
+            /*
+                var_dump($user);
+                die;
+            */
 
 			$out[$user['User']['id']] = array(
 				'username' => $user['User']['full_name'],

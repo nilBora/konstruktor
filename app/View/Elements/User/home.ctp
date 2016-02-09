@@ -1,5 +1,9 @@
 <?php  ?>
 <div class="front-header">
+    <a href="#mmenu" class="mobile-nav">
+        <span></span>
+    </a>
+
     <a class="logo-company">
         <img alt="" src="/img/logo2.png" class="logo-image">
     </a>
@@ -25,6 +29,20 @@
     <!-- <a href="#" class="play-btn"></a> -->
 
     <a href="#register-popup" class="register-btn"><?=__('Fulfill dream now')?></a>
+
+    <a href="#" class="login-btn">Войти в свой аккаунт</a>
+</div>
+
+<div class="login-content unvisible hide">
+    <?=$this->element('User/login_form')?>
+
+    <div class="login_form_fb">
+        <?=__('or')?>
+
+        <div class="fb_login" onclick="Login();">С помощью Facebook</div> 
+    </div>
+
+    <a href="#" class="close-login"><?=__('Backward')?></a>
 </div>
 
 <style type="text/css">
@@ -35,34 +53,44 @@
 
     $('.register-btn').magnificPopup({
         type:'inline',
-        midClick: true,
-        callbacks: {
-        open: function() {
-            // $('.front-page').addClass('blur-bg');
-			$('#register_form_block').show();
-        },
-        close: function() {
-            // $('.front-page').removeClass('blur-bg');
-
-        }
-      }
+        midClick: true
     });
+
     $('.remind-pass').magnificPopup({
         type:'inline',
-        midClick: true,
-        callbacks: {
-        open: function() {
-			$('#register_form_block').hide();
-            $('#password_form_block').show();
-			$('#passwdMail').show();
-			$('#passwdReset').show();
-			$('.recovery-message').hide();
-        },
-        close: function() {
-			$('#register_form_block').hide();
-			$('#password_form_block').hide();
-        }
-      }
+        midClick: true
+    });
+
+    $('.login-btn').on('click', function(event) {
+        event.preventDefault();
+
+        $('.front-content').addClass('unvisible');
+
+        window.setTimeout(function(){
+            $('.front-content').addClass('hide');
+
+            $('.login-content').removeClass('hide');
+
+            window.setTimeout(function(){
+                $('.login-content').removeClass('unvisible');
+            }, 100);
+        }, 600);
+    });
+
+    $('.close-login').on('click', function(event) {
+        event.preventDefault();
+
+        $('.login-content').addClass('unvisible');
+
+        window.setTimeout(function(){
+            $('.login-content').addClass('hide');
+
+            $('.front-content').removeClass('hide');
+
+            window.setTimeout(function(){
+                $('.front-content').removeClass('unvisible');
+            }, 100);
+        }, 600);
     });
 </script>
 
@@ -87,11 +115,14 @@
     });
 </script>
 
-<div id="register-popup" class="mfp-hide" >
-    <div id="password_form_block" class="hidable" style="display: none;">
+
+<div id="remind-popup" class="mfp-hide">
+    <div id="password_form_block" class="hidable">
         <?=$this->element('User/pass_forget_form')?>
     </div>
+</div>
 
+<div id="register-popup" class="mfp-hide">
     <div id="register_form_block" >
         <?=$this->element('User/register_form')?>
     </div>

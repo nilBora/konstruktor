@@ -783,8 +783,8 @@ $(document).ready(function () {
 // Init
 
 $('.popup-content .close-button').on('click',function(){
-	var popup = $('body>.popup-back');
-	var content = $('body>.popup-content');
+	var popup = $('body .popup-back');
+	var content = $('body .popup-content');
 	popup.hide();
 	content.hide();
 })

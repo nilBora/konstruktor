@@ -4,7 +4,7 @@ if(!isset($commentAllow)){
 }
 ?>
 <div class="item <?php echo $class ?>">
-	<?php echo $this->Avatar->userLink($user, array('size' => 'thumb100x100','class'=>'stylingCom')); ?>
+	<?php echo $this->Avatar->userLink($user, array('size' => 'thumb100x100','class'=>'stylingCom rounded')); ?>
 	<div class="descriptionComment">
 		<span class="textMsg"><?=$msg?></span>
 		<div class="wrappTimeBtn">

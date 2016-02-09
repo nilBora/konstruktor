@@ -27,7 +27,8 @@
         'main-panel-new',
         'style',
         'photoswipe/photoswipe',
-        'photoswipe/default-skin/default-skin'
+        'photoswipe/default-skin/default-skin',
+        'jquery.mmenu.all'
     );
     echo $this->Html->css(array_merge($vendorCss, $css));
 
@@ -36,7 +37,6 @@
     $vendorScripts = array(
         'vendor/jquery/jquery-1.10.2.min',
         'vendor/jquery/jquery-ui.min',
-
         'vendor/jquery/jquery.form.min',
         'vendor/jquery/jquery.ui.widget',
         'vendor/jquery/jquery-ui-1.10.3.custom.min',
@@ -55,8 +55,6 @@
         'vendor/jquery.autocomplete',
         'vendor/autosize.min',
         'vendor/fastclick',
-
-
         'vendor/ChatJs/jquery.chatjs.utils.js',
         'vendor/ChatJs/jquery.chatjs.adapter.servertypes.js',
         'vendor/ChatJs/jquery.chatjs.adapter.js',
@@ -68,11 +66,11 @@
         'vendor/ChatJs/jquery.chatjs.pmwindow.js',
         'vendor/ChatJs/jquery.chatjs.friendswindow.js',
         'vendor/ChatJs/jquery.chatjs.controller.js',
-
         'vendor/iscroll.js',
         'upload.js',
         'upload_chat.js'
     );
+
     $scripts = array(
         '/core/js/json_handler',
         'main-panel',
@@ -91,7 +89,8 @@
         'upload',
         'invest_category',
         'photoswipe/photoswipe',
-        'photoswipe/photoswipe-ui-default'
+        'photoswipe/photoswipe-ui-default',
+        'jquery.mmenu.min.all'
     );
 
     echo $this->Html->script(array_merge($vendorScripts, $scripts));

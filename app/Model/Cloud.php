@@ -191,6 +191,7 @@ class Cloud extends AppModel {
                             'NOT' => array('Cloud.media_id' => 0),
                         )
                     ));
+					if(isset($cloud[0]))
                     $cloud['Media']['url_download'] = $cloud[0]['url_download'];
                 }
             }

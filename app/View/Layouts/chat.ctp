@@ -25,6 +25,7 @@
         'chat-old',
         'device-page',
         'progress-bar',
+		'jquery.mmenu.all'
     );
     echo $this->Html->css(array_merge($vendorCss, $css));
 
@@ -67,6 +68,7 @@
         'cloud-mover',
         'finance',
         'invest_category',
+		'jquery.mmenu.min.all'
     );
 
     echo $this->Html->script(array_merge($vendorScripts, $scripts));

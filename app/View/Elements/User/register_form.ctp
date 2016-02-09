@@ -84,7 +84,7 @@
     </div>
 
     <div class="register-fb">
-        <?=__('or')?> <span class="register-fb_btn" onclick="Login();"></span>
+        <?=__('or')?> <span class="register-fb_btn" onclick="Login();"><span>С помощью Facebook</span></span>
     </div>
 
     <a href="javascript: void(0)" class="btn btn-primary" id="regSubmit"><?=__('Next')?></a>

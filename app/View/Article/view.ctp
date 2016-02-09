@@ -16,14 +16,13 @@
         'tinyPlugins/print/plugin.min.js',
         'tinyPlugins/cloudfilemanager/plugin.js',
         'tinyPlugins/preview/plugin.min.js',
-        'tinyPlugins/responsivefilemanager/plugin.min.js',
         'tinyPlugins/anchor/plugin.min.js',
         'tinyPlugins/searchreplace/plugin.min.js',
         'tinyPlugins/visualblocks/plugin.min.js',
         'tinyPlugins/code/plugin.min.js',
         'tinyPlugins/fullscreen/plugin.min.js',
         'tinyPlugins/insertdatetime/plugin.min.js',
-        'tinyPlugins/media/plugin.min.js',
+        'tinyPlugins/media/plugin.js',
         'tinyPlugins/table/plugin.min.js',
         'tinyPlugins/contextmenu/plugin.min.js',
         'tinyPlugins/paste/plugin.min.js',
@@ -195,6 +194,11 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 			minimumResultsForSearch:-1
 		});
 
+		$('.magnificP').on('click', function(e){
+			e.preventDefault();
+			$(this).siblings('.hiddenRecommended').toggleClass('showCat');
+		});
+
 		$('.selectStylerDate').datetimepicker({
 			locale:'ru',
 			autoclose:true,
@@ -244,9 +248,16 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 
 		    $('.data_scroll').on('click', function(event) {
 		        event.preventDefault();
-		        scrollGo(true, $('.' + $(this).data('link')), true);
+		        scrollGo(true, $('.' + $(this).data('link')), true)
+
 
     });
+			$(document).mouseup(function(e) {
+			    var div = $(".hiddenRecommended, .magnificP");
+			    if (!div.is(e.target) && div.has(e.target).length === 0) {
+			        div.removeClass('showCat');
+			    }
+			});
 
 	});
 
@@ -442,6 +453,10 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
         display: block;
     }
 
+    .similar-article_item-title:hover{
+    	color:#36b7ff;
+    }
+
     .authorInformation{
     	padding:0px 4%;
         line-height: 27px;
@@ -476,6 +491,15 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 		font-family: 'PT Serif', serif;
 		font-weight: 400;
 		letter-spacing: 1px;
+	}
+
+	.similar-article_item-backing a{
+		text-decoration: none;
+	    color: #999999;
+	}
+
+	.similar-article_item-backing{
+		position: relative;
 	}
 
 	.items-tags{
@@ -571,7 +595,11 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
         padding-left:24px;
     }
 
-    .date_article div + div {
+    .similar-article_item-comments{
+    	padding-left:30px;
+    }
+
+    .date_article > div + div {
         margin-left: 30px;
     }
 
@@ -590,8 +618,6 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
         float: none;
     }
 
-
-
     .similar-article_item-date{
         background:url(/img/date.png)no-repeat center left;
         background-size:16px 16px;
@@ -599,7 +625,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 
     .similar-article_item-users{
 		background:url(/img/Views.png)no-repeat center left;
-		background-size:16px 14px;
+		background-size:16px 11px;
     }
 
     .similar-article_item-backing{
@@ -607,9 +633,21 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
         background-size:16px 16px;
     }
 
+
+    .downWrapp .similar-article_item-backing{
+    	background:none;
+    	background-size:0;
+    }
+
+    .downWrapp .similar-article_item-backing > a{
+    	padding-left:24px;
+        background:url(/img/share-icon.png)no-repeat center left;
+        background-size:16px 16px;
+    }
+
     .similar-article_item-comments{
         background:url(/img/comments.png)no-repeat center left;
-		background-size:16px 16px;
+		background-size:21px 15px;
     }
 
     .similar-article_item-body{
@@ -714,6 +752,15 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 		margin:16px 0;
 	}
 
+	.contentText a{
+		color:#36b7ff;
+	}
+
+	.form-control:focus{
+	    border-color: #dcdcdc;
+		box-shadow: none;
+	}
+
 	.contentText blockquote{
 		border-left: 8px solid #12d09b;
 		padding: 0px 10% 0 3%;
@@ -772,9 +819,16 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 		margin-top: 10px;
 	}
 
+	.btnComment:hover{
+		color: #fff;
+	    border-color: transparent;
+	    background-color: #ffb547;
+	}
+
 	.btnComment:focus, .btnComment:active{
-		box-shadow: none !important;
-		outline:none;
+		outline: 0;
+	    background-image: none;
+	    box-shadow: inset 0 0 7px rgba(0, 0, 0, .2);
 	}
 
 	.imgComment{
@@ -876,12 +930,22 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 		line-height: 42px;
 		font-size:16px;
 		max-width: 140px;
-		color:#fff;
+	    color: #fff;
+	    background-color: #fbaa31;
 		font-family: 'PT Sans', sans-serif;
-		background:#ffa836;
 		border-radius: 4px;
 		box-shadow: 0px 2px 4px rgba(0,0,0,0.3);
 		border:none;
+	}
+
+	.putArt:hover{
+	    color: #fff !important;
+	    background-color: #ffb547 !important;
+	}
+
+	.putArt:active{
+        box-shadow: inset 0 0 7px rgba(0, 0, 0, .2);
+        background-color: #ffb547 !important;
 	}
 
 	.chernArt{
@@ -891,6 +955,10 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 		height: 42px;
 		text-align: center;
 		line-height: 42px;
+	}
+
+	.chernArt:hover{
+		color:#ffb547;
 	}
 
 	.putArt, .chernArt{
@@ -1022,7 +1090,30 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
         position: relative;
     }
 
-    .socLinks a span{
+    .socIconsInside a{
+    	display: inline-block;
+    	vertical-align: top;
+    	margin: 0px 5%;
+        border-width:2px;
+        border-style: solid;
+        line-height:36px;
+        border-radius: 50%;
+        width:34px;
+        height: 34px;
+        text-align: center;
+    }
+
+    .socIconsInside{
+    	text-align: center;
+    	margin:28px -26% 0;
+    }
+
+     .socIconsInside a{
+		width:34px;
+		height: 34px;
+     }
+
+    .socLinks a span, .socIconsInside a span{
         display: inline-block;
         vertical-align: middle;
     }
@@ -1036,18 +1127,32 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
     .lFb svg{
        width:12px !important;
        height: 12px !important;
-        fill:#bbbbbb;
+       fill:#bbbbbb;
     }
 
-    .lFb{
+    .fb svg{
+       width:18px !important;
+       height: 18px !important;
+       fill:#bbbbbb;
+    }
+
+    .lFb, .fb{
         border-color:#bbbbbb;
     }
 
-    .lGg{
+    .fb:hover svg{
+    	fill:#3a589e;
+    }
+
+    .ggpl:hover svg{
+    	fill:#de4e43;
+    }
+
+    .lGg, .ggpl{
         border-color:#bbbbbb;
     }
 
-    .lGg:hover{
+    .lGg:hover, .ggpl:hover{
     	border-color:#de4e43;
     }
 
@@ -1057,11 +1162,15 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 		height: 12px !important;
     }
 
-    .lTw{
+    .lTw, .twt{
         border-color:#bbbbbb;
     }
 
     .lTw:hover svg{
+		fill:#55acee;
+    }
+
+    .twt:hover svg{
 		fill:#55acee;
     }
 
@@ -1078,7 +1187,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
     	border-color:#7ce6ff;
     }
 
-    .lFb:hover{
+    .lFb:hover, .fb:hover{
         border-color:#3a589e;
     }
 
@@ -1086,6 +1195,12 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
         fill:#bbbbbb;
 		width:12px !important;
 		height: 12px !important;
+    }
+
+    .ggpl svg{
+        fill:#bbbbbb;
+		width:18px !important;
+		height: 18px !important;
     }
 
     .lGg:hover{
@@ -1098,7 +1213,13 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 		height: 12px !important;
     }
 
-    .lTw:hover{
+    .twt svg{
+        fill:#bbbbbb;
+		width:18px !important;
+		height: 18px !important;
+    }
+
+    .lTw:hover, .twt:hover{
         border-color:#55acee;
     }
 
@@ -1111,6 +1232,14 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
     .lMail:hover{
         border-color:#7ce6ff;
     }
+
+	.skp{
+		border-color:#bbbbbb;
+	}
+
+	.skp:hover{
+		border-color:#00aff0;
+	}
 
 	.socLinks{
 		float: left;
@@ -1447,8 +1576,6 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 		font-family: 'PT Sans', sans-serif;
 		font-weight: 700;
 		text-transform: uppercase;
-		line-height: 36px;
-		height:36px;
 	}
 
 	.data_scroll, .data_scroll:focus, .data_scroll:active{
@@ -1555,7 +1682,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 		float: none;
 	}
 
-	.uppWrap div, .downWrapp .date_article div, .downWrapp .date_article a{
+	.uppWrap > div, .downWrapp .date_article > div, .downWrapp .date_article > a{
 		float: none !important;
 		display: inline-block;
 		vertical-align: top;
@@ -1565,9 +1692,311 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 		margin:0px 1%;
 	}
 
-	.downWrapp div, .downWrapp .date_article a{
+	.downWrapp > div, .downWrapp .date_article > a{
 		margin:0px 4%;
 	}
+
+	div.mce-edit-area{
+		padding:0px 60px;
+	}
+
+	/* defualt-datetimepicker */
+.defualt-datetimepicker[readonly] {
+    color:#959595 !important;
+    border-color:#bbb !important;
+    background-color:#fff !important;
+}
+
+.dropdown-menu.datetimepicker {
+    width:294px;
+    margin-top:17px;
+    padding:20px;
+    color:#666;
+    border-color:#fbaa31;
+    border-radius:0 0 4px 4px;
+}
+
+[class*=' datetimepicker-dropdown']:before {
+    content:'';
+    position:absolute;
+    top:auto;
+    bottom:100%;
+    left:-1px;
+    display:block;
+    box-sizing:content-box;
+    width:100%;
+    height:6px;
+    padding:0 1px;
+    border:none;
+    border-radius:4px 4px 0 0;
+    background-color:#fbaa31;
+}
+
+[class*=' datetimepicker-dropdown']:after {
+    content:' ';
+    position:absolute;
+    top:auto;
+    bottom:100%;
+    left:46px;
+    width:0;
+    height:0;
+    margin-bottom:6px;
+    margin-left:-6px;
+    pointer-events:none;
+    border:solid transparent;
+    border-width:6px;
+    border-color:rgba(251, 170, 49, 0);
+    border-bottom-color:#fbaa31;
+}
+
+.datetimepicker th.switch {
+    font-size:16px;
+    line-height:1.45em;
+    width:180px;
+    text-transform:uppercase;
+}
+
+.datetimepicker thead tr:first-child th:hover,
+.datetimepicker tfoot tr:first-child th:hover {
+    border-radius:30px;
+    background-color:#f1f1f1;
+}
+
+.table-condensed {
+    width:100%;
+}
+.table-condensed .dow,
+.table-condensed .month {
+    text-transform:uppercase;
+}
+.table-condensed .prev .glyphicons,
+.table-condensed .next .glyphicons {
+    display:block;
+    width:22px;
+    height:22px;
+    opacity:.5;
+    background-repeat:no-repeat;
+    background-position:center center;
+}
+.table-condensed .prev .glyphicons:before,
+.table-condensed .next .glyphicons:before {
+    display:none;
+}
+.table-condensed .prev:hover .glyphicons,
+.table-condensed .next:hover .glyphicons {
+    opacity:1;
+}
+.table-condensed .prev .glyphicons {
+    background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAOBAMAAADkjZCYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAALVBMVEX///9ERERERERERERERERERERERERERERERERERERERERERERERERERET///+Ho0KDAAAADXRSTlMAEbsz7plmiHfMRKpVEja6iwAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxIAAAsSAdLdfvwAAABFSURBVAjXY2BgYGBUBhIMJleBBJtvAZDsvQYkRK8YAKXmTgQyRS4JAEkusByD5W0Qh1F3MojDeuUAiMq9ASK53EAkgwAAE6AMfBxic2QAAAAASUVORK5CYII=);
+}
+.table-condensed .next .glyphicons {
+    margin-left:4px;
+    background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAOBAMAAADkjZCYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAALVBMVEX///9ERERERERERERERERERERERERERERERERERERERERERERERERERET///+Ho0KDAAAADXRSTlMAM7sRme6IZnfMRKpV4BK9LAAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxIAAAsSAdLdfvwAAABBSURBVAjXYxAyYAAC30AQyXa1AETV3gCRjLHOIMryJkgBs24wWH4BkLl3IpApeQkozBPrAGT2XgepK10AIplBBAAc1wzza4ZqYQAAAABJRU5ErkJggg==);
+}
+
+.datetimepicker-years .table-condensed > tbody > tr:first-child > td,
+.datetimepicker-months .table-condensed > tbody > tr:first-child > td,
+.datetimepicker-hours .table-condensed > tbody > tr:first-child > td,
+.datetimepicker-minutes .table-condensed > tbody > tr:first-child > td,
+.datetimepicker-days .table-condensed > thead > tr:last-child > th {
+    padding-top:20px;
+}
+
+.datetimepicker-days .table-condensed > thead > tr:last-child > th {
+    color:#444;
+}
+
+.datetimepicker table tr td.old,
+.datetimepicker table tr td.new {
+    color:#bbb;
+}
+
+.datetimepicker table tr td {
+    position:relative;
+    /* &:hover {
+
+            background: $colorLightF1;
+
+        } */
+}
+.datetimepicker table tr td.day {
+    width:36px;
+    height:36px;
+    border-radius:30px;
+}
+.datetimepicker table tr td.day:after {
+    content:'';
+    position:absolute;
+    position:absolute;
+    z-index:-1;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    display:block;
+    width:30px;
+    height:30px;
+    margin:auto;
+    border-radius:30px;
+}
+.datetimepicker table tr td.day:hover {
+    background-color:transparent;
+}
+.datetimepicker table tr td.day:hover:after {
+    background:#f1f1f1;
+}
+.datetimepicker table tr td.day.today {
+    color:#fff;
+    background:none !important;
+    text-shadow:0 -1px 0 rgba(0, 0, 0, .25);
+}
+.datetimepicker table tr td.day.today:hover {
+    color:#444;
+    text-shadow:none;
+}
+.datetimepicker table tr td.day.today:after {
+    background:#36b7ff !important;
+}
+.datetimepicker table tr td.active,
+.datetimepicker table tr td.active.today,
+.datetimepicker table tr td .active {
+    background-color:#fbaa31 !important;
+}
+.datetimepicker table tr td.active:hover,
+.datetimepicker table tr td.active.today:hover,
+.datetimepicker table tr td .active:hover {
+    color:#444 !important;
+    text-shadow:none !important;
+}
+.datetimepicker table tr td .year,
+.datetimepicker table tr td .month {
+    position:relative;
+    background:none !important;
+}
+.datetimepicker table tr td .year:after,
+.datetimepicker table tr td .month:after {
+    width:50px;
+    height:50px;
+}
+.datetimepicker table tr td .year:after,
+.datetimepicker table tr td .month:after {
+    content:'';
+    position:absolute;
+    position:absolute;
+    z-index:-1;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    display:block;
+    margin:auto;
+    border-radius:30px;
+}
+.datetimepicker table tr td .active.year:after,
+.datetimepicker table tr td .active.month:after {
+    background-color:#fbaa31 !important;
+}
+.datetimepicker table tr td .year:hover,
+.datetimepicker table tr td .month:hover {
+    background-color:transparent;
+}
+.datetimepicker table tr td .year:hover:after,
+.datetimepicker table tr td .month:hover:after {
+    background:#f1f1f1;
+}
+.datetimepicker table tr td .hour,
+.datetimepicker table tr td .minute {
+    border-radius:30px;
+}
+
+.magnificP{
+	display: inline-block;
+	vertical-align: top;
+}
+
+.hiddenRecommended{
+	position: absolute;
+	top: 26px;
+	left: 50%;
+	opacity: 0;
+	margin-left: -160px;
+	visibility: hidden;
+	border-top: 6px solid #fbaa31;
+	border-left: 1px solid #e2e2e2;
+	border-right: 1px solid #e2e2e2;
+	border-bottom: 1px solid #e2e2e2;
+	border-radius: 4px 4px 0 0;
+	background: #fff;
+	padding: 30px;
+	-webkit-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+.hiddenRecommended.showCat{
+	opacity:1;
+	visibility:visible;
+	top:24px;
+}
+
+.hiddenRecommended:before{
+    content: ' ';
+    position: absolute;
+    top: auto;
+    bottom: 100%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    margin-bottom: 6px;
+    margin-left: -6px;
+    pointer-events: none;
+    border: solid transparent;
+    border-width: 6px;
+    border-color: rgba(251, 170, 49, 0);
+    border-bottom-color: #fbaa31;
+}
+
+.hiddenRecommended p{
+	text-transform: uppercase;
+	color:#555555;
+	font-size: 16px;
+	font-family: 'PT Sans', sans-serif;
+	font-weight: 700;
+	white-space:nowrap;
+}
+
+.recIn{
+	border:1px solid #c8d0de;
+	border-radius:4px;
+    padding: 0px 40px 0 15px;
+	height: 36px;
+	color:#999999;
+	font-size: 14px;
+	font-family: 'PT Sans', sans-serif;
+	font-weight: 400;
+	width:100%;
+}
+
+.recBtn{
+	position: absolute;
+	right:3%;
+	z-index:111;
+	top:50%;
+	margin-top: -12px;
+	width: 24px;
+	height: 24px;
+	line-height: 24px;
+	box-sizing:border-box;
+	border:1px solid #7ce6ff;
+	background:#fff url(/img/soLinkPop.png) no-repeat center center;
+	border-radius:50%;
+}
+
+.wrappInpRec{
+	width:270px;
+	position: relative;
+}
+
 
 	@media only screen and (max-width:1452px){
 /*		.imgComment{
@@ -2043,6 +2472,15 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 					$('#articleTitle').off('editable.focus');
 				});
 			}
+			if(title.length > 50) {
+				allow = false;
+				$('#articleTitle').popover({ toggle: 'popover', placement: 'bottom', content: "<?=__('Title can not be more than 50 symbols')?>" });
+				$('#articleTitle').popover('show');
+				$('#articleTitle').on('editable.focus', function (e, editor) {
+					$('#articleTitle').popover('destroy');
+					$('#articleTitle').off('editable.focus');
+				});
+			}
 
 			if($('#ArticleCategory').val() == 0) {
 				allow = false;
@@ -2141,11 +2579,6 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 			});
 		}
 
-		<?php if( $article['Article']['title'] == null ) { ?>
-		switchEditor();
-		<?php } ?>
-
-
 		//Video.js player init and some setup
 		resizeVideoCloud = function() {
 			$('.cloud-video').css('width', '70%');
@@ -2171,7 +2604,11 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 				this.currentResolution('360p')
 			});
 		});
-
+	});
+	$(window).load(function(){
+		<?php if(!$article['Article']['title']) { ?>
+		switchEditor();
+		<?php } ?>
 	});
 </script>
 
@@ -2246,7 +2683,54 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 				?>
 				<div class="similar-article_item-date"><?php echo $day.' '.$month; ?></div>
 				<div class="similar-article_item-users"><?php echo Hash::get($article, 'Article.hits') ?></div>
-				<div class="similar-article_item-backing"><?php echo Hash::get($article, 'Article.shared') ?></div>
+				<div class="similar-article_item-backing"><a href="" class="magnificP"><?php echo Hash::get($article, 'Article.shared') ?></a>
+					<div class="hiddenRecommended">
+						<p>Порекомендовать друзьям</p>
+
+						<div class="wrappInpRec">
+							<input type="text" class="recIn" placeholder="Введите email друга">
+							<input type="button" class="recBtn">
+						</div>
+
+						<div class="socIconsInside">
+							<a href="" class="fb"><span><svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+				   viewBox="0 0 191.4 409.6" enable-background="new 0 0 191.4 409.6" xml:space="preserve">
+                    <g>
+						<path d="M127.9,409.6H51.2V204.8H0v-70.6l51.2,0l-0.1-41.6C51.1,35,66.7,0,134.6,0H191v70.6h-35.3c-26.4,0-27.7,9.9-27.7,28.3
+                            l-0.1,35.3h63.5l-7.5,70.6l-55.9,0L127.9,409.6z M127.9,409.6"/>
+					</g>
+                    </svg>
+		</span></a>
+							<a href="" class="ggpl">		<span><svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+				   viewBox="0 0 75.3 77.5" enable-background="new 0 0 75.3 77.5" xml:space="preserve">
+                    <g>
+						<path d="M49,0H30.5c-8.2,0-13.9,1.8-19.1,6C7.5,9.5,5,14.6,5,19.6c0,7.7,5.9,15.9,16.7,15.9c1,0,2.2-0.1,3.2-0.2l-0.1,0.4
+                            c-0.4,1-0.9,2-0.9,3.6c0,3,1.4,4.9,2.8,6.6L27,46l-0.3,0c-4.5,0.3-12.8,0.9-18.9,4.6C0.6,55,0,61.2,0,63c0,7.2,6.7,14.4,21.7,14.4
+                            c17.4,0,26.5-9.6,26.5-19.1c0-7-4.1-10.5-8.5-14.2L36,41.3c-1.1-0.9-2.6-2.1-2.6-4.3c0-2.1,1.4-3.5,2.7-4.8l0.1-0.1
+                            c4-3.1,8.5-6.7,8.5-14.4c0-7.7-4.8-11.7-7.2-13.6h6.1c0.1,0,0.1,0,0.2-0.1l5.3-3.3c0.1-0.1,0.2-0.3,0.2-0.5C49.4,0.1,49.2,0,49,0
+                            L49,0z M26.6,73.2c-10.6,0-17.7-5-17.7-12.3c0-4.8,2.9-8.3,8.7-10.4c4.6-1.5,10.5-1.6,10.6-1.6c1,0,1.5,0,2.3,0.1
+                            c7.4,5.3,11,8.1,11,13.3C41.4,69,35.8,73.2,26.6,73.2L26.6,73.2z M26.5,32.6c-8.9,0-12.6-11.7-12.6-18c0-3.2,0.7-5.6,2.2-7.5
+                            c1.6-2,4.4-3.3,7.1-3.3c8.2,0,12.7,11,12.7,18.6c0,1.2,0,4.8-2.5,7.4C31.7,31.5,28.9,32.6,26.5,32.6L26.5,32.6z M26.5,32.6"/>
+						<path d="M74.9,36.2h-9.7v-9.7c0-0.2-0.2-0.4-0.4-0.4h-4.2c-0.2,0-0.4,0.2-0.4,0.4v9.7h-9.7c-0.2,0-0.4,0.2-0.4,0.4v4.2
+                            c0,0.2,0.2,0.4,0.4,0.4h9.7V51c0,0.2,0.2,0.4,0.4,0.4h4.2c0.2,0,0.4-0.2,0.4-0.4v-9.8h9.7c0.2,0,0.4-0.2,0.4-0.4v-4.2
+                            C75.3,36.4,75.1,36.2,74.9,36.2L74.9,36.2z M74.9,36.2"/>
+					</g>
+                </svg></span></a>
+							<a href="" class="twt">		<span><svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+				   viewBox="0 0 409.6 332.9" enable-background="new 0 0 409.6 332.9" xml:space="preserve">
+                    <g>
+						<path  d="M409.6,39.4c-15.1,6.7-31.3,11.2-48.3,13.2c17.4-10.4,30.7-26.9,36.9-46.5c-16.2,9.6-34.2,16.6-53.4,20.4
+                            C329.6,10.2,307.8,0,283.6,0c-46.4,0-84,37.6-84,84c0,6.6,0.7,13,2.2,19.2C131.9,99.7,70,66.2,28.5,15.4
+                            c-7.2,12.4-11.4,26.8-11.4,42.2c0,29.2,14.8,54.9,37.4,69.9c-13.8-0.4-26.7-4.2-38.1-10.5c0,0.4,0,0.7,0,1.1
+                            c0,40.7,29,74.7,67.4,82.4c-7.1,1.9-14.5,2.9-22.1,2.9c-5.4,0-10.7-0.5-15.8-1.5c10.7,33.4,41.7,57.7,78.5,58.4
+                            c-28.8,22.5-65,36-104.4,36c-6.8,0-13.5-0.4-20-1.2c37.2,23.8,81.4,37.8,128.8,37.8c154.6,0,239.1-128,239.1-239.1
+                            c0-3.6-0.1-7.3-0.2-10.9C384.1,71.1,398.3,56.3,409.6,39.4L409.6,39.4z M409.6,39.4"/>
+					</g>
+                </svg></span></a>
+							<!-- <a href="" class="skp"></a> -->
+						</div>
+					</div>
+				</div>
 				<a href="" class="data_scroll similar-article_item-comments" data-link="block_1"><div class=""><?php echo count($aEvents); ?></div></a>
 				<div class="clear"></div>
 		    </div>
@@ -2285,7 +2769,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 				</select>
 			</div>
 			<div class="datePick">
-				<div class="input-group date selectStylerDate" data-provide="datepicker">
+				<div class="input-group date selectStylerDate datetimepicker" data-provide="datepicker">
 					<div class="input-group-addon">
 						<span class="glyphicon glyphicon-th"></span>
 						<span class="textPublic">Опубликовать:</span>
@@ -2314,8 +2798,8 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 
 
 	<div class="wrapper-btn-public-save" style="width: 100%; text-align: center;">
-		<div class="btn btn-primary needsclick putArt" id="publishSave" style="display: inline-block; margin-right: 20px;"><?=__('Publish')?></div>
-		<div class="btn btn-default needsclick chernArt" id="draftSave" style="display: inline-block;"><?=__('Save as draft')?></div>
+		<div class="btn needsclick putArt" id="publishSave" style="display: inline-block; margin-right: 20px;"><?=__('Publish')?></div>
+		<div class="btn needsclick chernArt" id="draftSave" style="display: inline-block;"><?=__('Save as draft')?></div>
 	</div>
 
 
@@ -2463,7 +2947,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
             <?=__('Leave your comment')?>
         </div>
         <div class="imgComment">
-            <?php echo $this->Avatar->user($currUser, array('size' => 'thumb100x100')); ?>
+            <?php echo $this->Avatar->user($currUser, array('size' => 'thumb100x100','class'=>'rounded')); ?>
         </div>
         <form action="" method="" id="ArticleInnerForm" class="inner submitMessage">
             <textarea id="innerMessageTitle" class="form-control textAreaComment" name="data[message]">{%= o.message ? o.message : '' %}</textarea>

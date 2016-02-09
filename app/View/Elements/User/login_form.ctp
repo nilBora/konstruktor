@@ -95,7 +95,7 @@
 
     <div class="login_form-row">
         <?=$this->Form->input('password', array('label' => false, 'placeholder' => __('Password'), 'class' => 'form-control', 'id' => 'authPasswd'))?>
-		<a class="remind-pass" href="#register-popup"><?=__('Password Reminder')?></a>
+		<a class="remind-pass" href="#remind-popup"><?=__('Password Reminder')?></a>
     </div>
 
     <div class="login_form-row">
@@ -110,7 +110,7 @@
 
 	$(document).ready(function () {
 		$('#authPasswd').on('click', function(){
-			$('.remind-pass').fadeIn(400);
+			$('.remind-pass').css('display', 'inline-block');
 		});
 	});
 

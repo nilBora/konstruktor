@@ -68,7 +68,15 @@ $group = $groupHeader;
 	.table-invest {
 		border: 1px solid #dcdcdc;
 		width: 100% !important;
+		font-family: 'Open Sans';
 	}
+
+	.table-invest tr,
+	.table-invest th,
+	.table-invest td {
+		font-family: 'Open Sans';
+	}
+
 	.table-invest .thumb {
 		width: 46px;
 	}
@@ -89,13 +97,6 @@ $group = $groupHeader;
 	    vertical-align: top;
 	    border: 1px solid #ddd;
 	    color: #999;
-	}
-	.fixedLayout {
-    	max-width: 1024px;
-		margin-bottom: 48px;
-		margin-top: 33px;
-		margin-left: -15px;
-    	margin-right: -15px;
 	}
 	.refound {
 		opacity: 0.8;
@@ -189,6 +190,7 @@ $group = $groupHeader;
 
 .fixedLayout{
 	max-width: 1170px;
+	margin: 20px auto 40px;
 }
 #sorted-styler{
 	float: right;

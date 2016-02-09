@@ -29,7 +29,8 @@
 		'index-page-last',
 		'magnific-popup',
         'register-popup',
-		'jquery.mCustomScrollbar.min'
+		'jquery.mCustomScrollbar.min',
+		'jquery.mmenu.all'
 	);
 
 	echo $this->Html->css(array_merge($vendorCss, $css));
@@ -42,7 +43,8 @@
 		'vendor/fastclick',
 		'vendor/jquery.magnific-popup.min',
 		'jquery.mCustomScrollbar.concat.min',
-		'//www.google.com/jsapi'
+		'//www.google.com/jsapi',
+		'jquery.mmenu.min.all'
 	);
 
 	echo $this->Html->script($aScripts);
@@ -59,6 +61,21 @@ $(function() {
 });
 
 $(document).ready(function(){
+	$("#mmenu").clone().removeClass('rightLinks').mmenu({
+        "autoHeight": true,
+        "navbar": {
+            "title": ""
+        },
+        "offCanvas": {
+            "position": "right"
+        },
+        "extensions": [
+            "pageshadow",
+            "border-full",
+            "effect-menu-slide",
+            "effect-listitems-drop"
+        ]
+    });
 
     $('.christ-gift').magnificPopup({
         type:'inline',
@@ -122,12 +139,20 @@ $(document).ready(function(){
 
     <div class="footer">
         <div class="container">
-            <div class="rightLinks">
-				<a href="<?=$this->Html->url(array('controller' => 'Group', 'action' => 'view', 7))?>" target="_blank" class="dottedLine"><?=__('About Us')?></a>
-				<a href="/Terms.pdf" target="_blank" class="dottedLine"><?=__('Terms of Use')?></a>
-				<a href="/Privacy.pdf" target="_blank" class="dottedLine"><?=__('Privacy Policy')?></a>
+            <div class="rightLinks" id="mmenu">
+            	<ul>
+					<li>
+						<a href="<?=$this->Html->url(array('controller' => 'Group', 'action' => 'view', 7))?>" target="_blank" class="dottedLine"><?=__('About Us')?></a>
+					</li>
 
-				<div class="change-lang"><a href="#" class="change-lang_curr"><?php echo $aLangOptions[Configure::read('Config.language')]; ?></a></div>
+					<li><a href="/Terms.pdf" target="_blank" class="dottedLine"><?=__('Terms of Use')?></a></li>
+					
+					<li><a href="/Privacy.pdf" target="_blank" class="dottedLine"><?=__('Privacy Policy')?></a></li>
+
+					<li class="change-lang">
+						<a href="#" class="change-lang_curr"><?php echo $aLangOptions[Configure::read('Config.language')]; ?></a>
+					</li>
+				</ul>
             </div>
 
             <div class="footer-copyright">© KONSTRUKTOR Inc. <br><span><?php echo date('2014 - Y'); ?></span>&nbsp;</div>

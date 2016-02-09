@@ -437,7 +437,7 @@ class ArticleController extends AppController {
 					'Group.title'];
 
 		$limit = 4;
-		$order = 'Article.hits DESC';
+		$order = 'Article.hits DESC, Article.id';
 
 		$joins = array(
 			array(
@@ -462,9 +462,9 @@ class ArticleController extends AppController {
 		$notArticleTop = Hash::extract($aArticlesTop,'{n}.Article.id');
 
 		if(in_array($sort,array_keys($sortArr))){
-			$order = $sortArr[$sort];
+			$order = $sortArr[$sort].', Article.id';
 		}else{
-			$order = 'Article.created DESC';
+			$order = 'Article.created DESC, Article.id';
 		}
 		$conditions['Article.id NOT'] = $notArticleTop;
 		switch($top){
@@ -484,7 +484,7 @@ class ArticleController extends AppController {
 		$aUsers = Hash::combine($aUsers,'{n}.User.id','{n}');
 		$aCategoryOptions = $this->ArticleCategory->options();
 
-		$this->set(compact('aCategoryOptions','aArticles','aArticlesTop','aUsers','sort','top'));
+		$this->set(compact('aCategoryOptions','aArticles','aArticlesTop','aUsers','sort','top','notArticleTop'));
 	}
 
 	public function category($id,$sort ='date-down',$top = 'all') {
@@ -536,14 +536,14 @@ class ArticleController extends AppController {
 		);
 
 		$limit = 4;
-		$order = 'Article.hits DESC';
+		$order = 'Article.hits DESC, Article.id';
 		$aArticlesTop = $this->Article->find('all', compact('conditions', 'order', 'limit','fields','joins'));
 		$notArticleTop = Hash::extract($aArticlesTop,'{n}.Article.id');
 
 		if(in_array($sort,array_keys($sortArr))){
-			$order = $sortArr[$sort];
+			$order = $sortArr[$sort].', Article.id';
 		}else{
-			$order = 'Article.created DESC';
+			$order = 'Article.created DESC, Article.id';
 		}
 		$conditions['Article.id NOT'] = $notArticleTop;
 		switch($top){
@@ -562,7 +562,7 @@ class ArticleController extends AppController {
 		}
 		$aUsers = Hash::combine($aUsers,'{n}.User.id','{n}');
 
-		$this->set(compact('aCategoryOptions','aArticles','aArticlesTop','aUsers','category','sort','top'));
+		$this->set(compact('aCategoryOptions','aArticles','aArticlesTop','aUsers','category','sort','top','notArticleTop'));
 		$this->render('all');
 	}
 

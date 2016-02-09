@@ -36,7 +36,7 @@ $(document).ready(function() {
 	 });
 
 	$('.stylerSelectBig').select2({
-		minimumResultsForSearch:-1
+		minimumResultsForSearch:-1,
 	});
 
 	$('.toggleBtnSort').on('click', function(e){
@@ -156,20 +156,23 @@ $(document).ready(function() {
        }
 
 		var alreadySend = false;
+		var page = 1;
+
 		$(window).on('scroll', function (event) {
 			var dh = $(document).height();
 			if ((/iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
 				dh = dh - 150;
 			}
 			if(($(window).scrollTop() + $(window).height() >= dh) && alreadySend == false) {
+				page = page+1;
 				alreadySend = true;
 				$('#map-load').show();
-
 				$.post(articleURL.loadMore, {
 					data: {
-						page: ($('.stylingArticlesGrid .grid-item').length/16)+1,
+						page: page,
 						published: '1',
 						sort : '<?php echo $sort;?>',
+						<?php echo !empty($notArticleTop) ? 'not : \''.json_encode($notArticleTop).'\',' : '' ?>
 						<?php echo isset($category) ? 'category : '. $category : '';?>
 					}
 				}, function (response) {
@@ -268,7 +271,7 @@ $(document).mouseup(function(e) {
 	</div>
 
 	<div class="wrapperBtns">
-	    <a class="btn btn-default btn-create-articles" href="<?=$this->Html->url(array('controller' => 'Article', 'action' => 'view'))?>">
+	    <a class="btn btn-create-articles" href="<?=$this->Html->url(array('controller' => 'Article', 'action' => 'view'))?>">
 	        <?=__('Create article')?>
 	    </a>
 	</div>
@@ -293,7 +296,7 @@ $(document).mouseup(function(e) {
 				?>
 				<?php if($articleTop['ArticleMedia']['id']): ?>
 				<div class="wrapperBigImg">
-					<a href="<?php echo $this->Html->url(array('controller' => 'Article', 'action'=>'view',Hash::get($articleTop,'Article.id'))) ?>">
+					<a href="<?php echo $this->Html->url(array('controller' => 'Article', 'action'=>'view', Hash::get($articleTop,'Article.id'))) ?>">
 						<img src="<?=$this->Media->imageUrl($articleTop['ArticleMedia'], '770x')?>" alt="">
 					</a>
 				</div>
@@ -303,14 +306,14 @@ $(document).mouseup(function(e) {
 					<?php if(Hash::get($articleTop,'Article.group_id')>0): ?>
 						<div class="imgUserBig">
 							<a href="<?php echo $this->Html->url(array('controller' => 'Group', 'action'=>'view',Hash::get($articleTop,'Article.group_id'))) ?>">
-								<img class="avatar rounded" src="<?=$this->Media->imageUrl($articleTop['GroupMedia'], '40x40')?>" alt="<?php echo Hash::get($articleTop,'Group.title'); ?>">
+								<img class="avatar rounded" src="<?=$this->Media->imageUrl($articleTop['GroupMedia'], '36x36')?>" alt="<?php echo Hash::get($articleTop,'Group.title'); ?>" style="width:33px;height:33px">
 							</a>
 						</div>
 						<div class="nameUserBig"><?php echo Hash::get($articleTop,'Group.title') ?></div>
 					<?php else: ?>
 						<div class="imgUserBig">
 							<a href="<?php echo $this->Html->url(array('controller' => 'User', 'action'=>'view',Hash::get($articleTop,'Article.owner_id'))) ?>">
-								<img class="avatar rounded" src="<?=$this->Media->imageUrl($aUsers[Hash::get($articleTop,'Article.owner_id')]['UserMedia'], '40x40')?>" alt="">
+								<img class="avatar rounded" src="<?=$this->Media->imageUrl($aUsers[Hash::get($articleTop,'Article.owner_id')]['UserMedia'], '36x36')?>" alt="">
 							</a>
 						</div>
 						<div class="nameUserBig"><?php echo Hash::get($aUsers[Hash::get($articleTop,'Article.owner_id')],'User.full_name') ?></div>
@@ -359,14 +362,14 @@ $(document).mouseup(function(e) {
 
 									<?php if(Hash::get($articleTop,'Article.group_id')>0): ?>
 										<a href="<?php echo $this->Html->url(array('controller' => 'Group', 'action'=>'view',Hash::get($articleTop,'Article.group_id'))) ?>" class="right-similar-article_item-image">
-											<img class="avatar rounded" src="<?=$this->Media->imageUrl($articleTop['GroupMedia'], '40x40')?>" alt="<?php echo Hash::get($articleTop,'Group.title'); ?>">
+											<img class="avatar rounded" src="<?=$this->Media->imageUrl($articleTop['GroupMedia'], '100x100')?>" alt="<?php echo Hash::get($articleTop,'Group.title'); ?>">
 										</a>
 										<div class="nameAuthorArt">
 											<p><?php echo Hash::get($articleTop,'Group.title') ?></p>
 										</div>
 									<?php else: ?>
 										<a href="<?php echo $this->Html->url(array('controller' => 'User', 'action'=>'view',Hash::get($articleTop,'Article.owner_id'))) ?>" class="right-similar-article_item-image">
-											<img class="avatar rounded" src="<?=$this->Media->imageUrl($aUsers[Hash::get($articleTop,'Article.owner_id')]['UserMedia'], '30x30')?>" alt="">
+											<img class="avatar rounded" src="<?=$this->Media->imageUrl($aUsers[Hash::get($articleTop,'Article.owner_id')]['UserMedia'], 'thumb24x24')?>" alt="">
 										</a>
 										<div class="nameAuthorArt">
 											<p><?php echo Hash::get($aUsers[Hash::get($articleTop,'Article.owner_id')],'User.full_name') ?></p>
@@ -427,14 +430,14 @@ $(document).mouseup(function(e) {
 
 							<?php if(Hash::get($article,'Article.group_id')>0): ?>
 								<a href="<?php echo $this->Html->url(array('controller' => 'Group', 'action'=>'view',Hash::get($article,'Article.group_id'))) ?>" class="right-similar-article_item-image">
-									<img class="avatar rounded" src="<?=$this->Media->imageUrl($article['GroupMedia'], '40x40')?>" alt="<?php echo Hash::get($article,'Group.title'); ?>">
+									<img class="avatar rounded" src="<?=$this->Media->imageUrl($article['GroupMedia'], 'thumb24x24')?>" alt="<?php echo Hash::get($article,'Group.title'); ?>">
 								</a>
 								<div class="nameAuthorArt">
 									<p><?php echo Hash::get($article,'Group.title') ?></p>
 								</div>
 							<?php else: ?>
 								<a href="<?php echo $this->Html->url(array('controller' => 'User', 'action'=>'view',Hash::get($article,'Article.owner_id'))) ?>" class="right-similar-article_item-image">
-									<img class="avatar rounded" src="<?=$this->Media->imageUrl($aUsers[Hash::get($article,'Article.owner_id')]['UserMedia'], '30x30')?>" alt="">
+									<img class="avatar rounded" src="<?=$this->Media->imageUrl($aUsers[Hash::get($article,'Article.owner_id')]['UserMedia'], 'thumb24x24')?>" alt="">
 								</a>
 								<div class="nameAuthorArt nameAuthorArtG">
 									<p><?php echo Hash::get($aUsers[Hash::get($article,'Article.owner_id')],'User.full_name') ?></p>
@@ -472,4 +475,3 @@ $(document).mouseup(function(e) {
 <?php else :?>
 	<p><?php echo __('No articles in this category yet'); ?></p>
 <?php endif; ?>
-

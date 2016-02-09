@@ -233,12 +233,12 @@ function Login() {
             <?=$this->Form->create('User', array('url' => array('controller' => 'User', 'action' => 'login'), 'class' => 'formFields', 'id' => 'authForm'))?>
             <div class="topInput">
                 <div class="formInput">
-                    <?=$this->Form->input('username', array('label' => false, 'placeholder' => __('Email'), 'class' => 'form-control', 'id' => 'authMail'))?>
+                    <?=$this->Form->input('username', array('label' => false, 'placeholder' => __('Email'), 'class' => 'form-control', 'id' => 'authMail', 'value' => ''))?>
                 </div>
             </div>
             <div class="topInput">
                 <div class="formInput">
-                    <?=$this->Form->input('password', array('label' => false, 'placeholder' => __('Password'), 'class' => 'form-control passwd', 'id' => 'authPasswd'))?>
+                    <?=$this->Form->input('password', array('label' => false, 'placeholder' => __('Password'), 'class' => 'form-control passwd', 'id' => 'authPasswd', 'value' => ''))?>
 					<?=$this->Form->hidden('url',['value'=>Router::url( $this->here, true )]);?>
                 </div>
             </div>

@@ -3234,3 +3234,44 @@ msgstr "Добавить фото/видео превью"
 msgid "Tasks market"
 msgstr "Биржа задач"
 
+msgid "Title can not be more than 50 symbols"
+msgstr "Название не может быть больше 50 символов"
+
+msgid "You"
+msgstr "Вы"
+
+msgid " you"
+msgstr " Вac"
+
+msgid " to"
+msgstr " для"
+
+msgid " task"
+msgstr " задачу"
+
+msgid " event"
+msgstr " событие"
+
+msgid "create an%s"
+msgstr "создали%s"
+
+msgid " create an%s"
+msgstr " создал(a)%s"
+
+msgid "have assigned the%s"
+msgstr "назначили%s"
+
+msgid "invited%s at"
+msgstr "пригласил(a)%s на"
+
+msgid "appointed%s"
+msgstr "назначил(a)%s"
+
+msgid "appointed a%s"
+msgstr "назначил(a)%s"
+
+msgid "Go to"
+msgstr "Перейти"
+
+msgid "Event from"
+msgstr "Событие от"

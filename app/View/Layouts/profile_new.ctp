@@ -109,6 +109,9 @@
 <script type="text/javascript">
 var minichat = null;
 $(document).ready(function() {
+
+    FastClick.attach(document.body);
+
     $.ajaxSetup({ cache: false });
 
     $('select.formstyler, input.filestyle').styler({

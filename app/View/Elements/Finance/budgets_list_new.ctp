@@ -317,31 +317,55 @@ $monthNames = array(
 
         <div class="item total">
             <span class="text"><?= __('Balance')?></span>
-        <span class="value">
-            <span class="plan"></span>
-            <span class="slash"></span>
-            <span></span>
-		</span>
-		<span class="value">
-			<span class="plan"></span>
-			<span class="slash"></span>
-			<span></span>
-		</span>
-		<span class="value" style="position: relative; left: -60px;">
-			<span class="plan"><?=$sum_expence1; ?></span>
-			<span class="slash">/</span>
-			<span><?= $sum_income1 ?></span>
-		</span>
-		<span class="value" style="position: relative; left: -60px;">
-			<span class="plan"><?= $sum_expence2 ?></span>
-			<span class="slash">/</span>
-			<span><?= $sum_income2 ?></span>
-		</span>
-
+            <span class="value">
+                <span class="plan"></span>
+                <span class="slash"></span>
+                <span></span>
+            </span>
+            <span class="value">
+                <span class="plan"></span>
+                <span class="slash"></span>
+                <span></span>
+            </span>
+            <span class="value" style="position: relative; left: -60px;">
+                <span class="plan"><?=$sum_expence1; ?></span>
+                <span class="slash">/</span>
+                <span><?= $sum_income1 ?></span>
+            </span>
+            <span class="value" style="position: relative; left: -60px;">
+                <span class="plan"><?= $sum_expence2 ?></span>
+                <span class="slash">/</span>
+                <span><?= $sum_income2 ?></span>
+            </span>
         </div>
         <?
     }
     ?>
+    <?php if(!empty($transact['month1']) || !empty($transact['month2'])):?>
+    <div class="item total">
+        <span class="text"><?php echo __d('billing', 'Transactions') ?></span>
+        <span class="value">
+            <span class="plan"></span>
+            <span class="slash"></span>
+            <span></span>
+        </span>
+        <span class="value">
+            <span class="plan"></span>
+            <span class="slash"></span>
+            <span></span>
+        </span>
+        <span class="value" style="position: relative; left: -60px;">
+            <span class="plan"><?=$transact['month1']; ?></span>
+            <span class="slash"></span>
+            <span></span>
+        </span>
+        <span class="value" style="position: relative; left: -60px;">
+            <span class="plan"><?= $transact['month2'] ?></span>
+            <span class="slash"></span>
+            <span></span>
+        </span>
+    </div>
+    <?php endif;?>
 </div>
 
 <div class="budgetGraphic">

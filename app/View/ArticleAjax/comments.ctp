@@ -56,7 +56,7 @@
 			<?=__('Leave your comment')?>
 		</div>
 		<div class="imgComment">
-			<?php echo $this->Avatar->user($currUser, array('size' => 'thumb100x100')); ?>
+			<?php echo $this->Avatar->user($currUser, array('size' => 'thumb100x100','class'=>'rounded')); ?>
 		</div>
 		<form action="" method="" class="submitMessage" id="ArticleInnerForm">
 			<textarea id="innerMessageTitle" class="form-control textAreaComment" name="data[message]"></textarea>

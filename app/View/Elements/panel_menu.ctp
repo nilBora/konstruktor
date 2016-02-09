@@ -11,24 +11,23 @@
 		<?php $dream_src = $this->webroot . 'img/group/crawn-s.png';?>
 
 		<div class="row" style="display: inline-block;width:100% !important;">
-			<div class="col-xs-3 chart">
-				<div class="userLink">
-					<?php echo $this->Avatar->userLink($currUser, array(
-							'class' => 'rounded',
-							'style' => 'width:56px;',
-							//take down width and height by avatar border(usually 3px) x 2
-							'size' => 'thumb64x64',
-					)); ?>
-					<span class="glyphicons cogwheel"></span>
-				</div>
-
-					<div class="myLinks">
-						<img src="<?php echo $dream_src; ?>" class="crown-over-chart"/>
-						<a href="" id="dream_chart"></a>
-						<div class="group-select jq-selectbox clearfix" style="display: none;">
-							<img class="group-logo" src="/img/no-photo-50.jpg">
-							<?php
-								$gr = array();
+				<div class="col-xs-4 chart">
+						<div class="userLink">
+								<?php echo $this->Avatar->userLink($currUser, array(
+										'class' => 'rounded',
+										'style' => 'width:56px;',
+										//take down width and height by avatar border(usually 3px) x 2
+										'size' => 'thumb64x64',
+								)); ?>
+								<span class="glyphicons cogwheel"></span>
+						</div>
+						<div class="myLinks">
+								<img src="<?php echo $dream_src; ?>" class="crown-over-chart"/>
+								<a href="" id="dream_chart"></a>
+								<div class="group-select jq-selectbox clearfix" style="display: none;">
+										<img class="group-logo" src="/img/no-photo-50.jpg">
+										<?php
+											$gr = array();
 
 								$groupList = '';
 								foreach ($userGroups as $key => $value) {
@@ -218,10 +217,10 @@
 					</div>
 				</div>
 
-				<div class="col-xs-6 search">
+				<div class="col-xs-4 search">
 					<div class="searchLine" style="width: 100%">
 						<span class="searchLine-box">
-                            <input type="search" id="searchInput" placeholder="<?=__('Search users, groups, articles').'...'?>" value="<?php if (isset($search)) echo $search; ?>">
+                            <input type="search" id="searchInput" placeholder="<?=__('Search users, groups, articles').'...'?>">
                             <span class="glyphicons search"></span>
                             <span id="returnMarkers" class="glyphicons unshare"></span>
                             <input type="hidden" id="controller-name" value="<?=$this->params['controller'];?>"/>
@@ -231,6 +230,15 @@
 
 					<div class="headerTimeline clearfix">
 					    <span class="ajax-loader" style="display: none;"><img src="../img/ajax_loader.gif" alt="" style="width: 20px; height: 20px;"> <?=__('Loading...')?></span>
+					    <!-- <div class="col-sm-6">
+					         <div id="breadcrumb" style="display: none;">
+					            <ol class="breadcrumb">
+					                <li><a href="#">Home</a></li>
+					                <li><a href="#">Library</a></li>
+					                <li class="active">Data</li>
+					            </ol>
+					        </div>
+					    </div> -->
 					    <div class="col-sm-12">
 							<?php if($this->request->controller == 'Statistic'): ?>
 								<div class="btn-group" id="statistic-period">
@@ -240,20 +248,38 @@
 									<button type="button" class="btn btn-default" data-value="year"><?= __('Year') ?></button>
 								</div>
 							<?php else: ?>
-								<div class="btn-group filters-btn">
-									<button id="showDay" class="btn btn-default" type="button" data-filter="day"><span><?=__('Day')?></span></button>
-									<button id="showWeek" class="btn btn-default" type="button" data-filter="week"><span><?=__('Week')?></span></button>
-									<button id="showMonth" class="btn btn-default" type="button" data-filter="month"><span><?=__('Month')?></span></button>
-									<button id="showYear" class="btn btn-default" type="button" data-filter="year"><span><?=__('Year')?></span></button>
+								<div class="btn-group">
+									<button id="showDay" class="btn btn-default active" type="button"><span><?=__('Day')?></span></button>
+									<button id="showWeek" class="btn btn-default" type="button"><span><?=__('Week')?></span></button>
+									<button id="showMonth" class="btn btn-default" type="button"><span><?=__('Month')?></span></button>
+									<button id="showYear" class="btn btn-default" type="button"><span><?=__('Year')?></span></button>
 								</div>
 							<?php endif ?>
 					    </div>
 					</div>
 				</div>
 
-				<div class="col-xs-3 additional">
+				<div class="col-xs-4 additional">
+					<a href="#mmenu" class="mobile-nav">
+						<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="344.339px" height="344.339px" viewBox="0 0 344.339 344.339">
+						<g>
+							<g>
+								<g>
+									<rect y="46.06" width="344.339" height="29.52"/>
+								</g>
+								<g>
+									<rect y="156.506" width="344.339" height="29.52"/>
+								</g>
+								<g>
+									<rect y="268.748" width="344.339" height="29.531"/>
+								</g>
+							</g>
+						</g>
+						</svg>
+					</a>
+
 					<div class="addPanel">
-						<div id="chatLink" <?=($this->params['controller'] == 'Chat') ? 'class="active"' : ''?>>
+						<div class="menu-btn" id="chatLink" <?=($this->params['controller'] == 'Chat') ? 'class="active"' : ''?>>
 							<div class="glyphicons chat"></div>
 							<div class="caption"><?=__('Chat')?></div>
 						</div>
@@ -292,6 +318,17 @@
 	</div>
 </div>
 
+<div id="mmenu">
+	<ul>
+		<li><a href="/User/view/<?php echo $currUser['User']['id'] ?>"><span class="mm-icon"><img src="/img/users81.png" alt=""></span>Профиль</a></li>
+		<li><span id="mmenu-chatLink"><span class="mm-icon"><img src="/img/speech117.png" alt=""></span><?=__('Chat')?></span></li>
+		<li><a href="/Article/all"><span class="mm-icon"><img src="/img/articles.png" alt=""></span><?=__('Articles')?></a></li>
+		<li><a href="/Cloud/index"><span class="mm-icon"><img src="/img/file7.png" alt=""></span><?=__('Files')?></a></li>
+		<li><a href="<?=$this->Html->url(array('controller' => 'Timeline', 'action' => 'index', 'plugin' => false))?>"><span class="mm-icon"><img src="/img/circular116.png" alt=""></span><?=__('My time')?></a></li>
+		<li><a href="/Planet"><span class="mm-icon"><img src="/img/earth53.png" alt=""></span>Биржа задач</a></li>
+	</ul>
+</div>
+
 <div id="menu">
 	<div class="menu-wrapper">
 		<div class="companyLink" >
@@ -299,7 +336,6 @@
 				<div class="clockCanvas">
 					<canvas id="canvas" width="60" height="60"></canvas>
 				</div>
-
 				<div class="text"><?=__('My time')?></div>
 			</a>
 		</div>
@@ -390,33 +426,15 @@
 </style>
 
 <script type="text/javascript"
-			src="https://www.google.com/jsapi?autoload={
-				'modules':[{
-					'name':'visualization',
-					'version':'1',
-					'packages':['corechart']
-				}]
-			}"></script>
+	src="https://www.google.com/jsapi?autoload={
+		'modules':[{
+			'name':'visualization',
+			'version':'1',
+			'packages':['corechart']
+		}]
+	}"></script>
 
 <script type="text/javascript">
-	$(document).ready(function(){
-		var filter = location.href;
-		if (filter != '') {
-			if (filter.indexOf('day') + 1) {
-				$('#showDay').addClass('active');
-			}
-			if (filter.indexOf('week') + 1) {
-				$('#showWeek').addClass('active');
-			}
-			if (filter.indexOf('month') + 1) {
-				$('#showMonth').addClass('active');
-			}
-			if (filter.indexOf('year') + 1) {
-				$('#showYear').addClass('active');
-			}
-		}
-
-	});
 
 $(window).resize();
 
@@ -440,7 +458,36 @@ var controller = $('#controller-name').val();
 var action = $('#controller-action').val();
 
 if (controller != 'Timeline') {
-	if ( controller == 'Cloud' && action == 'index' ) {
+	if ( controller == 'Article' && (action == 'view' || action == 'edit') ) {
+		$('#header .searchLine .glyphicons.search').on('click', function() {
+			location.replace('/'+controller+'/all?search='+$('#searchInput').val());
+		});
+		$("body").keyup(function(event){
+			if ($('#searchInput').val() != '') {
+				if(event.keyCode == 13){
+					location.replace('/'+controller+'/all?search='+$('#searchInput').val());
+				}
+			}
+		});
+		$('body').on('click', '#returnMarkers', function(){
+			location.replace('/'+controller+'/all');
+		});
+
+	} else if ( controller == 'Article' && (action != 'view' || action != 'edit')) {
+		$('#header .searchLine .glyphicons.search').on('click', function() {
+			location.replace('/'+controller+'/'+action+'?search='+$('#searchInput').val());
+		});
+		$("body").keyup(function(event){
+			if ($('#searchInput').val() != '') {
+				if(event.keyCode == 13){
+					location.replace('/'+controller+'/'+action+'?search='+$('#searchInput').val());
+				}
+			}
+		});
+		$('body').on('click', '#returnMarkers', function(){
+			location.replace('/'+controller+'/'+action);
+		});
+	} else if ( controller == 'Cloud' && action == 'index' ) {
 		$('#header .searchLine .glyphicons.search').on('click', function() {
 			location.replace('/'+controller+'/'+action+'?search='+$('#searchInput').val());
 		});
@@ -484,80 +531,64 @@ if (controller != 'Timeline') {
 
 } else if ( controller == 'Timeline' && action == 'planet' ) {
 	$('#header .searchLine .glyphicons.search').on('click', function() {
-		$('.filters-btn').find('button').removeClass('active');
-		//Planet
 		_mapLoadPlanet();
 	});
 
 	$("body").keyup(function(event){
 		if ($('#searchInput').val() != '') {
-			$('.filters-btn').find('button').removeClass('active');
 			if(event.keyCode == 13){
-				//Planet
 				_mapLoadPlanet();
 			}
 		}
 	});
 
-	$('.filters-btn').on('click', 'button', function() {
-		var _this = $(this);
-		var filter = _this.data('filter');
-
-		if ( !_this.hasClass('active')) {
-			$('#searchInput').val('');
-			$('.filters-btn').find('button').removeClass('active');
-			_this.addClass('active');
-			//Planet
-			_setTimeFilters(filter);
-		}
-
-	});
+//	var buttonTmpl = '<span id="returnMarkers" class="glyphicons unshare"></span>';
+//	$('.searchLine-box').append(buttonTmpl);
 
 	$('body').on('click', '#returnMarkers', function(){
-		//Planet
 		_returnMarkersBack();
 		$(this).fadeOut(400);
-		$('.filters-btn').find('button').removeClass('active');
-
 	});
-} else if ( controller == 'Timeline' && action == 'index' ) {
-	$('#showDay').addClass('active');
-} else if ( controller == 'Article'  ) {
-
 }
 
 if (controller != 'Chat') {
 	$('#chatLink').on('click', function() {
-			if( $('.user-list-slider .user-list-item:first').length != 0 ) {
-					var roomId = $('.user-list-slider .user-list-item:first').data('room-id');
-//					console.log( roomId );
-					location.replace('/Chat/room/'+roomId);
-			} else {
-					alert('<?=__('You have no dialogs')?>')
-			}
-	});
-}
-//Time Filters
-if ( controller == 'Cloud' && action == 'index' ) {
-	$('.filters-btn').on('click', 'button', function() {
-
-		var _this = $(this);
-		var filter = _this.data('filter');
-
-		if ( !_this.hasClass('active')) {
-			$('#searchInput').val('');
-			$('.filters-btn').find('button').removeClass('active');
-
-			if (location.pathname.indexOf('shared') + 1 ) {
-				location.replace('/'+controller+'/index/shared?filter='+filter);
-			} else {
-				location.replace('/'+controller+'/index?filter='+filter);
-			}
-
-			_this.addClass('active');
+		if( $('.user-list-slider .user-list-item:first').length != 0 ) {
+			var roomId = $('.user-list-slider .user-list-item:first').data('room-id');
+			location.replace('/Chat/room/'+roomId);
+		} else {
+			alert('<?=__('You have no dialogs')?>')
 		}
-
 	});
 }
+
+/*
+$('#mmenu-chatLink').on('click', function() {
+	if( $('.user-list-slider .user-list-item:first').length != 0 ) {
+		var roomId = $('.user-list-slider .user-list-item:first').data('room-id');
+		location.replace('/Chat/room/'+roomId);
+	} else {
+		alert('<?=__('You have no dialogs')?>')
+	}
+});
+*/
+
+jQuery(document).ready(function(){
+    $("#mmenu").clone().mmenu({
+        "autoHeight": true,
+        "navbar": {
+            "title": ""
+        },
+        "offCanvas": {
+            "position": "left"
+        },
+        "extensions": [
+            "pageshadow",
+            "border-full",
+            "effect-menu-slide",
+            "effect-listitems-drop"
+        ]
+    });
+});
 
 </script>

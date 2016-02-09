@@ -89,6 +89,8 @@ class FinanceBudgetController extends FinanceController {
 		$this->loadModel('Subproject');
 		$this->loadModel('FinanceOperation');
 		$this->loadModel('CrmTask');
+		//$this->loadModel('BillingPlan');
+		//$this->loadModel('BillingSubscription');
 
 		$projectsFull = $this->Project->find('all', compact('conditions'));
 		$projectsFull = Hash::combine($projectsFull, '{n}.Project.id', '{n}');
@@ -133,6 +135,28 @@ class FinanceBudgetController extends FinanceController {
 			$taskFull[$key]['Task']['fullIncome_m2'] = $this->FinanceAccount->fullIncome($item['CrmTask']['account_id'], strtotime('+1 month', strtotime($fromMonth)), null, strtotime('+2 month', strtotime($fromMonth)));
 		}
 
+
+		$transactions = Braintree_Transaction::search([
+			Braintree_TransactionSearch::customerId()->is('konstruktor-'.$this->currUser['User']['id']),
+		]);
+
+		$transact = array();
+		$transact['month1'] = 0;
+		$transact['month2'] = 0;
+
+		foreach($transactions as $transaction) {
+			$trans_stamp = $transaction->updatedAt->getTimestamp();
+			if($trans_stamp >= strtotime($fromMonth) && $trans_stamp < strtotime('+1 month', strtotime($fromMonth))) {
+				$transact['month1']+= $transaction->amount;
+			}
+			if($trans_stamp >= strtotime('+1 month', strtotime($fromMonth)) && $trans_stamp < strtotime('+2 month', strtotime($fromMonth))) {
+				$transact['month2']+= $transaction->amount;
+			}
+			//echo $transaction->amount.' '.$transaction->currencyIsoCode." - ".$transaction->updatedAt->format('Y-m-d H:i:s');
+
+		}
+
+		$this->set('transact', $transact);
 		$this->set('financeAccountFull', $financeAccountFull);
 		$this->set('projectsFull', $projectsFull);
 		$this->set('subprojectsFull', $subprojectsFull);
