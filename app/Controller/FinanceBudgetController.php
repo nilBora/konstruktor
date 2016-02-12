@@ -89,6 +89,7 @@ class FinanceBudgetController extends FinanceController {
 		$this->loadModel('Subproject');
 		$this->loadModel('FinanceOperation');
 		$this->loadModel('CrmTask');
+		$this->loadModel('InvestProject');
 		//$this->loadModel('BillingPlan');
 		//$this->loadModel('BillingSubscription');
 
@@ -107,11 +108,11 @@ class FinanceBudgetController extends FinanceController {
 		$taskFull = $this->Task->find('all',compact('conditions'));
 		$taskFull = Hash::combine($taskFull, '{n}.Task.id', '{n}');
 
-		$conditions = array(
-			'FinanceOperation.account_id' => Hash::extract($taskFull, '{n}.Task.id'),
-		);
-		$finOperationFull = $this->FinanceOperation->find('all',compact('conditions'));
-		$finOperationFull = Hash::combine($finOperationFull, '{n}.FinanceOperation.id', '{n}');
+//		$conditions = array(
+//			'FinanceOperation.account_id' => Hash::extract($taskFull, '{n}.Task.id'),
+//		);
+//		$finOperationFull = $this->FinanceOperation->find('all',compact('conditions'));
+//		$finOperationFull = Hash::combine($finOperationFull, '{n}.FinanceOperation.id', '{n}');
 
 		$conditions = array(
 			'CrmTask.task_id' => Hash::extract($taskFull, '{n}.Task.id'),
@@ -119,11 +120,11 @@ class FinanceBudgetController extends FinanceController {
 		$crmTaskFull = $this->CrmTask->find('all',compact('conditions'));
 		$crmTaskFull = Hash::combine($crmTaskFull, '{n}.CrmTask.task_id', '{n}');
 
-		$conditions = array(
-			'FinanceAccount.project_id' => $id,
-		);
-		$financeAccountFull = $this->FinanceAccount->find('all',compact('conditions'));
-		$financeAccountFull = Hash::combine($financeAccountFull, '{n}.FinanceAccount.id', '{n}');
+//		$conditions = array(
+//			'FinanceAccount.project_id' => $id,
+//		);
+		//$financeAccountFull = $this->FinanceAccount->find('all',compact('conditions'));
+		//$financeAccountFull = Hash::combine($financeAccountFull, '{n}.FinanceAccount.id', '{n}');
 
 		//echo strtotime('+1 month', strtotime($fromMonth));
 
@@ -155,14 +156,10 @@ class FinanceBudgetController extends FinanceController {
 			//echo $transaction->amount.' '.$transaction->currencyIsoCode." - ".$transaction->updatedAt->format('Y-m-d H:i:s');
 
 		}
+		$investProject = $this->InvestProject->findByGroupId($group['Group']['id']);
 
-		$this->set('transact', $transact);
-		$this->set('financeAccountFull', $financeAccountFull);
-		$this->set('projectsFull', $projectsFull);
-		$this->set('subprojectsFull', $subprojectsFull);
-		$this->set('taskFull', $taskFull);
-		$this->set('finOperationFull', $finOperationFull);
-		$this->set('crmTaskFull', $crmTaskFull);
+		$this->set(compact('investProject','transact', 'projectsFull','subprojectsFull', 'taskFull', 'crmTaskFull'));
+
 
 	}
 

@@ -574,7 +574,7 @@ $('#mmenu-chatLink').on('click', function() {
 */
 
 jQuery(document).ready(function(){
-    $("#mmenu").clone().mmenu({
+    $("#mmenu").mmenu({
         "autoHeight": true,
         "navbar": {
             "title": ""

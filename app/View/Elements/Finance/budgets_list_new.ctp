@@ -366,6 +366,31 @@ $monthNames = array(
         </span>
     </div>
     <?php endif;?>
+    <?php if(isset($investProject) && is_array($investProject)):?>
+        <div class="item total">
+            <span class="text"><?=__('Investments')?></span>
+            <span class="value">
+                <span class="plan"></span>
+                <span class="slash"></span>
+                <span></span>
+            </span>
+            <span class="value">
+                <span class="plan"></span>
+                <span class="slash"></span>
+                <span></span>
+            </span>
+            <span class="value" style="position: relative; left: -60px;">
+                <span class="plan"><?=$investProject['InvestProject']['funded_total']; ?></span>
+                <span class="slash">/</span>
+                <span><? echo number_format(($investProject['InvestProject']['total'] - $investProject['InvestProject']['funded_total']), 2, '.','');?></span>
+            </span>
+            <span class="value" style="position: relative; left: -60px;">
+                <span class="plan"></span>
+                <span class="slash"></span>
+                <span></span>
+            </span>
+        </div>
+    <?php endif;?>
 </div>
 
 <div class="budgetGraphic">

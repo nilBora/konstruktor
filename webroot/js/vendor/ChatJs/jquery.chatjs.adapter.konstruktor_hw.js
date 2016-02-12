@@ -162,6 +162,7 @@ var KonstruktorServerAdapter = (function () {
                 bounceMessage = new ChatMessageInfo();
                 $.extend(bounceMessage, response.event)
                 bounceMessage.ClientGuid = clientGuid;
+                bounceMessage.direction = 'out';
                 bounceMessage.ConversationId = conversationId;
                 _this.clientAdapter.triggerMessagesChanged(bounceMessage);
             });
@@ -182,12 +183,11 @@ var KonstruktorServerAdapter = (function () {
                 bounceMessage.ConversationId = conversationId;
                 bounceMessage.Message = messageText;
                 bounceMessage.msgId = response.data;
+                bounceMessage.direction = 'out';
                 bounceMessage.ClientGuid = clientGuid;
                 _this.clientAdapter.triggerMessagesChanged(bounceMessage);
             });
         }
-
-
     };
     KonstruktorServerAdapter.prototype.sendFiles = function (roomId, conversationId, otherUserId, messageText, clientGuid, done,type) {
         var _this = this;
@@ -213,6 +213,7 @@ var KonstruktorServerAdapter = (function () {
               bounceMessage.RoomId = roomId;
               bounceMessage.Type = 'file';
               bounceMessage.msgId = data[i].Media.id;
+              bounceMessage.direction = 'out';
               bounceMessage.ConversationId = conversationId;
               bounceMessage.Message = data[i].Media;
               bounceMessage.ClientGuid = clientGuid;
@@ -284,24 +285,29 @@ var KonstruktorServerAdapter = (function () {
                       message_id = data.ChatEvent.file_id;
                       if(data.ChatEvent.event_type == 7){
                           from_id = KonstruktorAdapterOptions.CURRENT_USER_ID;
-                          to_id = data.ChatEvent.id;
+                          to_id = data.ChatEvent.user_id;
+                          direction = 'in';
                       } else if(data.ChatEvent.event_type == 6){
                           from_id = data.ChatEvent.user_id;
                           to_id = KonstruktorAdapterOptions.CURRENT_USER_ID;
+                          direction = 'out';
                       }
                       chatMessage.Type = 'file';
                       chatMessage.msgId = message_id;
+                      chatMessage.direction = direction;
                       chatMessage.Message = data.File;
                     }else{
                       if(data.ChatEvent.event_type == 1){
                           to_id = KonstruktorAdapterOptions.CURRENT_USER_ID;
                           from_id = data.ChatEvent.user_id;
+                          direction = 'out';
                       } else if(data.ChatEvent.event_type == 2){
                           to_id = data.ChatEvent.user_id;
                           from_id = KonstruktorAdapterOptions.CURRENT_USER_ID;
+                          direction = 'in';
                       }
-                      message_id = data.ChatMessage.id;
-                      chatMessage.msgId = message_id;
+                      chatMessage.direction = direction;
+                      chatMessage.msgId = data.ChatEvent.id;
                       chatMessage.Type = 'msg';
                       chatMessage.Message = _this.decodeHTMLEntities(data.ChatMessage.message);
                     }
@@ -320,6 +326,15 @@ var KonstruktorServerAdapter = (function () {
                         data: {
                             ids: markRead
                         },
+                    }).done(function(result){
+                        $('#message-user-count-'+otherUserId).remove();
+                        for (var i = 0; i < markRead.length; i++) {
+                            $('#chatEvent-'+markRead[i]).remove();
+                        }
+                        //Is it working here?
+                        //if(typeof Timeline != 'undefined'){
+                        //    Timeline.collapseEmptyCells();
+                        //}
                     });
                 }
                 done(chatMessages);

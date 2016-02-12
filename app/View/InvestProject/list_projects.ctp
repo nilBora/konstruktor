@@ -57,7 +57,7 @@ if(Configure::read('Config.language') == 'rus'){
 }
 
 .fixedLayout{
-	max-width: none;
+	max-width: 1024px;
 }
 #sorted-styler{
 	float: right;

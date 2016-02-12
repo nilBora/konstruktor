@@ -259,7 +259,7 @@
 }
 
 .menu-wrapper .companyLink a .text {
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 13px;
     margin-top: 6px;
     text-align: center;
@@ -554,9 +554,9 @@
 }
 
 #menu .menu-wrapper .planet span {
-    font-size: 11px;
-    font-family: 'PT Sans', sans-serif;
-    color: #999999;
+    font-size: 13px;
+    font-family: 'Open Sans', sans-serif;
+    color: #666;
     text-decoration: none;
     white-space: nowrap;
     position: absolute;
@@ -871,9 +871,11 @@
     height: 42px;
     background-color: #f1f1f1;
     color: #bbbbbb;
+    font-size:14px;
     line-height: 42px;
     text-align: right;
     padding-right: 25px;
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
 }
 
 #breadcrumbs a {

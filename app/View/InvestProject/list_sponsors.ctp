@@ -92,10 +92,6 @@ if(Configure::read('Config.language') == 'rus'){
 	}
 	.fixedLayout {
     	max-width: 1024px;
-		margin-bottom: 48px;
-		margin-top: 33px;
-		margin-left: -15px;
-    	margin-right: -15px;
 	}
 	.refound{
 		color: #999;

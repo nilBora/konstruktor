@@ -25,7 +25,8 @@ class ChatContact extends AppModel {
 		$conditions = compact('user_id', 'room_id');
 		$row = $this->find('first', compact('conditions'));
 		$id = Hash::get($row, 'ChatContact.id');
-		$active_count = intval(Hash::get($row, 'ChatContact.active_count')) + 1;
+		//when used afterSave callback in ChatEvents this row not need anymore
+		//$active_count = intval(Hash::get($row, 'ChatContact.active_count')) + 1;
 
 		/*
 		$data = compact('id', 'user_id', 'room_id', 'msg', 'chat_event_id');
@@ -34,7 +35,7 @@ class ChatContact extends AppModel {
 		}
 		$this->save($data);
 		*/
-		$this->save(compact('id', 'user_id', 'room_id', 'initiator_id', 'msg', 'active_count', 'chat_event_id', 'group_id'));
+		$this->save(compact('id', 'user_id', 'room_id', 'initiator_id', 'msg', 'chat_event_id', 'group_id'));
 	}
 
 	/**
@@ -45,9 +46,9 @@ class ChatContact extends AppModel {
 	 * @param int $active_count
 	 */
 	public function setActiveCount($user_id, $room_id, $active_count) {
-		$row = $this->findByUserIdAndRoomId($user_id, $room_id);
-		$id = Hash::get($row, 'ChatContact.id');
-		$this->save(compact('id', 'user_id', 'room_id', 'active_count'));
+		//$row = $this->findByUserIdAndRoomId($user_id, $room_id);
+		//$id = Hash::get($row, 'ChatContact.id');
+		//$this->save(compact('id', 'user_id', 'room_id', 'active_count'));
 	}
 
 	/**

@@ -111,15 +111,15 @@ class ChatAjaxController extends PAjaxController {
 				),
 			),
 		));
-		$condition = array(
+		$conditions = array(
 			'ChatEvent.room_id' => $room['ChatRoom']['id'],
 			'ChatEvent.event_type' => array(1, 2, 6, 7),
-			'ChatEvent.user_id' => $userID,
+			'ChatEvent.user_id' => $this->currUserID,
 		);
-
+		//debug($conditions);
 		$this->ChatEvent->Behaviors->load('Containable');
 		$events = $this->ChatEvent->find('all', array(
-			'conditions' => $condition,
+			'conditions' => $conditions,
 			'contain' => array('ChatMessage', 'File'),
 			'order' => array('ChatEvent.created' => 'DESC'),
 			'limit' => 20,
@@ -139,6 +139,22 @@ class ChatAjaxController extends PAjaxController {
 		try {
 			$id = $this->ChatEvent->addMessage($this->currUserID, $roomID, $msg);
 			return $this->setResponse($id);
+		} catch (Exception $e) {
+			$this->setError($e->getMessage());
+		}
+	}
+
+	public function sendMinichatMsg() {
+		$roomID = $this->request->data('roomID');
+		$msg = $this->request->data('msg');
+		$msg = htmlentities($msg);
+		if (!($msg && $roomID)) {
+			throw new Exception('Incorrect request');
+		}
+		try {
+			$id = $this->ChatEvent->addMessage($this->currUserID, $roomID, $msg);
+			$this->ChatEvent->id = $id;
+			return $this->setResponse($this->ChatEvent->field('msg_id'));
 		} catch (Exception $e) {
 			$this->setError($e->getMessage());
 		}
@@ -236,10 +252,38 @@ class ChatAjaxController extends PAjaxController {
 	public function markRead() {
 		try {
 			$ids = $this->request->data('ids');
-			if (!$ids || !is_array($ids)) {
+			if (!$ids) {
 				throw new Exception('Incorrect request');
+			} elseif(!is_array($ids)) {
+				$ids = (array)$ids;
 			}
 			$this->ChatEvent->updateInactive($this->currUserID, $ids);
+			$this->setResponse(true);
+		} catch (Exception $e) {
+			$this->setError($e->getMessage());
+		}
+	}
+
+	public function markMinichatRead() {
+		try {
+			$ids = $this->request->data('ids');
+			if (!$ids) {
+				throw new Exception('Incorrect request');
+			} elseif(!is_array($ids)) {
+				$ids = (array)$ids;
+			}
+			$events = $this->ChatEvent->find('list', array(
+				'conditions' => array(
+					'OR' => array(
+						'ChatEvent.msg_id' => $ids,
+						'ChatEvent.file_id' => $ids,
+					),
+					//'ChatEvent.event_type' => ChatEvent::INCOMING_MSG
+				),
+				'recursive' => -1
+			));
+			$events = array_values($events);
+			$this->ChatEvent->updateInactive($this->currUserID, $events);
 			$this->setResponse(true);
 		} catch (Exception $e) {
 			$this->setError($e->getMessage());

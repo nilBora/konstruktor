@@ -190,9 +190,10 @@ var MessageBoard = (function() {
 		});
 		this.options.adapter.client.onMessagesChanged(function(message) {
 			var shouldProcessMessage = false;
-			if (_this.options.otherUserId) {
-				shouldProcessMessage = (message.UserFromId == _this.options.userId && message.UserToId == _this.options.otherUserId) || (message.UserFromId == _this.options.otherUserId && message.UserToId == _this.options.userId);
-			} else if (_this.options.roomId) {
+			//if (_this.options.otherUserId) {
+			//	shouldProcessMessage = (message.UserFromId == _this.options.userId && message.UserToId == //_this.options.otherUserId) || (message.UserFromId == _this.options.otherUserId && message.UserToId == //_this.options.userId);
+			//} else
+			if (_this.options.roomId) {
 				shouldProcessMessage = message.RoomId == _this.options.roomId;
 			} else if (_this.options.conversationId) {
 				shouldProcessMessage = message.ConversationId == _this.options.conversationId;
@@ -413,9 +414,7 @@ var MessageBoard = (function() {
 				if (message.ClientGuid && $("p[data-val-client-guid='" + message.ClientGuid + "']").length) {
 					$("p[data-val-client-guid='" + message.ClientGuid + "']").removeClass("temp-message").removeAttr("data-val-client-guid");
 				} else {
-					//console.log("stex enq");
 					var fileData = message.Message;
-					//console.log(fileData);
 					if (typeof(fileData.media_type) != 'undefined'){
 						if (fileData.media_type == 'image') {
 							var sizew = fileData.orig_w / fileData.orig_h;
@@ -436,7 +435,9 @@ var MessageBoard = (function() {
 						}
 					}
 					var $lastMessage = $("div.chat-message:last", _this.$messagesWrapper);
-					if (_this.options.userId == message.UserFromId) {
+					//if (_this.options.userId == message.UserFromId) {
+					console.log(message.direction);
+					if (message.direction == 'out') {
 						var $chatMessage = $("<div/>").addClass("chat-message chat-message-self").css('overflow', 'hidden').attr("data-val-user-from", message.UserFromId);
 						$chatMessage.appendTo(_this.$messagesWrapper);
 						var $gravatarWrapper = $("<div/>").addClass("chat-gravatar-wrapper").appendTo($chatMessage);
@@ -480,7 +481,8 @@ var MessageBoard = (function() {
 					$messageP.html($replText);
 
 					var $lastMessage = $("div.chat-message:last", _this.$messagesWrapper);
-					if (_this.options.userId == message.UserFromId) {
+					//if (_this.options.userId == message.UserFromId) {
+					if (message.direction == 'out') {
 						var $chatMessage = $("<div/>").addClass("chat-message chat-message-self").css('overflow', 'hidden').attr("data-val-user-from", message.UserFromId);
 						$chatMessage.appendTo(_this.$messagesWrapper);
 						var $gravatarWrapper = $("<div/>").addClass("chat-gravatar-wrapper").appendTo($chatMessage);
@@ -527,9 +529,7 @@ var MessageBoard = (function() {
 				if (message.ClientGuid && $("p[data-val-client-guid='" + message.ClientGuid + "']").length) {
 					$("p[data-val-client-guid='" + message.ClientGuid + "']").removeClass("temp-message").removeAttr("data-val-client-guid");
 				} else {
-					//console.log("stex enq");
 					var fileData = message.Message;
-					//console.log(fileData);
 					if (typeof(fileData.media_type) != 'undefined')
 						if (fileData.media_type == 'image') {
 							var sizew = fileData.orig_w / fileData.orig_h;
@@ -543,7 +543,8 @@ var MessageBoard = (function() {
 							var $messageP = $("<p/>").addClass('image-file').html('<a href="/File/preview/' + fileData.id + '" target="_blank">' + fileData.orig_fname + '</a>');
 						}
 					var $lastMessage = $("div.chat-message:last", _this.$messagesWrapper);
-					if (_this.options.userId == message.UserFromId) {
+					//if (_this.options.userId == message.UserFromId) {
+					if (message.direction == 'out') {
 						var $chatMessage = $("<div/>").addClass("chat-message chat-message-self").css('overflow', 'hidden').attr("data-val-user-from", message.UserFromId);
 						$chatMessage.prependTo(_this.$messagesWrapper);
 						var $gravatarWrapper = $("<div/>").addClass("chat-gravatar-wrapper").appendTo($chatMessage);
@@ -585,9 +586,9 @@ var MessageBoard = (function() {
 					linkify($messageP);
 					$replText = $messageP.html().replace(/\n/g, "<br />");
 					$messageP.html($replText);
-					//console.log($replText);
 					var $lastMessage = $("div.chat-message:last", _this.$messagesWrapper);
-					if (_this.options.userId == message.UserFromId) {
+					//if (_this.options.userId == message.UserFromId) {
+					if (message.direction == 'out') {
 						var $chatMessage = $("<div/>").addClass("chat-message chat-message-self").css('overflow', 'hidden').attr("data-val-user-from", message.UserFromId);
 						$chatMessage.prependTo(_this.$messagesWrapper);
 						var $gravatarWrapper = $("<div/>").addClass("chat-gravatar-wrapper").appendTo($chatMessage);

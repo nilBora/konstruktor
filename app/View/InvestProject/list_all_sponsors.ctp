@@ -98,13 +98,16 @@ $group = $groupHeader;
 	    border: 1px solid #ddd;
 	    color: #999;
 	}
+	.fixedLayout {
+    	max-width: 1024px;
+	}
 	.refound {
 		opacity: 0.8;
 	}
 	.refound:hover {
 		opacity: 1;
 	}
-	.refound, 
+	.refound,
 	.refound:hover{
 		color: #999;
 		text-decoration: none;

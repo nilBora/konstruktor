@@ -27,7 +27,8 @@
         'tinyPlugins/contextmenu/plugin.min.js',
         'tinyPlugins/paste/plugin.min.js',
         'tinyPlugins/code/plugin.min.js',
-        'tinyPlugins/autoresize/plugin.min.js'
+        'tinyPlugins/autoresize/plugin.min.js',
+        '/vendor/formstyler.js'
     ), array('inline' => false));
 
     $css = array(
@@ -188,10 +189,13 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 			return $state;
 		};
 
-		$('.selectStyler').select2({
-			templateResult: formatState,
-			templateSelection: formatState,
-			minimumResultsForSearch:-1
+		// $('.selectStyler').select2({
+		// 	templateResult: formatState,
+		// 	templateSelection: formatState,
+		// 	minimumResultsForSearch:-1
+		// });
+
+		$('.stylerSelectBig').styler({
 		});
 
 		$('.magnificP').on('click', function(e){
@@ -358,14 +362,14 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 		line-height: 36px;
 		padding:0 15px;
 		color:#999;
-		font-family: 'PT Sans', sans-serif;
+		font-family: 'Open Sans', sans-serif;
 		font-weight: 400;
 	}
 
 	.froala-element.f-placeholder + span.fr-placeholder{
 		color:#999999;
 		font-size:16px;
-		font-family: 'PT Sans', sans-serif;
+		font-family: 'Open Sans', sans-serif;
 		font-weight: 400;
 	}
 
@@ -425,7 +429,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 	.similar-article_title, .similar-tag_title{
 		color:#222222;
 		font-size:14px;
-		font-family: 'PT Sans', sans-serif;
+		font-family: 'Open Sans', sans-serif;
 		text-transform: uppercase;
 		font-weight: 700;
 		text-align: center;
@@ -445,7 +449,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
         color:#666666;
         font-size:14px;
         padding:0px 4%;
-        font-family: 'PT Sans', sans-serif;
+        font-family: 'Open Sans', sans-serif;
         font-weight: bold;
         text-decoration: none;
         text-transform: uppercase;
@@ -465,7 +469,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
     .nameAuthorArt{
     	color:#999999;
     	font-size:12px;
-    	font-family: 'PT Sans', sans-serif;
+    	font-family: 'Open Sans', sans-serif;
     	font-weight: 400;
     	margin-right: 14px;
     }
@@ -475,7 +479,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
     }
 
     .tagsLinkThemes a{
-		font-family: 'PT Sans', sans-serif;
+		font-family: 'Open Sans', sans-serif;
 		font-size:12px;
 	    color:#36b7ff;
 	    text-decoration: none;
@@ -488,7 +492,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 	.similar-article_item-date, .similar-article_item-users, .similar-article_item-backing{
 		font-size:12px;
 		color:#999999;
-		font-family: 'PT Serif', serif;
+		font-family: 'Open Sans', serif;
 		font-weight: 400;
 		letter-spacing: 1px;
 	}
@@ -511,13 +515,13 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 		margin-right: 7px;
 		margin-top: 8px;
 		border:1px solid #eeeeee;
-		font-family: 'PT Serif', serif;
+		font-family: 'Open Sans', serif;
 		color:#999999;
 		font-size:14px;
 	}
 
 	.items-tags a{
-		font-family: 'PT Serif', serif;
+		font-family: 'Open Sans', serif;
 		color:#999999;
 		font-size:14px;
 		text-decoration: none;
@@ -576,7 +580,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 
     .wrapR{
         overflow: hidden;
-        padding:10px 4%;
+        padding:10px 0;
         border-top:1px solid #eaf1f5;
         border-bottom:1px solid #eaf1f5;
     }
@@ -603,6 +607,12 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
         margin-left: 30px;
     }
 
+
+
+	.date_article  .similar-article_item-backing{
+		padding-left:0;
+	}
+
     .date_article div + a{
     	margin-left: 30px;
     }
@@ -610,11 +620,18 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
     .similar-article_item-meta{
     	text-align: center;
     }
+    .similar-article_item-meta div:first-child{
+		margin-left:0;
+		margin-right: 2%;
+    }
+    .similar-article_item-meta div:last-child{
+		margin-right: 0;
+    }
 
     .similar-article_item-meta div{
     	display: inline-block;
     	vertical-align: top;
-        margin: 0px 6%;
+        margin: 0px 13%;
         float: none;
     }
 
@@ -624,7 +641,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
     }
 
     .similar-article_item-users{
-		background:url(/img/Views.png)no-repeat center left;
+		background:url(/img/ViewsPic.png)no-repeat center left;
 		background-size:16px 11px;
     }
 
@@ -695,8 +712,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
         color:#999999;
         font-size:14px;
         margin-top: 6px;
-        font-family: 'PT Sans', sans-serif;
-        letter-spacing: 1px;
+        font-family: 'Open Sans', sans-serif;
         max-width: 100px;
         margin-right: 20px;
         white-space: nowrap;
@@ -719,7 +735,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 
 	.date_article .similar-article_item-date, .date_article .similar-article_item-users{
 		font-size:12px;
-		font-family: 'PT Sans', sans-serif;
+		font-family: 'Open Sans', sans-serif;
 		font-weight: 400;
 		letter-spacing: 1px;
 	}
@@ -727,7 +743,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 	.author_words{
 		display: inline-block;
 		color:#333333;
-		font-family: 'PT Sans', sans-serif;
+		font-family: 'Open Sans', sans-serif;
 		font-weight: bold;
 		font-style:italic;
 		font-size:16px;
@@ -741,11 +757,14 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 		margin-top:20px;
 	}
 
-
+	.contentText img{
+		max-width:100%;
+		height:auto;
+	}
 
 	.contentText p{
 		padding:0px 10%;
-		font-family: 'PT Sans', sans-serif;
+		font-family: 'Open Sans', sans-serif;
 		font-size: 16px;
 		color:#666666;
 		letter-spacing: 0px;
@@ -766,7 +785,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 		padding: 0px 10% 0 3%;
 		font-size: 16px;
 		margin-left: 13%;
-		font-family: 'PT Sans', sans-serif;
+		font-family: 'Open Sans', sans-serif;
 		font-weight: 700;
 		font-style:italic;
 	}
@@ -775,7 +794,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 		text-transform: uppercase;
 		color:#666666;
 		font-size: 16px;
-		font-family: 'PT Sans', sans-serif;
+		font-family: 'Open Sans', sans-serif;
 		font-weight: bold;
 		margin-bottom:31px;
 	}
@@ -788,7 +807,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 		height:100px !important;
 		box-sizing:border-box;
 		resize:none;
-		font-family: 'PT Sans', sans-serif;
+		font-family: 'Open Sans', sans-serif;
 		font-weight: 400;
 	}
 	.textAreaComment:hover{
@@ -811,7 +830,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 		height: 32px;
 		line-height: 30px;
 		box-sizing: border-box;
-		font-family: 'PT Sans', sans-serif;
+		font-family: 'Open Sans', sans-serif;
 		font-weight: bold;
 		float: right;
 		max-width: 120px;
@@ -932,7 +951,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 		max-width: 140px;
 	    color: #fff;
 	    background-color: #fbaa31;
-		font-family: 'PT Sans', sans-serif;
+		font-family: 'Open Sans', sans-serif;
 		border-radius: 4px;
 		box-shadow: 0px 2px 4px rgba(0,0,0,0.3);
 		border:none;
@@ -959,6 +978,10 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 
 	.chernArt:hover{
 		color:#ffb547;
+	}
+
+	.chernArt:active{
+		box-shadow: none;
 	}
 
 	.putArt, .chernArt{
@@ -1017,7 +1040,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 
 	.changesArt{
 		color:#666666;
-		font-family: 'PT Sans', sans-serif;
+		font-family: 'Open Sans', sans-serif;
 		font-size: 16px;
 	}
 
@@ -1032,14 +1055,118 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 		width:100% !important;
 	}
 
-	.select2-container--default .select2-selection--single{
-		border:1px solid #c9c9c9;
+.select2-container--default .select2-selection--single{
+		border:1px solid #dcdcdc;
 		border-radius:4px;
+		outline:none;
 	}
 
+	.select2-container--open .select2-dropdown--below{
+		margin-top:17px;
+		border-radius:4px 4px 0 0;
+	}
+
+	.select2-container--open .select2-dropdown--below:before{
+		content: '';
+		position: absolute;
+		left: -1px;
+		box-sizing: content-box;
+		width: 100%;
+		height: 6px;
+		padding: 0 1px;
+		border-radius: 4px 4px 0 0;
+		background-color: #fbaa31;
+		bottom:99%;
+	}
+
+	.select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b{
+		border-color: transparent transparent #fbaa31 transparent;
+		border-width: 0 4px 5px 4px;
+	}
+
+	.select2.select2-container.select2-container--default.select2-container--focus.select2-container--above.select2-container--open .select2-selection.select2-selection--single{
+		border:1px solid #fbaa31;
+		border-radius:4px;
+		outline:none;
+	}
+
+	.select2-dropdown.select2-dropdown--above{
+		margin-top: -17px;
+		border-bottom:none;
+	}	
+
+	.select2-dropdown.select2-dropdown--above:after{
+	    content: ' ';
+	    position: absolute;
+	    left: 46px;
+	    width: 0;
+	    height: 0;
+	    margin-left: -6px;
+	    pointer-events: none;
+	    border: solid transparent;
+	    border-width: 6px;
+	    border-color: rgba(251, 170, 49, 0);
+	    bottom: 0;
+	    border-top-color: #fbaa31;
+	    margin-bottom: -12px;
+	}	
+
+	.select2-dropdown.select2-dropdown--above:before{
+		content: '';
+		position: absolute;
+		left: -1px;
+		box-sizing: content-box;
+		width: 100%;
+		height: 6px;
+		padding: 0 1px;
+		border-radius: 0 0 4px 4px;
+		background-color: #fbaa31;
+		bottom: 0;
+	}
+
+	.select2-container--open .select2-dropdown--below:after{
+		content: ' ';
+		position: absolute;
+		left: 46px;
+		width: 0;
+		height: 0;
+		margin-left: -6px;
+		pointer-events: none;
+		border: solid transparent;
+		border-width: 6px;
+		border-color: rgba(251, 170, 49, 0);
+		bottom: 99%;
+	    border-bottom-color: #fbaa31;
+	    margin-bottom:6px;
+	}
+
+
+
+	.select2-container--default .select2-results__option--highlighted[aria-selected]{
+		background:#f1f1f1;
+		color:#666;
+	}
+
+	.select2-dropdown{
+        border-color: #fbaa31 !important;
+        border-radius:0px 0px 4px 4px;
+	}
+
+	.select2-results li + li{
+		border-top:1px solid #bbb;
+	}
+
+	.select2.select2-container--below.select2-container--open .select2-selection.select2-selection--single{
+		border:1px solid #ffa836;
+		border-radius:4px;
+		outline:none;
+	}
+
+	
+
 	.select2-container .select2-selection--single{
-		height:38px;
-		line-height: 38px;
+		height:32px;
+		line-height: 32px;
 	}
 
 	.select2-container .select2-selection--single .select2-selection__rendered{
@@ -1048,11 +1175,11 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 
 	.select2-container--default .select2-selection--single .select2-selection__rendered{
 		color:#666666;
-		font-family: 'PT Sans', sans-serif;
-		font-weight: bold;
+		font-family: 'Open Sans', sans-serif;
 		text-transform: uppercase;
+		font-weight: bold;
 		font-size: 14px;
-		line-height: 38px;
+		line-height: 32px;
 	}
 
 	.select2.select2-container.select2-container--default.select2-container--below.select2-container--open.select2-container--focus, .select2.select2-container.select2-container--default.select2-container--below.select2-container--focus{
@@ -1061,7 +1188,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 	}
 
 	.select2-container--default .select2-selection--single .select2-selection__arrow{
-		height: 38px;
+		height: 32px;
 	}
 
 	.select2-container--default .select2-selection--single .select2-selection__arrow b{
@@ -1263,7 +1390,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 
 	.titleArticleUser{
 		font-size:20px;
-		font-family: 'PT Sans', sans-serif;
+		font-family: 'Open Sans', sans-serif;
 		font-weight: bold;
 		text-transform: uppercase;
 	}
@@ -1299,7 +1426,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 	.select2-results__option{
 		color:#666;
 		font-size:14px;
-		font-family: 'PT Sans', sans-serif;
+		font-family: 'Open Sans', sans-serif;
 		font-weight: bold;
 	}
 
@@ -1327,15 +1454,15 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 		border-radius: 4px;
 		max-width:370px;
 		width:100%;
-		height: 38px;
-		line-height: 38px;
+		height: 36px;
+		line-height: 36px;
 	}
 
 	.selectStylerDate.input-group .form-control{
 		text-align:right;
 		color:#999;
 		font-size:14px;
-		font-family: 'PT Sans', sans-serif;
+		font-family: 'Open Sans', sans-serif;
 	}
 
 	.input-group .input-group-addon{
@@ -1355,7 +1482,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 		margin-top: 2px;
 		font-size:16px;
 		color:#666;
-		font-family: 'PT Sans', sans-serif;
+		font-family: 'Open Sans', sans-serif;
 		font-weight: bold;
 		width:auto;
 		height:auto;
@@ -1382,6 +1509,87 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 		box-shadow: none;
 	}
 
+	.stylerSelectBig.jq-selectbox.opened .jq-selectbox__select, .stylerSelectBig.jq-selectbox .jq-selectbox__select:active{
+	    background: #fff;
+	    border-color: #ffa836;
+	    color: #666;
+	}
+
+	.stylerSelectBig .jq-selectbox__select{
+		height:36px;
+	}
+
+	.stylerSelectBig .jq-selectbox__trigger-arrow{
+		top:15px;
+		width:9px;
+		height: 6px;
+		background:url(/img/arrw_spr.png);
+	}	
+
+	.stylerSelectBig .jq-selectbox__dropdown{
+		margin-left:0 !important;
+		box-shadow: none;
+		border: 1px solid #ffa836;
+		margin-top:16px;
+	}
+
+	.stylerSelectBig .jq-selectbox__select-text{
+	    color: #666666;
+	    font-family: 'Open Sans', sans-serif;
+	    text-transform: uppercase;
+	    font-size: 14px;
+	    line-height: 28px;
+	    font-weight: bold;
+	}
+
+
+	.stylerSelectBig  li + li{
+		border-top:1px solid #666;
+	}
+
+	.stylerSelectBig .jq-selectbox__dropdown:before{
+		content: '';
+		position: absolute;
+		left: -1px;
+		box-sizing: content-box;
+		width: 100%;
+		height: 6px;
+		padding: 0 1px;
+		border-radius: 4px 4px 0 0;
+		background-color: #fbaa31;
+		bottom: 99%;
+	}
+
+	.stylerSelectBig .jq-selectbox__dropdown:after{
+	    content: ' ';
+	    position: absolute;
+	    left: 46px;
+	    width: 0;
+	    height: 0;
+	    margin-left: -6px;
+	    pointer-events: none;
+	    border: solid transparent;
+	    border-width: 6px;
+	    border-color: rgba(251, 170, 49, 0);
+	    bottom: 99%;
+	    border-bottom-color: #fbaa31;
+	    margin-bottom: 6px;
+	}
+
+	.stylerSelectBig.jq-selectbox{
+		max-width:370px;
+		width:100%;
+	}
+
+	.stylerSelectBig .jq-selectbox__select:hover{
+		border-color:#ffb547 !important;
+	}
+
+	.stylerSelectBig li:hover{
+	    background: #f1f1f1;
+    	color: #666;
+	}
+
 	.dopMarT .bttn-wrapper button:last-child{
 		float:right;
 	}
@@ -1396,7 +1604,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 		text-decoration: none;
 		color:#999999;
 		font-size: 12px;
-		font-family: 'PT Sans', sans-serif;
+		font-family: 'Open Sans', sans-serif;
 		font-weight: 400;
 		height: 28px;
 		line-height: 28px;
@@ -1440,6 +1648,9 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 
     .tagsOut a{
         color:#4cbcff;
+        font-size: 12px;
+        font-weight: bold;
+    	font-family: 'Open Sans';
         text-decoration: none;
     }
 
@@ -1573,7 +1784,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 	.titleArt{
 		padding:0 4%;
 		font-size: 20px;
-		font-family: 'PT Sans', sans-serif;
+		font-family: 'Open Sans', sans-serif;
 		font-weight: 700;
 		text-transform: uppercase;
 	}
@@ -1582,7 +1793,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 		text-decoration: none;
 	    font-size: 12px;
 	    color: #999999;
-	    font-family: 'PT Serif', serif;
+	    font-family: 'Open Sans', serif;
 	    font-weight: 400;
 	    letter-spacing: 1px;
 	}
@@ -1644,13 +1855,13 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 	#shareToEmail .error {
 		position: absolute;
 		color: #ff2222;
-		font: 12px 'PT Sans', sans-serif;
+		font: 12px 'Open Sans', sans-serif;
 		margin-left: 3px;
 		width: 183px;
 	}
 
 	#shareToEmail .success {
-		font: 14px 'PT Sans', sans-serif;
+		font: 14px 'Open Sans', sans-serif;
 		color: #11C128;
 		white-space: nowrap;
 		position: relative;
@@ -1674,6 +1885,10 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 		max-width: 100%;
 	}
 
+	.description_author-article b{
+		font-weight: normal;
+	}
+
 	.downWrapp{
 		margin-top: 20px;
 	}
@@ -1686,14 +1901,11 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 		float: none !important;
 		display: inline-block;
 		vertical-align: top;
+		margin:0 4%;
 	}
 
 	.uppWrap div{
 		margin:0px 1%;
-	}
-
-	.downWrapp > div, .downWrapp .date_article > a{
-		margin:0px 4%;
 	}
 
 	div.mce-edit-area{
@@ -1909,6 +2121,11 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
     border-radius:30px;
 }
 
+.selectStylerDate.datetimepicker{
+	padding:0;
+	margin-top: 0;
+}
+
 .magnificP{
 	display: inline-block;
 	vertical-align: top;
@@ -1960,7 +2177,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 	text-transform: uppercase;
 	color:#555555;
 	font-size: 16px;
-	font-family: 'PT Sans', sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	font-weight: 700;
 	white-space:nowrap;
 }
@@ -1972,7 +2189,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 	height: 36px;
 	color:#999999;
 	font-size: 14px;
-	font-family: 'PT Sans', sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	font-weight: 400;
 	width:100%;
 }
@@ -1989,7 +2206,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 	box-sizing:border-box;
 	border:1px solid #7ce6ff;
 	background:#fff url(/img/soLinkPop.png) no-repeat center center;
-	border-radius:50%;
+	border-radius:12px;
 }
 
 .wrappInpRec{
@@ -2689,7 +2906,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 
 						<div class="wrappInpRec">
 							<input type="text" class="recIn" placeholder="Введите email друга">
-							<input type="button" class="recBtn">
+							<a href="" class="recBtn"></a>
 						</div>
 
 						<div class="socIconsInside">
@@ -2760,7 +2977,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 
 		<div class="wrapperSelectsBottom">
 			<div class="groupPick">
-				<select name="" id="catId" class="selectStyler">
+				<select name="" id="catId" class="stylerSelectBig">
 					<?php foreach($aCategoryOptions as $catId => $catTag): ?>
 						<?php if($catTag): ?>
 							<option value="<?php echo $catId ?>" <?php echo $catId == Hash::get($article,'Article.cat_id') ? 'selected' : '' ?>><?php echo $catTag ?></option>
@@ -2823,7 +3040,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 
 						<?php if(Hash::get($aSimilarArticle,'Article.group_id')>0): ?>
 							<a href="/Group/view/<?=$aSimilarArticle['Article']['group_id']?>" class="similar-article_item-image">
-								<img class="avatar rounded" src="<?=$this->Media->imageUrl($aSimilarArticle['GroupMedia'], '100x100')?>" alt="<?php echo Hash::get($aSimilarArticle,'Group.title'); ?>">
+								<img class="avatar rounded" src="<?=$this->Media->imageUrl($aSimilarArticle['GroupMedia'], 'thumb100x100')?>" alt="<?php echo Hash::get($aSimilarArticle,'Group.title'); ?>">
 							</a>
 
 							<div class="nameAuthorArt">
@@ -2853,7 +3070,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 						<div class="similar-article_item-meta">
 							<div class="similar-article_item-date"><?php echo date('d.m.Y'); ?></div>
 							<div class="similar-article_item-users"><?php echo $aSimilarArticle['Article']['hits'] ?></div>
-							<div class="similar-article_item-backing"><?php echo $aSimilarArticle['Article']['shared'] ?></div>
+							<div class="similar-article_item-backing"><a href="" class="magnificP"></a><?php echo $aSimilarArticle['Article']['shared'] ?></div>
 						</div>
 
 					</div>
@@ -2875,7 +3092,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 
 						<?php if(Hash::get($aPopularArticle,'Article.group_id')>0): ?>
 							<a href="/Group/view/<?=$aPopularArticle['Article']['group_id']?>" class="similar-article_item-image">
-								<img class="avatar rounded" src="<?=$this->Media->imageUrl($aPopularArticle['GroupMedia'], '100x100')?>" alt="<?php echo Hash::get($aPopularArticle,'Group.title'); ?>">
+								<img class="avatar rounded" src="<?=$this->Media->imageUrl($aPopularArticle['GroupMedia'], 'thumb100x100')?>" alt="<?php echo Hash::get($aPopularArticle,'Group.title'); ?>">
 							</a>
 							<div class="nameAuthorArt">
 								<p><?php echo Hash::get($aPopularArticle,'Group.title') ?></p>
@@ -2903,7 +3120,7 @@ $this->Html->css('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-a
 						<div class="similar-article_item-meta">
 							<div class="similar-article_item-date"><?php echo date('d.m.Y'); ?></div>
 							<div class="similar-article_item-users"><?php echo $aPopularArticle['Article']['hits'] ?></div>
-							<div class="similar-article_item-backing"><?php echo $aPopularArticle['Article']['shared'] ?></div>
+							<div class="similar-article_item-backing"><a href="" class="magnificP"></a><?php echo $aPopularArticle['Article']['shared'] ?></div>
 						</div>
 
 					</div>

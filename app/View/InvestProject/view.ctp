@@ -56,7 +56,7 @@ $this->Html->css('vendor/editor.min.css', array('inline' => false));
 					}
 					.fixedLayout{
 						max-width: 1024px;
-						margin: 0 auto!important;
+						margin: 0 auto !important;
 					}
 					#TaskDescr img{
 						max-width: 100%;
@@ -345,10 +345,6 @@ $this->Html->css('vendor/editor.min.css', array('inline' => false));
 	}
 	.fixedLayout {
     	max-width: 1024px;
-		margin-bottom: 48px;
-		margin-top: 33px;
-		margin-left: -15px;
-    	margin-right: -15px;
 	}
 	.refound{
 		color: #999;

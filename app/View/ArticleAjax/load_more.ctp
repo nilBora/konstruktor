@@ -28,7 +28,7 @@
 					</div>
 				<?php else: ?>
 					<a href="<?php echo $this->Html->url(array('controller' => 'User', 'action'=>'view',Hash::get($article,'Article.owner_id'))) ?>" class="right-similar-article_item-image">
-						<img class="avatar rounded" src="<?=$this->Media->imageUrl($aUsers[Hash::get($article,'Article.owner_id')]['UserMedia'], '30x30')?>" alt="">
+						<img class="avatar rounded" src="<?=$this->Media->imageUrl($aUsers[Hash::get($article,'Article.owner_id')]['UserMedia'], 'thumb30x30')?>" alt="">
 					</a>
 					<div class="nameAuthorArt nameAuthorArtG">
 						<p><?php echo Hash::get($aUsers[Hash::get($article,'Article.owner_id')],'User.full_name') ?></p>

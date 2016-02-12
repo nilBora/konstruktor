@@ -28,6 +28,52 @@ class ChatEvent extends AppModel {
 
 	protected $ChatMessage, $ChatRoom, $Media, $ChatContact, $ChatMember;
 
+	public function afterSave($created, $options = array()){
+		if(!isset($this->data['ChatEvent'])){
+			return true;
+		}
+		if(!isset($this->data['ChatEvent']['id'])){
+			$this->data['ChatEvent']['id'] = $this->getLastInsetId();
+		}
+		$this->contactsCounterCache($this->data['ChatEvent']);
+		return true;
+	}
+
+	public function afterDelete() {
+		$this->contactsCounterCache($this->data['ChatEvent']);
+	}
+
+	protected function contactsCounterCache($data){
+		if(!isset($data['event_type'])){
+			$_data = $this->find('first', array(
+				'conditions' => array('ChatEvent.id' => $data['id']),
+				'recursive' => -1
+			));
+			$data = $_data['ChatEvent'];
+		}
+		//Imitate counter cache for non directly related tables
+		$eventTypes = array(self::INCOMING_MSG, self::FILE_DOWNLOAD_AVAIL);
+		//if(($data['event_type'] == self::INCOMING_MSG)||($data['event_type'] == self::FILE_DOWNLOAD_AVAIL)){
+		if(in_array($data['event_type'], $eventTypes)){
+			$this->loadModel('ChatContact');
+			$unread = $this->find('count', array(
+				'conditions' => array(
+					'ChatEvent.user_id' => $data['user_id'],
+					'ChatEvent.room_id' => $data['room_id'],
+					'event_type' => $eventTypes,
+					'ChatEvent.active' => 1,
+				)
+			));
+			$this->ChatContact->updateAll(
+				array('ChatContact.active_count' => $unread),
+    			array(
+					'ChatContact.user_id' => $data['user_id'],
+					'ChatContact.room_id' => $data['room_id'],
+				)
+			);
+		}
+	}
+
 	protected function _addEvent($event_type, $user_id, $room_id, $obj_id, $initiator_id, $active = 1) {
 		$data = compact('event_type', 'user_id', 'room_id', 'initiator_id', 'active');
 		if (in_array($event_type, array(self::OUTCOMING_MSG, self::INCOMING_MSG))) {
@@ -320,9 +366,16 @@ class ChatEvent extends AppModel {
 	}
 
 	public function updateInactive($userID, $ids) {
-		$this->updateAll(array('active' => self::INACTIVE), array('id' => $ids));
-		// var_dump($ids);
-		// update contact list
+		//We use save cause it run afterSave callback
+		foreach($ids as $eventId){
+			$this->save(array(
+				'id' => $eventId,
+				'active' => self::INACTIVE
+			));
+		}
+		//$this->updateAll(array('active' => self::INACTIVE), array('id' => $ids));
+		/*
+		// update contact list old and very buggy way
 		$this->loadModel('ChatContact');
 		$fields = array('user_id', 'room_id', 'SUM(active) as active_count');
 		$conditions = array('id' => $ids, 'user_id' => $userID);
@@ -332,6 +385,7 @@ class ChatEvent extends AppModel {
 		foreach($aEvents as $event) {
 			$this->ChatContact->setActiveCount($userID, $event['ChatEvent']['room_id'], $event[0]['active_count']);
 		}
+		*/
 	}
 	/*
 	public function getActiveRooms($userID) {

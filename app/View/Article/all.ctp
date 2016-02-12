@@ -1,4 +1,4 @@
-<script src="/js/vendor/jquery/inview.js"></script>
+<?php echo $this->Html->script('vendor/jquery/inview.js') ?>
 
 <?php
 /* Breadcrumbs */
@@ -8,7 +8,8 @@
         'select2.full.min.js',
         'isotope.pkgd.min.js',
         'fitColumns.js',
-        'imagesloaded.pkgd.min.js'
+        'imagesloaded.pkgd.min.js',
+        'vendor/formstyler.js'
     ), array('inline' => false));
 
     $css = array(
@@ -35,8 +36,11 @@ $(document).ready(function() {
 	 	$('.grid').isotope('layout');
 	 });
 
-	$('.stylerSelectBig').select2({
-		minimumResultsForSearch:-1,
+	// $('.stylerSelectBig').select2({
+	// 	minimumResultsForSearch:-1,
+	// });
+
+	$('.stylerSelectBig').styler({
 	});
 
 	$('.toggleBtnSort').on('click', function(e){
@@ -158,12 +162,14 @@ $(document).ready(function() {
 		var alreadySend = false;
 		var page = 1;
 
-		$(window).on('scroll', function (event) {
-			var dh = $(document).height();
+		//WARNING!!!! Do not use window node to get height on infinite scroll pages!
+		$('.wrapper-container').on('scroll', function (event) {
+			var dh = $('.fixedLayout').height();
 			if ((/iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
 				dh = dh - 150;
 			}
-			if(($(window).scrollTop() + $(window).height() >= dh) && alreadySend == false) {
+			//WARNING!!!! Do not use window node to get height on infinite scroll pages!
+			if(($('.wrapper-container').height() + $('.wrapper-container').scrollTop() >= dh) && alreadySend == false) {
 				page = page+1;
 				alreadySend = true;
 				$('#map-load').show();
@@ -219,8 +225,22 @@ $(document).mouseup(function(e) {
 </script>
 
 <style>#map-load{position:absolute;top:0;right:0;bottom:0;left:0;display:none;width:60px;height:46px;margin:auto;-ms-transform:translateY(-80px);transform:translateY(-80px);pointer-events:none;opacity:.6}#map-load:before{content:'';position:absolute;top:50%;left:50%;width:94px;height:94px;margin:-17px 0 0 -48px;border:3px solid #777;border-radius:200px;background-color:#fff}.cssload-thecube,.cssload-thecube .cssload-cube{-webkit-transform:rotateZ(45deg);-moz-transform:rotateZ(45deg);-ms-transform:rotateZ(45deg);position:relative}.map-loading #map-load{display:block}.cssload-thecube{width:45px;height:45px;margin:30px auto 0;-o-transform:rotateZ(45deg);transform:rotateZ(45deg)}.cssload-thecube .cssload-cube{transform:rotateZ(45deg);border:1px solid #fff;float:left;width:50%;height:50%;-webkit-transform:scale(1.1);-moz-transform:scale(1.1);-ms-transform:scale(1.1);-o-transform:scale(1.1);transform:scale(1.1)}.cssload-thecube .cssload-cube:before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;-webkit-transform-origin:100% 100%;-moz-transform-origin:100% 100%;-ms-transform-origin:100% 100%;-o-transform-origin:100% 100%;transform-origin:100% 100%;-webkit-animation:cssload-fold-thecube 1.32s infinite linear both;-moz-animation:cssload-fold-thecube 1.32s infinite linear both;-ms-animation:cssload-fold-thecube 1.32s infinite linear both;-o-animation:cssload-fold-thecube 1.32s infinite linear both;animation:cssload-fold-thecube 1.32s infinite linear both;background-color:#777}.cssload-thecube .cssload-c2{-webkit-transform:scale(1.1) rotateZ(90deg);-moz-transform:scale(1.1) rotateZ(90deg);-ms-transform:scale(1.1) rotateZ(90deg);-o-transform:scale(1.1) rotateZ(90deg);transform:scale(1.1) rotateZ(90deg)}.cssload-thecube .cssload-c3{-webkit-transform:scale(1.1) rotateZ(180deg);-moz-transform:scale(1.1) rotateZ(180deg);-ms-transform:scale(1.1) rotateZ(180deg);-o-transform:scale(1.1) rotateZ(180deg);transform:scale(1.1) rotateZ(180deg)}.cssload-thecube .cssload-c4{-webkit-transform:scale(1.1) rotateZ(270deg);-moz-transform:scale(1.1) rotateZ(270deg);-ms-transform:scale(1.1) rotateZ(270deg);-o-transform:scale(1.1) rotateZ(270deg);transform:scale(1.1) rotateZ(270deg)}.cssload-thecube .cssload-c2:before{-webkit-animation-delay:.165s;-moz-animation-delay:.165s;-ms-animation-delay:.165s;-o-animation-delay:.165s;animation-delay:.165s}.cssload-thecube .cssload-c3:before{-webkit-animation-delay:.33s;-moz-animation-delay:.33s;-ms-animation-delay:.33s;-o-animation-delay:.33s;animation-delay:.33s}.cssload-thecube .cssload-c4:before{-webkit-animation-delay:.495s;-moz-animation-delay:.495s;-ms-animation-delay:.495s;-o-animation-delay:.495s;animation-delay:.495s}@keyframes cssload-fold-thecube{0%,10%{transform:perspective(84px) rotateX(-180deg);opacity:0}25%,75%{transform:perspective(84px) rotateX(0);opacity:1}100%,90%{transform:perspective(84px) rotateY(180deg);opacity:0}}
-</style>
 
+
+</style>
+<style>
+/* Do not remove this styles for better minichat postitioning under iPad */
+.absoluteWrap {
+	overflow: hidden;
+	position: absolute;
+	width: 100%;
+	left:0;
+	right:0;
+}
+.wrapper-container{
+	overflow-y: scroll;
+}
+</style>
 <input type="hidden" id="timeFilter" value="<?php if (isset($timeFilter)) echo $timeFilter;?>"/>
 <div class="headerControls">
 	<div class="wrapperSelects">
@@ -306,14 +326,16 @@ $(document).mouseup(function(e) {
 					<?php if(Hash::get($articleTop,'Article.group_id')>0): ?>
 						<div class="imgUserBig">
 							<a href="<?php echo $this->Html->url(array('controller' => 'Group', 'action'=>'view',Hash::get($articleTop,'Article.group_id'))) ?>">
-								<img class="avatar rounded" src="<?=$this->Media->imageUrl($articleTop['GroupMedia'], '36x36')?>" alt="<?php echo Hash::get($articleTop,'Group.title'); ?>" style="width:33px;height:33px">
+								<img class="avatar rounded" src="<?=$this->Media->imageUrl($articleTop['GroupMedia'], 'thumb36x36')?>" alt="<?php echo Hash::get($articleTop,'Group.title'); ?>">
+								<img class="avatar rounded" src="<?=$this->Media->imageUrl($articleTop['GroupMedia'], 'thumb36x36')?>" alt="<?php echo Hash::get($articleTop,'Group.title'); ?>" style="width:33px;height:33px">
 							</a>
 						</div>
 						<div class="nameUserBig"><?php echo Hash::get($articleTop,'Group.title') ?></div>
 					<?php else: ?>
 						<div class="imgUserBig">
 							<a href="<?php echo $this->Html->url(array('controller' => 'User', 'action'=>'view',Hash::get($articleTop,'Article.owner_id'))) ?>">
-								<img class="avatar rounded" src="<?=$this->Media->imageUrl($aUsers[Hash::get($articleTop,'Article.owner_id')]['UserMedia'], '36x36')?>" alt="">
+								<img class="avatar rounded" src="<?=$this->Media->imageUrl($aUsers[Hash::get($articleTop,'Article.owner_id')]['UserMedia'], 'thumb36x36')?>" alt="">
+								<img class="avatar rounded" src="<?=$this->Media->imageUrl($aUsers[Hash::get($articleTop,'Article.owner_id')]['UserMedia'], 'thumb36x36')?>" alt=""  style="width:33px;height:33px">
 							</a>
 						</div>
 						<div class="nameUserBig"><?php echo Hash::get($aUsers[Hash::get($articleTop,'Article.owner_id')],'User.full_name') ?></div>
@@ -362,7 +384,7 @@ $(document).mouseup(function(e) {
 
 									<?php if(Hash::get($articleTop,'Article.group_id')>0): ?>
 										<a href="<?php echo $this->Html->url(array('controller' => 'Group', 'action'=>'view',Hash::get($articleTop,'Article.group_id'))) ?>" class="right-similar-article_item-image">
-											<img class="avatar rounded" src="<?=$this->Media->imageUrl($articleTop['GroupMedia'], '100x100')?>" alt="<?php echo Hash::get($articleTop,'Group.title'); ?>">
+											<img class="avatar rounded" src="<?=$this->Media->imageUrl($articleTop['GroupMedia'], 'thumb100x100')?>" alt="<?php echo Hash::get($articleTop,'Group.title'); ?>">
 										</a>
 										<div class="nameAuthorArt">
 											<p><?php echo Hash::get($articleTop,'Group.title') ?></p>
